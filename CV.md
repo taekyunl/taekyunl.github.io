@@ -18,12 +18,12 @@ title: Curriculum Vitae
 
 # Work Experience
 
-### Keysight
+### Keysight, Santa Rosa, CA
 #### Research Intern as Wireless Communication & Machine Learning Engineer,	May 2023 to July 2023
 
 * Extract 5G New Radio parameters from signal generator, deploy Deep Learning classification module.
 
-### Dudaji
+### Dudaji, Seoul, South Korea
 #### Undergraduate Research Intern,	June 2021 to June 2022
 
 * Object detection and image classification of components on PCB boards.
@@ -41,7 +41,7 @@ title: Curriculum Vitae
 
 ### Reviewer for Reputed Journals
 
-* IEEE Transactions on Wireless Communications (IEEE)
+* IEEE Transactions on Signal Processing (IEEE), (2023, 2024)
 
 ### Talk
 
