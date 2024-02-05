@@ -2,7 +2,7 @@
 layout: page
 title: Taekyun Lee
 subtitle: University of Texas at Austin
-cover-img: /assets/img/7.jpg
+cover-img: /assets/img/Taekyun_beer.JPG
 ---
 
 <br/>
