@@ -16,6 +16,8 @@ title: Curriculum Vitae
 
 * Summa Cum Laude, Overall GPA : 3.89/4.00 (including 2 years of millitary service)
 
+#### Seoul Science High School (SSHS), 2013 to 2015
+
 # Work Experience
 
 ### Keysight, Santa Rosa, CA
@@ -41,11 +43,14 @@ title: Curriculum Vitae
 
 ### Reviewer for Reputed Journals
 
+* IEEE Transactions on Wireless Communication (IEEE), 2024
 * IEEE Transactions on Signal Processing (IEEE), 2023, 2024
 
 ### Talk
 
-* Talk regarding **Resililient and Intelligent NextG Systems(RINGS) PI Meeting**, Santa Clara, CA, 2023
+* ECE Career Lecture for Students at Seoul Science High School, Seoul, South Korea, 2024
+* Talk regarding **Resilient and Intelligent NextG Systems(RINGS) PI Meeting**, Yorktown Heights, NY, 2024
+* Talk regarding **Resilient and Intelligent NextG Systems(RINGS) PI Meeting**, Santa Clara, CA, 2023
 
 
 <br/>
