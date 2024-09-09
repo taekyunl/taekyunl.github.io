@@ -34,9 +34,15 @@ title: Curriculum Vitae
 
 # Publication
 
-- **Taekyun Lee**, Hyeji Kim, and Jeffrey G. Andrews, “Deep Learning-Based mmWave Beam Alignment Using Pilot Channel Measurements,” _In Proc. Int. Conf. Commun.(ICC)_, 2024 (to appear).
+### Preprint
 
-- **Taekyun Lee**, Abhinav Mahadevan, Hyeji Kim, and Jeffrey G. Andrews, “Deep Learning-Based Autodetection of 5G NR mmWave Waveforms,” _In Proc. Int. Conf. Commun.(ICC)_, 2024 (to appear).
+- **Taekyun Lee**, Juseong Park, Hyeji Kim, and Jeffrey G. Andrews, “Deep Learning-Based mmWave Beam Alignment Using Pilot Channel Measurements,” _Submitted_, 2024. [Paper](https://www.arxiv.org/abs/2409.03924)
+
+### Conference
+
+- **Taekyun Lee**, Hyeji Kim, and Jeffrey G. Andrews, “Deep Learning-Based mmWave Beam Alignment with Only Pilot Channel Measurements,” _In Proc. Int. Conf. Commun.(ICC)_, 2024. [Paper](https://ieeexplore.ieee.org/abstract/document/10622318)
+
+- **Taekyun Lee**, Abhinav Mahadevan, Hyeji Kim, and Jeffrey G. Andrews, “Deep Learning-Based Autodetection of 5G NR mmWave Waveforms,” _In Proc. Int. Conf. Commun.(ICC)_, 2024. [Paper](https://ieeexplore.ieee.org/abstract/document/10623118)
 
 
 # Professional Activity
