@@ -39,6 +39,8 @@ title: Curriculum Vitae
 - **Taekyun Lee**, Juseong Park, Hyeji Kim, and Jeffrey G. Andrews, “Deep Learning-Based mmWave Beam Alignment Using Pilot Channel Measurements,” _Submitted_, 2024. [Paper](https://www.arxiv.org/abs/2409.03924)
 
 ### Conference
+- **Taekyun Lee**, Juseong Park, Hyeji Kim, and Jeffrey G. Andrews, “Optimizing Wireless Channel Augmentation with Conditional Diffusion
+Model: Conditioning on User Position,” _In 58th Asilomar Conf. Signals, Syst., Comput._, 2024.
 
 - **Taekyun Lee**, Hyeji Kim, and Jeffrey G. Andrews, “Deep Learning-Based mmWave Beam Alignment with Only Pilot Channel Measurements,” _In Proc. Int. Conf. Commun.(ICC)_, 2024. [Paper](https://ieeexplore.ieee.org/abstract/document/10622318)
 
@@ -72,18 +74,23 @@ title: Curriculum Vitae
 
 # Teaching Experience
 
-### Teaching Assistant (Undergrad)
+### Lecture
+
+* Introduction to Digital Communication
+  * Seoul Science High School, Winter 2024 (expected)
+
+### Teaching Assistant
 
 * Mathematical Foundations of Deep Neural Networks 
-  * Fall 2021
+  * Seoul National University, Fall 2021
  
-### Undergraduate Student Tutor (Undergrad)
+### Undergraduate Student Tutor
 
 * Introduction to data structures 
-  * Fall 2021
+  * Seoul National University, Fall 2021
 * Signals and Systems
-  * Winter 2020
+  * Seoul National University, Winter 2020
 * Programming Methodology
-  * Spring 2020, Fall 2020
+  * Seoul National University, Spring 2020, Fall 2020
 * Physics 1, 2
-  * Spring 2017, Fall 2017, Spring 2021
+  * Seoul National University, Spring 2017, Fall 2017, Spring 2021
