@@ -34,9 +34,11 @@ title: Curriculum Vitae
 
 # Publication
 
+[Google scholar](https://scholar.google.com/citations?hl=ko&view_op=list_works&gmla=AC6lMd9r1b2qY7o9tvT95_yapyVXEJ3PV8j6vjoGcCgwl6e9nrUTdU2dduX9yYdDHfk4bNlyvIZ6_2k9LRjfSJnSx13HgLEHynLrbhyHJa1eWwU2-FSRvy80JoNIJbA&user=6xx9P3oAAAAJ)
+
 ### Preprint
 
-- **Taekyun Lee**, Juseong Park, Hyeji Kim, and Jeffrey G. Andrews, “Deep Learning-Based mmWave Beam Alignment Using Pilot Channel Measurements,” _Submitted_, 2024. [Paper](https://www.arxiv.org/abs/2409.03924)
+- **Taekyun Lee**, Juseong Park, Hyeji Kim, and Jeffrey G. Andrews, “Deep Learning-Based mmWave Beam Alignment Using Pilot Channel Measurements,” _Submitted_, 2024. [Paper](https://www.arxiv.org/abs/2409.03924) [Code](https://github.com/taekyunl/cDDIM)
 
 ### Conference
 - **Taekyun Lee**, Juseong Park, Hyeji Kim, and Jeffrey G. Andrews, “Optimizing Wireless Channel Augmentation with Conditional Diffusion
