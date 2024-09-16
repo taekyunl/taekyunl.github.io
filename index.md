@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Taekyun Lee
-subtitle: University of Texas at Austin
+subtitle: The University of Texas at Austin
 cover-img: /assets/img/Taekyun_beer.png
 ---
 
@@ -9,13 +9,14 @@ cover-img: /assets/img/Taekyun_beer.png
 
 ## About me
 
-Hi, my name is Taekyun Lee. I am a ECE Ph.D. student of UT Austin, advised by Jeffrey Andrews and Hyeji Kim. I received my B.S. in Electrical and Computer Engineering from Seoul National University in February 2022.
+Hi, my name is Taekyun Lee. I am a ECE Ph.D. student of UT Austin, advised by Prof. Jeffrey Andrews and Prof. Hyeji Kim. I received my B.S. in Electrical and Computer Engineering from Seoul National University in February 2022.
 
 My main research area is quite broad. I am always trying to find an interesting problems in
 
 * Wireless Communication
-* Generative Model
-* Reinforcement Learning.
+* Generative Models
+* Reinforcement Learning
+* Large Language Models.
 
 Feel free to reach out!
 
