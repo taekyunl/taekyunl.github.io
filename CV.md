@@ -53,7 +53,8 @@ Model: Conditioning on User Position,” _In 58th Asilomar Conf. Signals, Syst.,
 
 ### Reviewer for Reputed Journals
 
-* IEEE Transactions on Wireless Communication (IEEE), 2024
+* IEEE Transactions on Communications (IEEE), 2024
+* IEEE Transactions on Wireless Communications (IEEE), 2024
 * IEEE Transactions on Signal Processing (IEEE), 2023, 2024
 
 ### Talk
@@ -78,7 +79,7 @@ Model: Conditioning on User Position,” _In 58th Asilomar Conf. Signals, Syst.,
 
 ### Lecture
 
-* Introduction to Digital Communication
+* Introduction to Digital Communications
   * Seoul Science High School, Winter 2024 (expected)
 
 ### Teaching Assistant
