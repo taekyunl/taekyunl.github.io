@@ -40,9 +40,13 @@ title: Curriculum Vitae
 
 - **Taekyun Lee**, Juseong Park, Hyeji Kim, and Jeffrey G. Andrews, “Generating High Dimensional User-Specific Wireless Channels using Diffusion Models,” _Submitted_, 2024. [Paper](https://www.arxiv.org/abs/2409.03924) [Code](https://github.com/taekyunl/cDDIM)
 
+- Heasung Kim, **Taekyun Lee**, Hyeji Kim, Gustavo de Veciana, “Importance Sampling via Score-based Generative Models,” _Submitted_, 2025.
+
+-  Heasung Kim, **Taekyun Lee**, Hyeji Kim, Gustavo de Veciana, Mohamed Amine Arfaoui, Asil Koc, Phil Pietraski, Guodong Zhang, and John Kaewell, “Generative Diffusion Model-based Compression of MIMO CSI,” _Submitted_, 2025.
+
 ### Conference
-- **Taekyun Lee**, Juseong Park, Hyeji Kim, and Jeffrey G. Andrews, “Optimizing Wireless Channel Augmentation with Conditional Diffusion
-Model: Conditioning on User Position,” _In 58th Asilomar Conf. Signals, Syst., Comput._, 2024.
+- **Taekyun Lee**, Juseong Park, Hyeji Kim, and Jeffrey G. Andrews, “High Dimensional User-Specific Channel Generation for CSI
+Compression using Diffusion Models,” _In 58th Asilomar Conf. Signals, Syst., Comput._, 2024.
 
 - **Taekyun Lee**, Hyeji Kim, and Jeffrey G. Andrews, “Deep Learning-Based mmWave Beam Alignment with Only Pilot Channel Measurements,” _In Proc. Int. Conf. Commun.(ICC)_, 2024. [Paper](https://ieeexplore.ieee.org/abstract/document/10622318)
 
@@ -51,11 +55,12 @@ Model: Conditioning on User Position,” _In 58th Asilomar Conf. Signals, Syst.,
 
 # Professional Activity
 
-### Reviewer for Reputed Journals
+### Reviewer for Reputed Journals / Conferences
 
-* IEEE Transactions on Communications (IEEE), 2024
 * IEEE Transactions on Wireless Communications (IEEE), 2024
+* IEEE Transactions on Communications (IEEE), 2024
 * IEEE Transactions on Signal Processing (IEEE), 2023, 2024
+* IEEE Communications Letters (IEEE), 2024
 
 ### Talk
 
@@ -76,11 +81,6 @@ Model: Conditioning on User Position,” _In 58th Asilomar Conf. Signals, Syst.,
 
 
 # Teaching Experience
-
-### Lecture
-
-* Introduction to Digital Communications
-  * Seoul Science High School, Winter 2024 (expected)
 
 ### Teaching Assistant
 
