@@ -20,6 +20,9 @@ title: Curriculum Vitae
 
 # Work Experience
 
+### NVIDIA, Santa Clara, CA
+#### Research Intern as Wireless Communication & Software Engineer,	May 2025 to August 2025 (expected)
+
 ### Keysight, Santa Rosa, CA
 #### Research Intern as Wireless Communication & Machine Learning Engineer,	May 2023 to July 2023
 
