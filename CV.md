@@ -45,15 +45,22 @@ title: Curriculum Vitae
 
 - Heasung Kim, **Taekyun Lee**, Hyeji Kim, Gustavo de Veciana, “Importance Sampling via Score-based Generative Models,” _Submitted_, 2025.
 
--  Heasung Kim, **Taekyun Lee**, Hyeji Kim, Gustavo de Veciana, Mohamed Amine Arfaoui, Asil Koc, Phil Pietraski, Guodong Zhang, and John Kaewell, “Generative Diffusion Model-based Compression of MIMO CSI,” _Submitted_, 2025.
 
 ### Conference
+
+-  Heasung Kim, **Taekyun Lee**, Hyeji Kim, Gustavo de Veciana, Mohamed Amine Arfaoui, Asil Koc, Phil Pietraski, Guodong Zhang, and John Kaewell, “Generative Diffusion Model-based Compression of MIMO CSI,” _In Proc. Int. Conf. Commun.(ICC)_, 2025.
+
 - **Taekyun Lee**, Juseong Park, Hyeji Kim, and Jeffrey G. Andrews, “High Dimensional User-Specific Channel Generation for CSI
 Compression using Diffusion Models,” _In 58th Asilomar Conf. Signals, Syst., Comput._, 2024.
 
 - **Taekyun Lee**, Hyeji Kim, and Jeffrey G. Andrews, “Deep Learning-Based mmWave Beam Alignment with Only Pilot Channel Measurements,” _In Proc. Int. Conf. Commun.(ICC)_, 2024. [Paper](https://ieeexplore.ieee.org/abstract/document/10622318)
 
 - **Taekyun Lee**, Abhinav Mahadevan, Hyeji Kim, and Jeffrey G. Andrews, “Deep Learning-Based Autodetection of 5G NR mmWave Waveforms,” _In Proc. Int. Conf. Commun.(ICC)_, 2024. [Paper](https://ieeexplore.ieee.org/abstract/document/10623118)
+
+### Workshop
+
+- **Taekyun Lee**, "Importance Sampling in Digital Twin Networks", IEEE Communication Theory Workshop, 2025.
+
 
 
 # Professional Activity
