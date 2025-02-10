@@ -43,8 +43,7 @@ title: Curriculum Vitae
 
 - **Taekyun Lee**, Juseong Park, Hyeji Kim, and Jeffrey G. Andrews, “Generating High Dimensional User-Specific Wireless Channels using Diffusion Models,” _Submitted_, 2024. [Paper](https://www.arxiv.org/abs/2409.03924) [Code](https://github.com/taekyunl/cDDIM)
 
-- Heasung Kim, **Taekyun Lee**, Hyeji Kim, Gustavo de Veciana, “Importance Sampling via Score-based Generative Models,” _Submitted_, 2025.
-
+- Heasung Kim, **Taekyun Lee**, Hyeji Kim, Gustavo de Veciana, “Importance Sampling via Score-based Generative Models,” _Submitted_, 2025. [Paper](https://www.arxiv.org/abs/2502.04646)
 
 ### Conference
 
