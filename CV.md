@@ -14,7 +14,7 @@ title: Curriculum Vitae
 ### B.S. in Electrical and Computer Engineering
 #### Seoul National University, Seoul, South Korea,	2016 to 2022
 
-* Summa Cum Laude, Overall GPA : 3.89/4.00 (including 2 years of millitary service)
+* Summa Cum Laude, Overall GPA: 3.89/4.00 (including 2 years of military service)
 
 #### Seoul Science High School (SSHS), 2013 to 2015
 
@@ -26,7 +26,7 @@ title: Curriculum Vitae
 ### Keysight, Santa Rosa, CA
 #### Research Intern as Wireless Communication & Machine Learning Engineer,	May 2023 to July 2023
 
-* Extract 5G New Radio parameters from signal generator, deploy Deep Learning classification module.
+* Extract 5G New Radio parameters from a signal generator and deploy the Deep Learning classification module.
 
 ### Dudaji, Seoul, South Korea
 #### Undergraduate Research Intern,	June 2021 to June 2022
@@ -44,6 +44,8 @@ title: Curriculum Vitae
 - **Taekyun Lee**, Juseong Park, Hyeji Kim, and Jeffrey G. Andrews, “Generating High Dimensional User-Specific Wireless Channels using Diffusion Models,” _Submitted_, 2024. [Paper](https://www.arxiv.org/abs/2409.03924) [Code](https://github.com/taekyunl/cDDIM)
 
 - Heasung Kim, **Taekyun Lee**, Hyeji Kim, Gustavo de Veciana, “Importance Sampling via Score-based Generative Models,” _Submitted_, 2025. [Paper](https://www.arxiv.org/abs/2502.04646)
+
+- Sungyoung Lee, Ziyi Wang, Seunggeun Kim, **Taekyun Lee**, David Z Pan, “Self-Supervised Graph Contrastive Pretraining for Device-level Integrated Circuits,” _Submitted_, 2025. [Paper](https://www.arxiv.org/abs/2502.08949)
 
 ### Conference
 
