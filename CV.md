@@ -45,7 +45,7 @@ title: Curriculum Vitae
 
 - Heasung Kim, **Taekyun Lee**, Hyeji Kim, Gustavo de Veciana, “Importance Sampling via Score-based Generative Models,” _Submitted_, 2025. [Paper](https://www.arxiv.org/abs/2502.04646)
 
-- Sungyoung Lee, Ziyi Wang, Seunggeun Kim, **Taekyun Lee**, David Z Pan, “Self-Supervised Graph Contrastive Pretraining for Device-level Integrated Circuits,” _Submitted_, 2025. [Paper](https://www.arxiv.org/abs/2502.08949)
+- Sungyoung Lee, Ziyi Wang, Seunggeun Kim, **Taekyun Lee**, David Z. Pan, “Self-Supervised Graph Contrastive Pretraining for Device-level Integrated Circuits,” _Submitted_, 2025. [Paper](https://www.arxiv.org/abs/2502.08949)
 
 ### Conference
 
