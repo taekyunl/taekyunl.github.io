@@ -47,7 +47,7 @@ title: Curriculum Vitae
 
 - Sungyoung Lee, Ziyi Wang, Seunggeun Kim, **Taekyun Lee**, David Z. Pan, “Self-Supervised Graph Contrastive Pretraining for Device-level Integrated Circuits,” _Submitted_, 2025. [Paper](https://www.arxiv.org/abs/2502.08949)
 
-- Eunsun Kim, Ian P. Roberts, **Taekyun Lee**, and Jeffrey G. Andrews, “Satellite Selection for In-Band Coexistence of Dense LEO Networks,” _Submitted_, 2025.
+- Eunsun Kim, Ian P. Roberts, **Taekyun Lee**, and Jeffrey G. Andrews, “Satellite Selection for In-Band Coexistence of Dense LEO Networks,” _Submitted_, 2025. [Paper](https://arxiv.org/abs/2503.15262)
 
 ### Conference
 
