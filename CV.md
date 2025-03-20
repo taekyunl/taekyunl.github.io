@@ -47,9 +47,11 @@ title: Curriculum Vitae
 
 - Sungyoung Lee, Ziyi Wang, Seunggeun Kim, **Taekyun Lee**, David Z. Pan, “Self-Supervised Graph Contrastive Pretraining for Device-level Integrated Circuits,” _Submitted_, 2025. [Paper](https://www.arxiv.org/abs/2502.08949)
 
+- Eunsun Kim, Ian P. Roberts, **Taekyun Lee**, and Jeffrey G. Andrews, “Satellite Selection for In-Band Coexistence of Dense LEO Networks,” _Submitted_, 2025.
+
 ### Conference
 
--  Heasung Kim, **Taekyun Lee**, Hyeji Kim, Gustavo de Veciana, Mohamed Amine Arfaoui, Asil Koc, Phil Pietraski, Guodong Zhang, and John Kaewell, “Generative Diffusion Model-based Compression of MIMO CSI,” _In Proc. Int. Conf. Commun.(ICC)_, 2025.
+-  Heasung Kim, **Taekyun Lee**, Hyeji Kim, Gustavo de Veciana, Mohamed Amine Arfaoui, Asil Koc, Phil Pietraski, Guodong Zhang, and John Kaewell, “Generative Diffusion Model-based Compression of MIMO CSI,” _In Proc. Int. Conf. Commun.(ICC)_, 2025. [Paper](https://arxiv.org/abs/2503.03753)
 
 - **Taekyun Lee**, Juseong Park, Hyeji Kim, and Jeffrey G. Andrews, “High Dimensional User-Specific Channel Generation for CSI
 Compression using Diffusion Models,” _In 58th Asilomar Conf. Signals, Syst., Comput._, 2024.
