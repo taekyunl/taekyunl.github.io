@@ -86,6 +86,7 @@ Compression using Diffusion Models,” _In 58th Asilomar Conf. Signals, Syst., C
 
 # Scholarships and Honors
 
+* WNCG Student Leadership Award — Wireless Networking and Communications Group, UT Austin, 2025
 * Kwanjeong International Educational Foundation Scholarship, 2022 - 
 * Kwanjeong Domestic Educational Foundation Scholarship, 2020 - 2021
   * Awarded nationally to around 50 undergraduate students
