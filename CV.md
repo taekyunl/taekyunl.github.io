@@ -43,9 +43,9 @@ title: Curriculum Vitae
 
 - **Taekyun Lee**, Juseong Park, Hyeji Kim, and Jeffrey G. Andrews, “Generating High Dimensional User-Specific Wireless Channels using Diffusion Models,” _Submitted_, 2024. [Paper](https://www.arxiv.org/abs/2409.03924) [Code](https://github.com/taekyunl/cDDIM)
 
-- Heasung Kim, **Taekyun Lee**, Hyeji Kim, Gustavo de Veciana, “Importance Sampling via Score-based Generative Models,” _Submitted_, 2025. [Paper](https://www.arxiv.org/abs/2502.04646)
+- Heasung Kim, **Taekyun Lee**, Hyeji Kim, and Gustavo de Veciana, “Importance Sampling via Score-based Generative Models,” _Submitted_, 2025. [Paper](https://www.arxiv.org/abs/2502.04646)
 
-- Sungyoung Lee, Ziyi Wang, Seunggeun Kim, **Taekyun Lee**, David Z. Pan, “Self-Supervised Graph Contrastive Pretraining for Device-level Integrated Circuits,” _Submitted_, 2025. [Paper](https://www.arxiv.org/abs/2502.08949)
+- Sungyoung Lee, Ziyi Wang, Seunggeun Kim, **Taekyun Lee**, and David Z. Pan, “Self-Supervised Graph Contrastive Pretraining for Device-level Integrated Circuits,” _Submitted_, 2025. [Paper](https://www.arxiv.org/abs/2502.08949)
 
 - Eunsun Kim, Ian P. Roberts, **Taekyun Lee**, and Jeffrey G. Andrews, “Satellite Selection for In-Band Coexistence of Dense LEO Networks,” _Submitted_, 2025. [Paper](https://arxiv.org/abs/2503.15262)
 
@@ -62,7 +62,7 @@ Compression using Diffusion Models,” _In 58th Asilomar Conf. Signals, Syst., C
 
 ### Workshop
 
-- **Taekyun Lee**, "Importance Sampling in Digital Twin Networks", IEEE Communication Theory Workshop, 2025.
+- **Taekyun Lee**, Hyeji Kim, and Jeffrey G. Andrews, "Importance Sampling in Digital Twin Networks", IEEE Communication Theory Workshop, 2025.
 
 
 
