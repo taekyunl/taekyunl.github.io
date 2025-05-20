@@ -64,7 +64,9 @@ Compression using Diffusion Models,” _In 58th Asilomar Conf. Signals, Syst., C
 
 - **Taekyun Lee**, Hyeji Kim, and Jeffrey G. Andrews, "Importance Sampling in Digital Twin Networks", IEEE Communication Theory Workshop, 2025.
 
+### U.S. Patent
 
+- Michael Millhaem, Abhinav Mahadevan, **Taekyun Lee**, "System and method for reducing self-interference in full-duplex system", 18815389, 2025.
 
 # Professional Activity
 
