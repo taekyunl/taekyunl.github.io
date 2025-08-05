@@ -75,6 +75,7 @@ Compression using Diffusion Models,” _In 58th Asilomar Conf. Signals, Syst., C
 * IEEE Transactions on Wireless Communications (IEEE) - 2024, 2025
 * IEEE Transactions on Communications (IEEE) - 2024
 * IEEE Transactions on Signal Processing (IEEE) - 2023, 2024
+* IEEE Internet of Things Journal (IEEE) - 2025
 * IEEE Communications Letters (IEEE) - 2024, 2025
 
 ### Talk
