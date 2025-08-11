@@ -21,7 +21,9 @@ title: Curriculum Vitae
 # Work Experience
 
 ### NVIDIA, Santa Clara, CA
-#### Research Intern as Wireless Communication & Software Engineer,	May 2025 to August 2025 (expected)
+#### Research Intern as Wireless Communication & Software Engineer,	May 2025 to August 2025
+
+* Development of UE localization method from SRS.
 
 ### Keysight, Santa Rosa, CA
 #### Research Intern as Wireless Communication & Machine Learning Engineer,	May 2023 to July 2023
@@ -48,6 +50,10 @@ title: Curriculum Vitae
 - Sungyoung Lee, Ziyi Wang, Seunggeun Kim, **Taekyun Lee**, Yao Lai, and David Z. Pan, “Self-Supervised Graph Contrastive Pretraining for Device-level Integrated Circuits,” _Submitted_, 2025. [Paper](https://www.arxiv.org/abs/2502.08949)
 
 - Eunsun Kim, Ian P. Roberts, **Taekyun Lee**, and Jeffrey G. Andrews, “Satellite Selection for In-Band Coexistence of Dense LEO Networks,” _Submitted_, 2025. [Paper](https://arxiv.org/abs/2503.15262)
+
+### Journal
+
+- **Taekyun Lee**, Juseong Park, Hyeji Kim, and Jeffrey G. Andrews, “Generating High Dimensional User-Specific Wireless Channels using Diffusion Models,” Trans. Wireless. Comm.(TWC) (To appear), 2024. [Paper](https://www.arxiv.org/abs/2409.03924) [Code](https://github.com/taekyunl/cDDIM)
 
 ### Conference
 
