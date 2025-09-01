@@ -43,8 +43,6 @@ title: Curriculum Vitae
 
 ### Preprint
 
-- **Taekyun Lee**, Juseong Park, Hyeji Kim, and Jeffrey G. Andrews, “Generating High Dimensional User-Specific Wireless Channels using Diffusion Models,” _Submitted_, 2024. [Paper](https://www.arxiv.org/abs/2409.03924) [Code](https://github.com/taekyunl/cDDIM)
-
 - Heasung Kim, **Taekyun Lee**, Hyeji Kim, and Gustavo de Veciana, “Importance Sampling via Score-based Generative Models,” _Submitted_, 2025. [Paper](https://www.arxiv.org/abs/2502.04646)
 
 - Sungyoung Lee, Ziyi Wang, Seunggeun Kim, **Taekyun Lee**, Yao Lai, and David Z. Pan, “Self-Supervised Graph Contrastive Pretraining for Device-level Integrated Circuits,” _Submitted_, 2025. [Paper](https://www.arxiv.org/abs/2502.08949)
@@ -53,7 +51,7 @@ title: Curriculum Vitae
 
 ### Journal
 
-- **Taekyun Lee**, Juseong Park, Hyeji Kim, and Jeffrey G. Andrews, “Generating High Dimensional User-Specific Wireless Channels using Diffusion Models,” Trans. Wireless. Comm.(TWC) (To appear), 2024. [Paper](https://www.arxiv.org/abs/2409.03924) [Code](https://github.com/taekyunl/cDDIM)
+- **Taekyun Lee**, Juseong Park, Hyeji Kim, and Jeffrey G. Andrews, “Generating High Dimensional User-Specific Wireless Channels using Diffusion Models,” Trans. Wireless. Comm.(TWC) (Early Access), 2025. [Paper](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=11142589) [Code](https://github.com/taekyunl/cDDIM)
 
 ### Conference
 
