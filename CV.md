@@ -51,22 +51,24 @@ title: Curriculum Vitae
 
 ### Journal
 
-- **Taekyun Lee**, Juseong Park, Hyeji Kim, and Jeffrey G. Andrews, “Generating High Dimensional User-Specific Wireless Channels using Diffusion Models,” Trans. Wireless. Comm.(TWC) (Early Access), 2025. [Paper](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=11142589) [Code](https://github.com/taekyunl/cDDIM)
+- **Taekyun Lee**, Juseong Park, Hyeji Kim, and Jeffrey G. Andrews, “Generating High Dimensional User-Specific Wireless Channels using Diffusion Models,” TWC (Early Access), 2025. [Paper](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=11142589) [Code](https://github.com/taekyunl/cDDIM)
 
 ### Conference
 
--  Heasung Kim, **Taekyun Lee**, Hyeji Kim, Gustavo de Veciana, Mohamed Amine Arfaoui, Asil Koc, Phil Pietraski, Guodong Zhang, and John Kaewell, “Generative Diffusion Model-based Compression of MIMO CSI,” _In Proc. Int. Conf. Commun.(ICC)_, 2025. [Paper](https://arxiv.org/abs/2503.03753)
+- Heasung Kim, **Taekyun Lee**, Hyeji Kim, Gustavo de Veciana, “Generating Informative Samples for Risk-Averse Fine-Tuning of Downstream Tasks,” NeurIPS (Spotlight), 2025.
+  
+-  Heasung Kim, **Taekyun Lee**, Hyeji Kim, Gustavo de Veciana, Mohamed Amine Arfaoui, Asil Koc, Phil Pietraski, Guodong Zhang, and John Kaewell, “Generative Diffusion Model-based Compression of MIMO CSI,” ICC, 2025. [Paper](https://arxiv.org/abs/2503.03753)
 
 - **Taekyun Lee**, Juseong Park, Hyeji Kim, and Jeffrey G. Andrews, “High Dimensional User-Specific Channel Generation for CSI
-Compression using Diffusion Models,” _In 58th Asilomar Conf. Signals, Syst., Comput._, 2024.
+Compression using Diffusion Models,” Asilomar, 2024.
 
-- **Taekyun Lee**, Hyeji Kim, and Jeffrey G. Andrews, “Deep Learning-Based mmWave Beam Alignment with Only Pilot Channel Measurements,” _In Proc. Int. Conf. Commun.(ICC)_, 2024. [Paper](https://ieeexplore.ieee.org/abstract/document/10622318)
+- **Taekyun Lee**, Hyeji Kim, and Jeffrey G. Andrews, “Deep Learning-Based mmWave Beam Alignment with Only Pilot Channel Measurements,” ICC, 2024. [Paper](https://ieeexplore.ieee.org/abstract/document/10622318)
 
-- **Taekyun Lee**, Abhinav Mahadevan, Hyeji Kim, and Jeffrey G. Andrews, “Deep Learning-Based Autodetection of 5G NR mmWave Waveforms,” _In Proc. Int. Conf. Commun.(ICC)_, 2024. [Paper](https://ieeexplore.ieee.org/abstract/document/10623118)
+- **Taekyun Lee**, Abhinav Mahadevan, Hyeji Kim, and Jeffrey G. Andrews, “Deep Learning-Based Autodetection of 5G NR mmWave Waveforms,” ICC, 2024. [Paper](https://ieeexplore.ieee.org/abstract/document/10623118)
 
 ### Workshop
 
-- **Taekyun Lee**, Hyeji Kim, and Jeffrey G. Andrews, "Importance Sampling in Digital Twin Networks", IEEE Communication Theory Workshop, 2025.
+- **Taekyun Lee**, Hyeji Kim, and Jeffrey G. Andrews, "Importance Sampling in Digital Twin Networks", IEEE CTW, 2025.
 
 ### U.S. Patent
 
@@ -76,11 +78,7 @@ Compression using Diffusion Models,” _In 58th Asilomar Conf. Signals, Syst., C
 
 ### Reviewer for Reputed Journals / Conferences
 
-* IEEE Transactions on Wireless Communications (IEEE) - 2024, 2025
-* IEEE Transactions on Communications (IEEE) - 2024
-* IEEE Transactions on Signal Processing (IEEE) - 2023, 2024
-* IEEE Internet of Things Journal (IEEE) - 2025
-* IEEE Communications Letters (IEEE) - 2024, 2025
+* IEEE Transactions on Wireless Communications, IEEE Transactions on Communications, IEEE Transactions on Signal Processing, IEEE Internet of Things Journal, IEEE Communications Letters
 
 ### Talk
 
