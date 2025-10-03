@@ -43,6 +43,9 @@ title: Curriculum Vitae
 
 ### Preprint
 
+- Jaeyeon Kim, Seunggeun Kim, **Taekyun Lee***, David Z. Pan, Hyeji Kim, Sham Kakade, Sitan Chen, “Fine-Tuning Masked Diffusion for Provable Self-Correction,” _Submitted_, 2025. [Paper](https://www.arxiv.org/abs/2510.01384)
+
+
 - Heasung Kim, **Taekyun Lee**, Hyeji Kim, and Gustavo de Veciana, “Importance Sampling via Score-based Generative Models,” _Submitted_, 2025. [Paper](https://www.arxiv.org/abs/2502.04646)
 
 - Sungyoung Lee, Ziyi Wang, Seunggeun Kim, **Taekyun Lee**, Yao Lai, and David Z. Pan, “Self-Supervised Graph Contrastive Pretraining for Device-level Integrated Circuits,” _Submitted_, 2025. [Paper](https://www.arxiv.org/abs/2502.08949)
