@@ -43,6 +43,9 @@ title: Curriculum Vitae
 
 ### Preprint
 
+- **Taekyun Lee**, Tommaso Balercia, Heasung Kim, Hyeji Kim, and Jeffrey G. Andrews, “DiffLoc: Diffusion Model-Based High-Precision
+Positioning for 6G Networks,” _Submitted_, 2025. [Paper](https://arxiv.org/pdf/2510.14111)
+
 - Jaeyeon Kim\*, Seunggeun Kim\*, **Taekyun Lee\***, David Z. Pan, Hyeji Kim, Sham Kakade, Sitan Chen, “Fine-Tuning Masked Diffusion for Provable Self-Correction,” _Submitted_, 2025. [Paper](https://www.arxiv.org/abs/2510.01384)
 
 
