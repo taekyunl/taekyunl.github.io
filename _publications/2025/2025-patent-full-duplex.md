@@ -13,5 +13,6 @@ authors:
 - Abhinav Mahadevan
 - Taekyun Lee
 links:
+  Link: https://patentimages.storage.googleapis.com/47/0d/9f/93f6a8ea3500f7/US20250141650A1.pdf
 ---
 
