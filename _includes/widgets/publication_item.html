@@ -12,7 +12,6 @@
             <h5 class="mt-0 mb-1 font-weight-normal">{{ item.title }}</h5>
             <p class="mt-0 mb-0 small">{% include widgets/author_list.html authors=item.authors %}</p>
                 <p class="mt-0 mb-0 small">{% if item.pub_pre %}{{item.pub_pre}}{% endif %}<i>{{ item.pub }}</i>{% if item.pub_post %}{{ item.pub_post }}{% endif %}{% unless item.pub contains "IEEE Transactions" or item.pub contains "Journal" %} {{ item.pub_date }}{% endunless %} {{ item.pub_last }} <span data-semantic-scholar-id="{{ item.semantic_scholar_id }}"></span></p>
-            <p class="mt-0 mb-0 small text-muted">{{ item.abstract }}</p>
             
             <p class="small pb-0 mb-0 lh-125 text-muted abstract-links">
                 {% for link in item.links %}
@@ -36,7 +35,6 @@
                 <h5 class="mt-0 mb-1 font-weight-normal">{{ item.title }}</h5>
                 <p class="mt-0 mb-0 small">{% include widgets/author_list.html authors=item.authors %}</p>
                 <p class="mt-0 mb-0 small">{% if item.pub_pre %}{{item.pub_pre}}{% endif %}<i>{{ item.pub }}</i>{% if item.pub_post %}{{ item.pub_post }}{% endif %}{% unless item.pub contains "IEEE Transactions" or item.pub contains "Journal" %} {{ item.pub_date }}{% endunless %} {{ item.pub_last }} <span data-semantic-scholar-id="{{ item.semantic_scholar_id }}"></span></p>
-                <p class="mt-0 mb-0 small text-muted">{{ item.abstract }}</p>
                 
                 <p class="small pb-0 mb-0 lh-125 text-muted abstract-links">
                     {% for link in item.links %}

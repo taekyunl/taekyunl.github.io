@@ -67,3 +67,5 @@ bundle exec jekyll serve
 
 (이미 bundler가 설치되어 있다면 위 명령어만 실행하면 됩니다)
 
+
+

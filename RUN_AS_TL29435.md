@@ -68,3 +68,5 @@ echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc
 
 다음 번에는 `su - tl29435`만 하면 환경 변수가 자동으로 설정됩니다.
 
+
+
