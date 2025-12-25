@@ -44,6 +44,17 @@ h1, h2, h3, h4, h5, h6,
 
 .navbar {
     opacity: 0.95;
+    background-color: #BF5700 !important;
+}
+
+.navbar-brand-home {
+    color: white !important;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.navbar-brand-home:hover {
+    color: #333F48 !important;
 }
 
 .inline-badge {
@@ -88,5 +99,112 @@ div.lazy {
 
 .email-text {
     font-family: Source Code Pro, monospace;
+}
+
+.pub-filter-btn {
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.pub-filter-btn.active {
+    background-color: #BF5700;
+    border-color: #BF5700;
+    color: white;
+}
+
+.topic-filter-btn {
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.topic-filter-btn.active {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: white;
+}
+
+.portrait-hover-container {
+    position: relative;
+    display: inline-block;
+}
+
+.portrait-img-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.portrait-hover-container:hover .portrait-img-hover {
+    opacity: 1;
+}
+
+.portrait-hover-container:hover .portrait-img {
+    opacity: 0;
+}
+
+.portrait-img {
+    transition: opacity 0.3s ease;
+    position: relative;
+    z-index: 0;
+}
+
+/* CV Markdown styling */
+#CV h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #dee2e6;
+}
+
+#CV h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+#CV h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+#CV h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+#CV ul {
+    margin-bottom: 1rem;
+}
+
+#CV li {
+    margin-bottom: 0.5rem;
+}
+
+#CV p {
+    margin-bottom: 0.75rem;
+}
+
+#CV a {
+    color: #BF5700;
+    text-decoration: none;
+}
+
+#CV a:hover {
+    color: #333F48;
+    text-decoration: underline;
+}
+
+#CV strong {
+    font-weight: 600;
 }
 

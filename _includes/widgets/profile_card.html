@@ -6,14 +6,19 @@
                     <div class="col">
                         {% if site.data.profile.portrait_url %}
                         <!-- When the screen is wider than md, float the portrait on the right -->
-                        <div class="figure float-right ml-4 mb-4 d-none d-md-block">
+                        <div class="figure float-right ml-4 mb-4 d-none d-md-block portrait-hover-container">
                             <img 
                                 src="{{ site.data.profile.portrait_url | relative_url }}" 
-                                class="figure-img img-fluid img-thumbnail" 
+                                class="figure-img img-fluid img-thumbnail portrait-img" 
                                 style="height: 200px;"
                                 data-toggle="tooltip" 
                                 data-placement="top" 
                                 title="{{ site.data.profile.portrait_caption }}">
+                            <img 
+                                src="/assets/images/photos/TaekyunLee-square.jpg" 
+                                class="figure-img img-fluid img-thumbnail portrait-img-hover" 
+                                style="height: 200px;"
+                                alt="Hover portrait">
                         </div>
                         {% endif %}
 
@@ -22,10 +27,9 @@
                                 {{ site.data.profile.primary_name }} <small>{{ site.data.profile.secondary_name }}</small>
                             </div>
                             {% if site.data.profile.portrait_url %}
-                            <div class="ml-auto d-md-none">
-                                <a target="_blank" href="{{ site.data.profile.portrait_url | relative_url }}">
-                                    <img src="{{ site.data.profile.portrait_url | relative_url }}" class="rounded-circle" style="height: 48px;" alt="Portrait">
-                                </a>
+                            <div class="ml-auto d-md-none portrait-hover-container">
+                                <img src="{{ site.data.profile.portrait_url | relative_url }}" class="rounded-circle portrait-img" style="height: 48px;" alt="Portrait">
+                                <img src="/assets/images/photos/TaekyunLee-square.jpg" class="rounded-circle portrait-img-hover" style="height: 48px;" alt="Hover portrait">
                             </div>
                             {% endif %}
                         </div>
@@ -40,9 +44,6 @@
                         <div class="text-profile-bio mt-3" {% if site.data.profile.short_bio_text_justify %}style="text-align: justify;"{% endif %}>
                             {{ site.data.profile.short_bio }}
                         </div>
-                        {% if site.data.profile.cv_link %}
-                            <a target="_blank" href="{{ site.data.profile.cv_link | relative_url }}"><i class="fas fa-file-alt"></i> Curriculum Vitae</a> <br/>
-                        {% endif %}
                     </div>
         
                 </div>

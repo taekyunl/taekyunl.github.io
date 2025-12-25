@@ -2,31 +2,124 @@
 layout: default
 title : Publications
 navbar_title: Publications
-body_attr: >-
-  data-spy="scroll" data-target="#navbar-year" data-offset="100"
 ---
+
+<script>
+let currentType = 'all';
+let currentTopic = 'all';
+
+function filterPublications(type, topic) {
+    if (type !== undefined) currentType = type;
+    if (topic !== undefined) currentTopic = topic;
+    
+    const allItems = document.querySelectorAll('.pub-item');
+    const typeButtons = document.querySelectorAll('.pub-filter-btn');
+    const topicButtons = document.querySelectorAll('.topic-filter-btn');
+    
+    // Update button states
+    typeButtons.forEach(btn => {
+        if (btn.dataset.type === currentType) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+    
+    topicButtons.forEach(btn => {
+        if (btn.dataset.topic === currentTopic) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+    
+    // Show/hide publications
+    allItems.forEach(item => {
+        const pubType = item.dataset.pubType;
+        const pubTopic = item.dataset.pubTopic;
+        
+        const typeMatch = currentType === 'all' || pubType === currentType;
+        const topicMatch = currentTopic === 'all' || pubTopic === currentTopic;
+        
+        if (typeMatch && topicMatch) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+    
+    // Hide empty year sections
+    document.querySelectorAll('.year-section').forEach(section => {
+        const visibleItems = section.querySelectorAll('.pub-item[style*="display: block"]');
+        if (visibleItems.length === 0) {
+            section.style.display = 'none';
+        } else {
+            section.style.display = '';
+        }
+    });
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+    filterPublications('all', 'all');
+});
+</script>
+
+<div class="row">
+    <div class="col-12">
+        <div class="mb-4">
+            <h2>Publications</h2>
+            <div class="mb-3">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-outline-primary pub-filter-btn active" data-type="all" onclick="filterPublications('all', undefined)">All</button>
+                    <button type="button" class="btn btn-outline-primary pub-filter-btn" data-type="preprint" onclick="filterPublications('preprint', undefined)">Preprint</button>
+                    <button type="button" class="btn btn-outline-primary pub-filter-btn" data-type="journal" onclick="filterPublications('journal', undefined)">Journal</button>
+                    <button type="button" class="btn btn-outline-primary pub-filter-btn" data-type="conference" onclick="filterPublications('conference', undefined)">Conference</button>
+                    <button type="button" class="btn btn-outline-primary pub-filter-btn" data-type="workshop" onclick="filterPublications('workshop', undefined)">Workshop</button>
+                    <button type="button" class="btn btn-outline-primary pub-filter-btn" data-type="patent" onclick="filterPublications('patent', undefined)">Patent</button>
+                </div>
+            </div>
+            <div>
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" class="btn btn-outline-secondary topic-filter-btn active" data-topic="all" onclick="filterPublications(undefined, 'all')">All Topics</button>
+                    <button type="button" class="btn btn-outline-secondary topic-filter-btn" data-topic="Wireless Communication" onclick="filterPublications(undefined, 'Wireless Communication')">Wireless Communication</button>
+                    <button type="button" class="btn btn-outline-secondary topic-filter-btn" data-topic="Artificial Intelligence" onclick="filterPublications(undefined, 'Artificial Intelligence')">Artificial Intelligence</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% assign pubs_by_year = site.publications | sort: "date" | reverse | group_by_exp: "item", "item.date | date: '%Y'" %}
 
 <div class="row">
-    <div class="col-12 col-lg-10">
+    <div class="col-12">
         {% for year in pubs_by_year %}
-        {% assign num_papers = year.items | size %}
-        <h2 class="pt-4" id="year-{{ year.name }}">{{ year.name }}</h2>
-        <div class="my-0 p-0 bg-white shadow-sm rounded-xl">
-            {% for item in year.items %}
-                {% include widgets/publication_item.html item=item hide_bottom_border=forloop.last first=forloop.first last=forloop.last %}
-            {% endfor %}
+        <div class="year-section">
+            <h2 class="pt-4" id="year-{{ year.name }}">{{ year.name }}</h2>
+            <div class="my-0 p-0 bg-white shadow-sm rounded-xl">
+                {% for item in year.items %}
+                    {% assign pub_lower = item.pub | downcase %}
+                    {% if pub_lower contains "transactions" or pub_lower contains "journal" %}
+                        {% assign pub_type = "journal" %}
+                    {% elsif pub_lower contains "conference" or pub_lower contains "icc" or pub_lower contains "asilomar" or pub_lower contains "neurips" or pub_lower contains "icml" or pub_lower contains "iclr" %}
+                        {% assign pub_type = "conference" %}
+                    {% elsif pub_lower contains "ctw" or pub_lower contains "workshop" %}
+                        {% assign pub_type = "workshop" %}
+                    {% elsif pub_lower contains "patent" or pub_lower contains "u.s." %}
+                        {% assign pub_type = "patent" %}
+                    {% elsif item.pub_pre or pub_lower contains "submitted" %}
+                        {% assign pub_type = "preprint" %}
+                    {% else %}
+                        {% assign pub_type = "other" %}
+                    {% endif %}
+                    {% assign pub_topic = item.topic | default: "Other" %}
+                    <div class="pub-item" data-pub-type="{{ pub_type }}" data-pub-topic="{{ pub_topic }}" style="display: block;">
+                        {% include widgets/publication_item.html item=item hide_bottom_border=forloop.last first=forloop.first last=forloop.last %}
+                    </div>
+                {% endfor %}
+            </div>
         </div>
         {% endfor %}
     </div>
-
-    <div class="col-2 d-none d-lg-block">
-        <div id="navbar-year" class="nav nav-pills flex-column sticky-top" style="top: 80px">
-            {% for year in pubs_by_year %}
-            <a class="nav-link d-block" href="#year-{{ year.name }}">{{ year.name }}</a>
-            {% endfor %}
-        </div>
-    </div>
-
 </div>
