@@ -14,5 +14,6 @@ authors:
 - Hyeji Kim
 - Jeffrey G. Andrews
 links:
+  Paper: https://ieeexplore.ieee.org/document/10942761
 ---
 
