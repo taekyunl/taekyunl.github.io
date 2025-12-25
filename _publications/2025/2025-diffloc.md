@@ -1,9 +1,9 @@
 ---
 title:          "DiffLoc: Diffusion Model-Based High-Precision Positioning for 6G Networks"
-date:           2025-01-02 20:00:00 +0800
+date:           2025-10-15 00:00:00 +0800
 selected:       true
 cover:          /assets/images/photos/Diffloc.png
-pub:            "Submitted"
+pub:            "ArXiv"
 pub_date:       "2025"
 topic:          "Wireless Communication"
 abstract: >-

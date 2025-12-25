@@ -1,10 +1,10 @@
 ---
 title:          "Importance Sampling via Score-based Generative Models"
-date:           2025-01-02 16:00:00 +0800
+date:           2024-10-01 00:00:00 +0800
 selected:       false
 cover:          /assets/images/photos/IS.png
-pub:            "Submitted"
-pub_date:       "2025"
+pub:            "ArXiv"
+pub_date:       "2024"
 topic:          "Artificial Intelligence"
 abstract: >-
   Importance sampling via score-based generative models.

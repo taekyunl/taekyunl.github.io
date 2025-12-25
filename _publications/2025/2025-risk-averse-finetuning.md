@@ -1,6 +1,6 @@
 ---
 title:          "Generating Informative Samples for Risk-Averse Fine-Tuning of Downstream Tasks"
-date:           2025-01-02 21:00:00 +0800
+date:           2025-12-07 00:00:00 +0800
 selected:       true
 cover:          /assets/images/photos/CvaR.png
 pub:            "NeurIPS"

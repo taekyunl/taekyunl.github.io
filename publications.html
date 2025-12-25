@@ -82,8 +82,8 @@ document.addEventListener('DOMContentLoaded', function() {
             <div>
                 <div class="btn-group btn-group-sm" role="group">
                     <button type="button" class="btn btn-outline-secondary topic-filter-btn active" data-topic="all" onclick="filterPublications(undefined, 'all')">All Topics</button>
-                    <button type="button" class="btn btn-outline-secondary topic-filter-btn" data-topic="Wireless Communication" onclick="filterPublications(undefined, 'Wireless Communication')">Wireless Communication</button>
                     <button type="button" class="btn btn-outline-secondary topic-filter-btn" data-topic="Artificial Intelligence" onclick="filterPublications(undefined, 'Artificial Intelligence')">Artificial Intelligence</button>
+                    <button type="button" class="btn btn-outline-secondary topic-filter-btn" data-topic="Wireless Communication" onclick="filterPublications(undefined, 'Wireless Communication')">Wireless Communication</button>
                 </div>
             </div>
         </div>
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         {% assign pub_type = "workshop" %}
                     {% elsif pub_lower contains "patent" or pub_lower contains "u.s." %}
                         {% assign pub_type = "patent" %}
-                    {% elsif item.pub_pre or pub_lower contains "submitted" %}
+                    {% elsif item.pub_pre or pub_lower contains "arxiv" or pub_lower contains "submitted" %}
                         {% assign pub_type = "preprint" %}
                     {% else %}
                         {% assign pub_type = "other" %}

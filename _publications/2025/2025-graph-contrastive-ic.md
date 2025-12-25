@@ -1,9 +1,9 @@
 ---
 title:          "Self-Supervised Graph Contrastive Pretraining for Device-level Integrated Circuits"
-date:           2025-01-02 15:00:00 +0800
+date:           2025-05-02 15:00:00 +0800
 selected:       false
 cover:          /assets/images/photos/circuit.png
-pub:            "Submitted"
+pub:            "ArXiv"
 pub_date:       "2025"
 topic:          "Artificial Intelligence"
 abstract: >-

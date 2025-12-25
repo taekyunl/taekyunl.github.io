@@ -1,6 +1,6 @@
 ---
 title:          "Importance Sampling in Digital Twin Networks"
-date:           2025-01-02 13:00:00 +0800
+date:           2025-05-05 00:00:00 +0800
 selected:       false
 cover:          /assets/images/photos/CTW.png
 pub:            "IEEE CTW"

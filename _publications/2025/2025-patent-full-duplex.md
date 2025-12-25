@@ -1,6 +1,6 @@
 ---
 title:          "System and method for reducing self-interference in full-duplex system"
-date:           2025-01-02 19:00:00 +0800
+date:           2025-05-01 00:00:00 +0800
 selected:       false
 cover:          /assets/images/photos/patent.png
 pub:            "U.S. Patent"
