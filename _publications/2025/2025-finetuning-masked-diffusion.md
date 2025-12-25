@@ -2,6 +2,7 @@
 title:          "Fine-Tuning Masked Diffusion for Provable Self-Correction"
 date:           2025-10-01 23:00:00 +0800
 selected:       true
+selected_order: 1
 cover:          /assets/images/photos/prism.gif
 pub:            "ArXiv"
 pub_date:       "2025"

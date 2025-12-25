@@ -2,6 +2,7 @@
 title:          "Satellite Selection for In-Band Coexistence of Dense LEO Networks"
 date:           2025-12-15 00:00:00 +0800
 selected:       true
+selected_order: 5
 cover:          /assets/images/photos/satellite.png
 pub:            "IEEE Transactions on Wireless Communications"
 pub_date:       "2025"
