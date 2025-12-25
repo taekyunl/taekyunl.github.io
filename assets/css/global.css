@@ -107,8 +107,28 @@ div.lazy {
 }
 
 .pub-filter-btn.active {
-    background-color: #BF5700;
-    border-color: #BF5700;
+    background-color: #570514;
+    border-color: #570514;
+    color: white;
+}
+
+/* Burgundy color for publication filter buttons */
+.btn-outline-primary.pub-filter-btn {
+    color: #570514;
+    border-color: #570514;
+}
+
+.btn-outline-primary.pub-filter-btn:hover {
+    background-color: #570514;
+    border-color: #570514;
+    color: white;
+}
+
+.btn-outline-primary.pub-filter-btn:focus,
+.btn-outline-primary.pub-filter-btn:active,
+.btn-outline-primary.pub-filter-btn.active {
+    background-color: #570514;
+    border-color: #570514;
     color: white;
 }
 
@@ -195,16 +215,42 @@ div.lazy {
 }
 
 #CV a {
-    color: #BF5700;
+    color: #570514;
     text-decoration: none;
 }
 
 #CV a:hover {
-    color: #333F48;
+    color: #3d030a;
     text-decoration: underline;
 }
 
 #CV strong {
     font-weight: 600;
+}
+
+/* Burgundy color for links */
+a {
+    color: #570514;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #3d030a;
+    text-decoration: underline;
+}
+
+a:focus {
+    color: #3d030a;
+    text-decoration: underline;
+}
+
+/* Override Bootstrap default link colors */
+.btn-link {
+    color: #570514;
+}
+
+.btn-link:hover {
+    color: #3d030a;
+    text-decoration: underline;
 }
 
