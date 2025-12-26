@@ -19,5 +19,6 @@ authors:
 - Sitan Chen
 links:
   Paper: https://www.arxiv.org/abs/2510.01384
+  Code: https://github.com/SeunggeunKimkr/PRISM
 ---
 
