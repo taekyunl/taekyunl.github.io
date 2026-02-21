@@ -1,13 +1,13 @@
 ---
-title:          "Importance Sampling via Score-based Generative Models"
-date:           2024-10-01 00:00:00 +0800
+title:          "Efficient Weighted Sampling via Score-based Generative Models"
+date:           2026-06-01 00:00:00 +0800
 selected:       false
 cover:          /assets/images/photos/IS.png
-pub:            "ArXiv"
-pub_date:       "2024"
+pub:            "IEEE/CVF CVPR"
+pub_date:       "2026"
 topic:          "Artificial Intelligence"
 abstract: >-
-  Importance sampling via score-based generative models.
+  Efficient weighted sampling via score-based generative models.
 authors:
 - Heasung Kim
 - Taekyun Lee
