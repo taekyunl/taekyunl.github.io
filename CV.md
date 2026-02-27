@@ -42,9 +42,11 @@ navbar_title: CV
 ### Reviewer for Reputed Journals / Conferences
 
 * IEEE Transactions on Wireless Communications, IEEE Transactions on Communications, IEEE Transactions on Signal Processing, IEEE Internet of Things Journal, IEEE Communications Letters
+* IEEE Transactions on Mobile Computing, 2026
 
 ### Talk
 
+* ECE Outstanding Student Lecture Series, UT Austin, "Generative Models in Wireless Communications," Austin, TX, 2026
 * Talk in Korea University, "Generative Diffusion Frameworks for Wireless Communication," Seoul, South Korea, 2025
 * ECE Career Lecture for Students at Seoul Science High School, Seoul, South Korea, 2024
 * Talk regarding **Resilient and Intelligent NextG Systems(RINGS) PI Meeting**, Yorktown Heights, NY, 2024
@@ -80,4 +82,3 @@ navbar_title: CV
   * Seoul National University, Spring 2020, Fall 2020
 * Physics 1, 2
   * Seoul National University, Spring 2017, Fall 2017, Spring 2021
-
