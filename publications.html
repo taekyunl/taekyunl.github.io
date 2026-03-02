@@ -102,10 +102,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     {% assign pub_lower = item.pub | downcase %}
                     {% if pub_lower contains "transactions" or pub_lower contains "journal" %}
                         {% assign pub_type = "journal" %}
-                    {% elsif pub_lower contains "conference" or pub_lower contains "icc" or pub_lower contains "asilomar" or pub_lower contains "neurips" or pub_lower contains "icml" or pub_lower contains "iclr" %}
-                        {% assign pub_type = "conference" %}
                     {% elsif pub_lower contains "ctw" or pub_lower contains "workshop" %}
                         {% assign pub_type = "workshop" %}
+                    {% elsif pub_lower contains "conference" or pub_lower contains "icc" or pub_lower contains "asilomar" or pub_lower contains "neurips" or pub_lower contains "icml" or pub_lower contains "iclr" %}
+                        {% assign pub_type = "conference" %}
                     {% elsif pub_lower contains "patent" or pub_lower contains "u.s." %}
                         {% assign pub_type = "patent" %}
                     {% elsif item.pub_pre or pub_lower contains "arxiv" or pub_lower contains "submitted" %}
