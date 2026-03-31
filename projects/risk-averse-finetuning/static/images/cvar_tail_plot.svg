@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">CVaR tail risk illustration</title>
+  <desc id="desc">A simple loss distribution with a highlighted tail region showing VaR and CVaR as the tail average.</desc>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#00875a"/>
+    </marker>
+    <clipPath id="tail-fill">
+      <path d="M760 300
+               C790 390, 850 412, 980 426
+               L980 430
+               L760 430
+               Z"/>
+    </clipPath>
+  </defs>
+
+  <rect width="1200" height="520" fill="#ffffff"/>
+
+  <line x1="110" y1="430" x2="1080" y2="430" stroke="#333333" stroke-width="3"/>
+  <line x1="110" y1="430" x2="110" y2="80" stroke="#333333" stroke-width="3"/>
+
+  <text x="1040" y="468" font-family="Noto Sans, Arial, sans-serif" font-size="24" fill="#333333">loss</text>
+  <text x="28" y="95" font-family="Noto Sans, Arial, sans-serif" font-size="24" fill="#333333" transform="rotate(-90 28 95)">density</text>
+
+  <rect x="760" y="300" width="220" height="130" fill="#f4c29b" clip-path="url(#tail-fill)"/>
+
+  <path d="M120 428
+           C210 420, 260 390, 310 300
+           C360 200, 430 120, 520 118
+           C630 120, 700 220, 740 300
+           C790 390, 850 412, 980 426"
+        fill="none" stroke="#bf5700" stroke-width="7" stroke-linecap="round"/>
+
+  <line x1="760" y1="120" x2="760" y2="430" stroke="#005f86" stroke-width="4" stroke-dasharray="12 10"/>
+  <text x="724" y="105" font-family="Noto Sans, Arial, sans-serif" font-size="24" fill="#005f86">VaR</text>
+
+  <line x1="890" y1="155" x2="890" y2="430" stroke="#00875a" stroke-width="4" stroke-dasharray="12 10"/>
+  <text x="848" y="140" font-family="Noto Sans, Arial, sans-serif" font-size="24" fill="#00875a">CVaR</text>
+
+  <line x1="760" y1="330" x2="890" y2="330" stroke="#00875a" stroke-width="4" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+  <text x="825" y="318" text-anchor="middle" font-family="Noto Sans, Arial, sans-serif" font-size="22" fill="#00875a">tail average</text>
+
+  <circle cx="792" cy="405" r="8" fill="#bf5700"/>
+  <circle cx="832" cy="414" r="8" fill="#bf5700"/>
+  <circle cx="874" cy="420" r="8" fill="#bf5700"/>
+  <circle cx="915" cy="424" r="8" fill="#bf5700"/>
+  <circle cx="955" cy="426" r="8" fill="#bf5700"/>
+
+  <text x="160" y="165" font-family="Noto Sans, Arial, sans-serif" font-size="28" fill="#333333">Most samples live here</text>
+  <text x="785" y="255" font-family="Noto Sans, Arial, sans-serif" font-size="28" fill="#333333">Rare, high-loss tail</text>
+</svg>

@@ -16,5 +16,7 @@ authors:
 - Hyeji Kim
 - Gustavo de Veciana
 links:
+  Project Page: /projects/risk-averse-finetuning/
   Paper: https://openreview.net/pdf?id=kfB5Ciz2XZ
+  OpenReview: https://openreview.net/forum?id=kfB5Ciz2XZ
 ---

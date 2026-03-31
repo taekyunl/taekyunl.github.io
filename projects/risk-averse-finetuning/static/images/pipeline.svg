@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="380" viewBox="0 0 1100 380">
+  <rect width="1100" height="380" fill="#ffffff"/>
+  <rect x="40" y="90" width="280" height="170" rx="14" fill="#f7f7f7" stroke="#dcdcdc"/>
+  <rect x="410" y="90" width="280" height="170" rx="14" fill="#f7f7f7" stroke="#dcdcdc"/>
+  <rect x="780" y="90" width="280" height="170" rx="14" fill="#f7f7f7" stroke="#dcdcdc"/>
+  <text x="180" y="135" text-anchor="middle" font-family="Arial" font-size="26" fill="#222">1. Reference loss model</text>
+  <text x="180" y="180" text-anchor="middle" font-family="Arial" font-size="20" fill="#555">Score which inputs are risky</text>
+  <text x="550" y="135" text-anchor="middle" font-family="Arial" font-size="26" fill="#222">2. Guided generation</text>
+  <text x="550" y="180" text-anchor="middle" font-family="Arial" font-size="20" fill="#555">Draw informative high-loss samples</text>
+  <text x="920" y="135" text-anchor="middle" font-family="Arial" font-size="26" fill="#222">3. Importance weighting</text>
+  <text x="920" y="180" text-anchor="middle" font-family="Arial" font-size="20" fill="#555">Stabilize CVaR optimization</text>
+  <text x="365" y="185" text-anchor="middle" font-family="Arial" font-size="40" fill="#808080">→</text>
+  <text x="735" y="185" text-anchor="middle" font-family="Arial" font-size="40" fill="#808080">→</text>
+</svg>

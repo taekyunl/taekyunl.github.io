@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="420" viewBox="0 0 700 420">
+  <rect width="700" height="420" fill="#ffffff"/>
+  <line x1="70" y1="340" x2="640" y2="340" stroke="#888" stroke-width="2"/>
+  <line x1="70" y1="340" x2="70" y2="50" stroke="#888" stroke-width="2"/>
+  <path d="M90 320 C170 290, 220 260, 280 230 S410 170, 500 110 S590 80, 620 65" fill="none" stroke="#3c78d8" stroke-width="5"/>
+  <path d="M470 340 L470 85 L630 85 L630 340 Z" fill="#fde9e7" opacity="0.85"/>
+  <text x="170" y="370" font-family="Arial" font-size="20" fill="#555">ordinary data</text>
+  <text x="500" y="370" font-family="Arial" font-size="20" fill="#b4442a">tail-risk region</text>
+  <text x="210" y="120" font-family="Arial" font-size="24" fill="#222">Rare high-loss events are scarce</text>
+</svg>

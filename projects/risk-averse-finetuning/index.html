@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Project page for Generating Informative Samples for Risk-Averse Fine-Tuning of Downstream Tasks.">
+  <meta name="keywords" content="CVaR, diffusion, score-based generative models, risk-averse fine-tuning">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Generating Informative Samples for Risk-Averse Fine-Tuning of Downstream Tasks</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Generating Informative Samples for Risk-Averse Fine-Tuning of Downstream Tasks</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">Heasung Kim,</span>
+              <span class="author-block">Taekyun Lee,</span>
+              <span class="author-block">Hyeji Kim,</span>
+              <span class="author-block">Gustavo De Veciana</span>
+            </div>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">The University of Texas at Austin</span>
+            </div>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">NeurIPS 2025 Spotlight</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="https://openreview.net/pdf?id=kfB5Ciz2XZ"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://openreview.net/forum?id=kfB5Ciz2XZ"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="far fa-images"></i>
+                    </span>
+                    <span>OpenReview</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <img src="./static/images/paper/system_model.png" alt="System overview figure" style="width: 100%;">
+        <h2 class="subtitle has-text-centered">
+          <strong>Figure 1.</strong> We use the loss of a pretrained model to guide a score-based generator toward informative, high-loss examples, and then use those examples to make downstream CVaR training more effective.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Key Idea</h2>
+          <div class="content has-text-justified">
+            <p>
+              Most models are trained to do well on average. But in many real systems, the average case is not the main concern. What really matters is what happens on the rare, bad cases where the loss is unusually high. That is exactly the setting where CVaR becomes a useful objective: it asks the model to care about the tail of the loss distribution instead of just the mean.
+            </p>
+            <p>
+              The difficulty is that these rare, high-loss cases are hard to see often enough in ordinary training data. Our idea is simple: first identify which inputs are likely to be hard for a pretrained model, then use a score-based generator to create more of those informative samples. Once we have them, we feed them into downstream fine-tuning with the right importance weights so that the optimization still targets the original risk-averse objective.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Mathematical Significance</h2>
+          <div class="content has-text-justified">
+            <p>
+              The main mathematical object in the paper is <strong>Conditional Value-at-Risk (CVaR)</strong>. Informally, CVaR does not ask, “what is the average loss?” It asks, “if we only look at the worst cases, what is the average loss there?” This makes it a natural objective when rare failures matter more than typical ones.
+            </p>
+            <p>
+              A useful way to think about it is through the tail of the loss distribution. First, choose a risk level, such as the worst 5% of outcomes. The corresponding threshold is the Value-at-Risk (VaR). Then CVaR is the average loss among the samples beyond that threshold. That is exactly why ordinary training can struggle: if very few samples land in the tail, the optimizer gets only a weak and noisy signal about the part of the distribution that CVaR actually cares about.
+            </p>
+          </div>
+          <img src="./static/images/cvar_tail_plot.svg" alt="CVaR tail risk illustration" style="width: 100%; margin-top: 1rem;">
+          <div class="content has-text-centered" style="margin-top: 1rem;">
+            <p>
+              <strong>Figure 2.</strong> A simple picture of CVaR. VaR marks the start of the rare high-loss region, and CVaR averages the loss over that tail. The whole point of the paper is to generate more informative samples from this region so that risk-averse training has a much better signal.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Toy Example</h2>
+          <div class="content has-text-justified">
+            <p>
+              The toy Gaussian mixture example shows the whole idea in a very visual way. The base data distribution has rare components that barely appear when we sample in the usual way. As a result, a model trained from those ordinary samples never really learns to handle those regions well, and they end up becoming high-loss pockets.
+            </p>
+            <p>
+              Our method shifts the sampling process toward those hard regions. That makes the rare parts of the distribution visible during training, instead of leaving them almost unseen. The toy example is useful because it makes the mechanism intuitive: the generator is not trying to make arbitrary new data, it is trying to make the specific data points that matter for tail-risk optimization.
+            </p>
+          </div>
+          <img src="./static/images/paper/tutorial_picture.png" alt="Visualization of the process" style="width: 100%; margin-top: 1rem;">
+          <div class="content has-text-centered" style="margin-top: 1rem;">
+            <p>
+              <strong>Figure 3.</strong> In the toy example, the rare parts of the data distribution are easy to miss with ordinary sampling. Loss-guided generation brings those regions back into the training loop and helps the final risk-averse model learn from them directly.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Wireless Communication</h2>
+          <div class="content has-text-justified">
+            <p>
+              The same idea becomes much more interesting in the wireless communication setting studied in the paper. Here the downstream task is CSI compression, where rare channel realizations can lead to especially poor reconstruction quality. If training mostly sees typical samples, the model can look fine on average while still failing badly on the examples that matter most for robustness.
+            </p>
+            <p>
+              The generated samples in this part of the paper are not random curiosities. They correspond to difficult channel configurations that are rare under the base distribution but highly informative for risk-aware training. This is where the framework feels especially practical: it turns generative modeling into a way of finding and replaying the hard cases that ordinary training would probably not revisit often enough.
+            </p>
+          </div>
+          <img src="./static/images/paper/csi_samples.png" alt="Visualization of generated CSI samples" style="width: 100%; margin-top: 1rem;">
+          <div class="content has-text-centered" style="margin-top: 1rem;">
+            <p>
+              <strong>Figure 4.</strong> The left columns show more typical channel samples, while the right columns show rare high-loss samples produced by the loss-guided generator. These are exactly the kinds of examples that can matter a lot for tail performance but almost never show up often enough in ordinary training.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Conclusion</h2>
+          <div class="content has-text-justified">
+            <p>
+              The main takeaway is straightforward: if we care about bad-but-rare outcomes, then training should spend more time on exactly those outcomes. This paper shows a clean way to do that with generative modeling. Instead of treating a generator as a general-purpose sampler, it uses the generator as a tool for finding the examples that matter most for risk-averse learning.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <p>If you find this work useful, please cite our paper.</p>
+<pre><code>@inproceedings{kim2025informative,
+  title={Generating Informative Samples for Risk-Averse Fine-Tuning of Downstream Tasks},
+  author={Kim, Heasung and Lee, Taekyun and Kim, Hyeji and De Veciana, Gustavo},
+  booktitle={Advances in Neural Information Processing Systems},
+  year={2025},
+  note={Spotlight}
+}</code></pre>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <a class="icon-link" href="https://openreview.net/pdf?id=kfB5Ciz2XZ">
+          <i class="fas fa-file-pdf"></i>
+        </a>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website is licensed under a
+              <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+            <p>
+              This webpage is adapted from <a href="https://nerfies.github.io/">Nerfies</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
