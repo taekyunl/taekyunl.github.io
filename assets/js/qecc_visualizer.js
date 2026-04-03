@@ -298,7 +298,18 @@
   }
 
   document.addEventListener("DOMContentLoaded", () => {
-    const root = document.querySelector("[data-qecc-explorer]");
-    if (root) mount(root);
+    document.querySelectorAll("[data-qecc-explorer]").forEach((root) => {
+      const familySel = qs("[data-qecc-family]", root);
+      const distanceSel = qs("[data-qecc-distance]", root);
+      const defaultFamily = root.getAttribute("data-default-family");
+      const defaultDistance = root.getAttribute("data-default-distance");
+      if (defaultFamily && familySel) familySel.value = defaultFamily;
+      mount(root).then(() => {
+        if (defaultDistance && distanceSel) {
+          distanceSel.value = defaultDistance;
+          distanceSel.dispatchEvent(new Event("change"));
+        }
+      });
+    });
   });
 })();

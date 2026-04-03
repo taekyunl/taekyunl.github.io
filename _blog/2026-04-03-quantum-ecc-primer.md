@@ -100,11 +100,16 @@ date: 2026-04-03 12:00:00 -0500
         If you select an individual $X$ or $Z$ constraint in the explorer, the highlighted qubits show exactly which parity relation is being enforced.
         In other words, the visualization is not merely “inspired by” the code: it is exposing the same constraint structure that appears algebraically in $H_X$ and $H_Z$.
       </p>
+      <p>
+        The dots or short edge segments represent physical qubits. The grid is the geometric arrangement of those qubits in the code.
+        A highlighted $X$ or $Z$ check means: “take exactly these qubits, apply the corresponding parity constraint, and ask whether it is satisfied.”
+        The decoder's final output is a recovery operator, chosen so that the corrected state lands back in the right logical class.
+      </p>
 
       <div class="card border-0 shadow-sm rounded-xl my-4">
         <div class="card-body p-4">
-          <h3 class="h5 mb-3">Interactive code explorer</h3>
-          <div class="qecc-controls mb-3" data-qecc-explorer>
+          <h3 class="h5 mb-3">Interactive surface-code explorer</h3>
+          <div class="qecc-controls mb-3" data-qecc-explorer data-default-family="surface" data-default-distance="5">
             <div class="qecc-control-row">
               <label>Family
                 <select data-qecc-family class="form-control form-control-sm">
@@ -144,10 +149,61 @@ date: 2026-04-03 12:00:00 -0500
             <svg class="qecc-explorer-svg mt-3" aria-label="Interactive quantum code explorer"></svg>
           </div>
           <p class="mb-0 text-muted">
-            For surface codes, $K=1$ and the boundaries define the logical directions. For toric codes, periodic wrap-around removes boundaries and gives $K=2$.
+            In the surface-code view, the dots are data qubits on a patch. A selected check highlights exactly which nearby qubits are tied together by one stabilizer constraint.
           </p>
           <p class="mb-0 text-muted mt-2">
             The constraint inspector highlights one actual row of $H_X$ or $H_Z$ at a time, so you can see which qubits participate in a specific stabilizer.
+          </p>
+        </div>
+      </div>
+
+      <div class="card border-0 shadow-sm rounded-xl my-4">
+        <div class="card-body p-4">
+          <h3 class="h5 mb-3">Interactive toric-code explorer</h3>
+          <div class="qecc-controls mb-3" data-qecc-explorer data-default-family="toric" data-default-distance="6">
+            <div class="qecc-control-row">
+              <label>Family
+                <select data-qecc-family class="form-control form-control-sm">
+                  <option value="surface">surface</option>
+                  <option value="toric" selected>toric</option>
+                </select>
+              </label>
+              <label>Distance $d$
+                <select data-qecc-distance class="form-control form-control-sm">
+                  <option value="6" selected>6</option>
+                </select>
+              </label>
+              <label class="qecc-check"><input type="checkbox" data-qecc-toggle="x" checked> show $X$ checks</label>
+              <label class="qecc-check"><input type="checkbox" data-qecc-toggle="z" checked> show $Z$ checks</label>
+              <label class="qecc-check"><input type="checkbox" data-qecc-toggle="logical" checked> show logicals</label>
+              <label>Inspect constraint type
+                <select data-qecc-check-kind class="form-control form-control-sm">
+                  <option value="none" selected>none</option>
+                  <option value="x">$X$ check</option>
+                  <option value="z">$Z$ check</option>
+                </select>
+              </label>
+              <label>Constraint index
+                <input type="range" min="0" max="0" step="1" value="0" data-qecc-check-index class="custom-range qecc-range">
+              </label>
+            </div>
+            <div class="qecc-meta mt-3">
+              <span class="badge badge-light">family: <span data-qecc-meta="family"></span></span>
+              <span class="badge badge-light">d: <span data-qecc-meta="d"></span></span>
+              <span class="badge badge-light">N: <span data-qecc-meta="n"></span></span>
+              <span class="badge badge-light">M<sub>X</sub>: <span data-qecc-meta="mx"></span></span>
+              <span class="badge badge-light">M<sub>Z</sub>: <span data-qecc-meta="mz"></span></span>
+              <span class="badge badge-light">K: <span data-qecc-meta="k"></span></span>
+              <span class="badge badge-light">constructor check: <span data-qecc-meta="validation"></span></span>
+              <span class="badge badge-light">selected constraint: <span data-qecc-meta="selected"></span></span>
+            </div>
+            <svg class="qecc-explorer-svg mt-3" aria-label="Interactive toric code explorer"></svg>
+          </div>
+          <p class="mb-0 text-muted">
+            In the toric-code view, the short segments are edge qubits on a periodic lattice. Selecting one constraint shows which four edge qubits participate in that stabilizer.
+          </p>
+          <p class="mb-0 text-muted mt-2">
+            The toric decoder still receives syndrome bits as input, but because the lattice wraps around, the output recovery must respect a periodic logical structure with $K=2$.
           </p>
         </div>
       </div>
@@ -281,11 +337,11 @@ date: 2026-04-03 12:00:00 -0500
               <div class="card bg-light border-0 rounded-xl">
                 <div class="card-body">
                   <p class="mb-2"><strong>Conceptual flow</strong></p>
-                  <p class="mb-1"><code>Y_syn → syndrome bits</code></p>
-                  <p class="mb-1"><code>→ logical prior + syndrome tokens</code></p>
-                  <p class="mb-1"><code>→ shared attention</code></p>
-                  <p class="mb-1"><code>→ qubit logits</code></p>
-                  <p class="mb-0"><code>→ CPND projection</code></p>
+                  <p class="mb-1">observed syndrome → syndrome bits</p>
+                  <p class="mb-1">→ logical prior + syndrome tokens</p>
+                  <p class="mb-1">→ shared attention</p>
+                  <p class="mb-1">→ qubit logits</p>
+                  <p class="mb-0">→ CPND projection</p>
                 </div>
               </div>
             </div>

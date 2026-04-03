@@ -131,51 +131,77 @@ def write_json(name: str, payload: dict):
 
 def write_overview_svg():
     SVG_DIR.mkdir(parents=True, exist_ok=True)
-    svg = """<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+    svg = """<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
   <title id="title">Quantum error correction loop</title>
-  <desc id="desc">Qubit arrows, syndrome extraction, decoder, and recovery loop for quantum error correction.</desc>
-  <rect width="1200" height="520" fill="#f8f9fa"/>
-  <g transform="translate(30,40)">
-    <rect x="0" y="40" width="250" height="290" rx="26" fill="#ffffff" stroke="#d8dde3" stroke-width="3"/>
-    <rect x="320" y="40" width="220" height="290" rx="26" fill="#fff8ee" stroke="#BF5700" stroke-width="3"/>
-    <rect x="610" y="40" width="240" height="290" rx="26" fill="#eef4ff" stroke="#4c72b0" stroke-width="3"/>
-    <rect x="920" y="40" width="220" height="290" rx="26" fill="#ffffff" stroke="#5f6b76" stroke-width="3"/>
-    <text x="125" y="88" text-anchor="middle" font-family="Lato, sans-serif" font-size="28" font-weight="700" fill="#222">Physical qubits</text>
-    <text x="430" y="88" text-anchor="middle" font-family="Lato, sans-serif" font-size="28" font-weight="700" fill="#8c3f00">Syndrome</text>
-    <text x="730" y="88" text-anchor="middle" font-family="Lato, sans-serif" font-size="28" font-weight="700" fill="#2c4f8c">Decoder</text>
-    <text x="1030" y="88" text-anchor="middle" font-family="Lato, sans-serif" font-size="28" font-weight="700" fill="#333">Recovery</text>
+  <desc id="desc">A patch of physical qubits produces syndrome bits through stabilizer checks, a decoder maps syndrome to a recovery, and the output aims to preserve the logical state.</desc>
+  <rect width="1200" height="560" fill="#f8f9fa"/>
+  <g transform="translate(24,36)">
+    <rect x="0" y="40" width="260" height="330" rx="28" fill="#ffffff" stroke="#d8dde3" stroke-width="3"/>
+    <rect x="300" y="40" width="250" height="330" rx="28" fill="#fff8ee" stroke="#BF5700" stroke-width="3"/>
+    <rect x="590" y="40" width="260" height="330" rx="28" fill="#eef4ff" stroke="#4c72b0" stroke-width="3"/>
+    <rect x="890" y="40" width="250" height="330" rx="28" fill="#ffffff" stroke="#5f6b76" stroke-width="3"/>
 
-    <g stroke="#333F48" stroke-width="5" stroke-linecap="round">
-      <line x1="70" y1="165" x2="105" y2="145"/><polygon points="105,145 94,145 100,156" fill="#333F48" stroke="none"/>
-      <line x1="150" y1="165" x2="183" y2="186"/><polygon points="183,186 177,175 171,186" fill="#333F48" stroke="none"/>
-      <line x1="115" y1="245" x2="143" y2="223"/><polygon points="143,223 132,224 138,233" fill="#333F48" stroke="none"/>
-      <line x1="185" y1="255" x2="154" y2="281"/><polygon points="154,281 165,279 159,271" fill="#333F48" stroke="none"/>
-    </g>
+    <text x="130" y="86" text-anchor="middle" font-family="Lato, sans-serif" font-size="28" font-weight="700" fill="#222">Physical qubits</text>
+    <text x="425" y="86" text-anchor="middle" font-family="Lato, sans-serif" font-size="28" font-weight="700" fill="#8c3f00">Syndrome extraction</text>
+    <text x="720" y="86" text-anchor="middle" font-family="Lato, sans-serif" font-size="28" font-weight="700" fill="#2c4f8c">Decoder</text>
+    <text x="1015" y="86" text-anchor="middle" font-family="Lato, sans-serif" font-size="28" font-weight="700" fill="#333">Output</text>
+
     <g fill="#BF5700">
-      <circle cx="70" cy="165" r="13"/><circle cx="115" cy="245" r="13"/><circle cx="150" cy="165" r="13"/><circle cx="185" cy="255" r="13"/>
+      <circle cx="72" cy="170" r="12"/><circle cx="126" cy="150" r="12"/><circle cx="176" cy="185" r="12"/><circle cx="95" cy="245" r="12"/><circle cx="152" cy="252" r="12"/>
     </g>
-    <text x="125" y="295" text-anchor="middle" font-family="Lato, sans-serif" font-size="21" fill="#444">many physical qubits</text>
+    <g stroke="#333F48" stroke-width="5" stroke-linecap="round">
+      <line x1="72" y1="170" x2="126" y2="150"/><line x1="126" y1="150" x2="176" y2="185"/><line x1="72" y1="170" x2="95" y2="245"/><line x1="95" y1="245" x2="152" y2="252"/>
+    </g>
+    <g stroke="#4f6fad" stroke-width="4" fill="#e8f0ff">
+      <rect x="58" y="306" width="42" height="42" rx="10"/><rect x="110" y="306" width="42" height="42" rx="10"/><rect x="162" y="306" width="42" height="42" rx="10"/>
+    </g>
+    <text x="130" y="329" text-anchor="middle" font-family="Lato, sans-serif" font-size="17" font-weight="700" fill="#4f6fad">local check pattern</text>
 
-    <text x="430" y="170" text-anchor="middle" font-family="Lato, sans-serif" font-size="24" font-weight="700" fill="#8c3f00">measure stabilizer checks</text>
-    <text x="430" y="216" text-anchor="middle" font-family="Lato, sans-serif" font-size="22" fill="#555">extract syndrome bits</text>
-    <text x="430" y="280" text-anchor="middle" font-family="Lato, sans-serif" font-size="22" fill="#555">do not read the logical state directly</text>
+    <g stroke="#BF5700" stroke-width="4" fill="#fff1d9">
+      <rect x="350" y="138" width="54" height="54" rx="14"/><rect x="446" y="138" width="54" height="54" rx="14"/>
+      <line x1="377" y1="192" x2="377" y2="252"/><line x1="473" y1="192" x2="473" y2="252"/>
+    </g>
+    <g fill="#333">
+      <circle cx="329" cy="126" r="7"/><circle cx="377" cy="126" r="7"/><circle cx="425" cy="126" r="7"/><circle cx="473" cy="126" r="7"/><circle cx="521" cy="126" r="7"/>
+      <circle cx="329" cy="224" r="7"/><circle cx="377" cy="224" r="7"/><circle cx="425" cy="224" r="7"/><circle cx="473" cy="224" r="7"/><circle cx="521" cy="224" r="7"/>
+    </g>
+    <g fill="#8c3f00" font-family="Source Code Pro, monospace" font-size="24" font-weight="700">
+      <text x="377" y="295" text-anchor="middle">0</text>
+      <text x="473" y="295" text-anchor="middle">1</text>
+    </g>
+    <text x="425" y="337" text-anchor="middle" font-family="Lato, sans-serif" font-size="19" fill="#555">which parity checks flipped?</text>
 
-    <text x="730" y="168" text-anchor="middle" font-family="Lato, sans-serif" font-size="24" font-weight="700" fill="#2c4f8c">infer an equivalent recovery</text>
-    <text x="730" y="222" text-anchor="middle" font-family="Lato, sans-serif" font-size="22" fill="#555">use local evidence</text>
-    <text x="730" y="254" text-anchor="middle" font-family="Lato, sans-serif" font-size="22" fill="#555">and global structure</text>
-    <text x="730" y="286" text-anchor="middle" font-family="Lato, sans-serif" font-size="22" fill="#555">to pick a correction</text>
+    <g fill="#eef4ff" stroke="#4c72b0" stroke-width="3">
+      <rect x="664" y="128" width="112" height="112" rx="22"/>
+    </g>
+    <g stroke="#4c72b0" stroke-width="5" stroke-linecap="round">
+      <line x1="690" y1="165" x2="750" y2="165"/>
+      <line x1="690" y1="195" x2="728" y2="195"/>
+      <line x1="690" y1="225" x2="738" y2="225"/>
+    </g>
+    <text x="720" y="290" text-anchor="middle" font-family="Lato, sans-serif" font-size="22" font-weight="700" fill="#2c4f8c">input: syndrome bits</text>
+    <text x="720" y="324" text-anchor="middle" font-family="Lato, sans-serif" font-size="18" fill="#555">output: candidate recovery</text>
 
-    <text x="1030" y="182" text-anchor="middle" font-family="Lato, sans-serif" font-size="24" font-weight="700" fill="#333">same logical class</text>
-    <text x="1030" y="236" text-anchor="middle" font-family="Lato, sans-serif" font-size="22" fill="#555">exact microscopic error</text>
-    <text x="1030" y="268" text-anchor="middle" font-family="Lato, sans-serif" font-size="22" fill="#555">may remain ambiguous</text>
+    <g fill="#BF5700">
+      <circle cx="958" cy="170" r="12"/><circle cx="1012" cy="150" r="12"/><circle cx="1062" cy="185" r="12"/><circle cx="981" cy="245" r="12"/><circle cx="1038" cy="252" r="12"/>
+    </g>
+    <g stroke="#333F48" stroke-width="5" stroke-linecap="round">
+      <line x1="958" y1="170" x2="1012" y2="150"/><line x1="1012" y1="150" x2="1062" y2="185"/><line x1="958" y1="170" x2="981" y2="245"/><line x1="981" y1="245" x2="1038" y2="252"/>
+    </g>
+    <g fill="#2c7a4b">
+      <circle cx="1078" cy="230" r="15"/>
+      <path d="M1070 230 l6 6 l12 -14" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <text x="1015" y="318" text-anchor="middle" font-family="Lato, sans-serif" font-size="22" font-weight="700" fill="#333">recovered logical state</text>
+    <text x="1015" y="350" text-anchor="middle" font-family="Lato, sans-serif" font-size="18" fill="#555">same logical class, even if the microscopic error is ambiguous</text>
 
     <g stroke="#66707a" stroke-width="8" fill="none" stroke-linecap="round">
-      <path d="M252 185 H308"/><path d="M542 185 H598"/><path d="M852 185 H908"/>
+      <path d="M262 205 H288"/><path d="M552 205 H578"/><path d="M852 205 H878"/>
     </g>
     <g fill="#66707a">
-      <polygon points="308,185 292,176 292,194"/>
-      <polygon points="598,185 582,176 582,194"/>
-      <polygon points="908,185 892,176 892,194"/>
+      <polygon points="288,205 272,196 272,214"/>
+      <polygon points="578,205 562,196 562,214"/>
+      <polygon points="878,205 862,196 862,214"/>
     </g>
   </g>
 </svg>
