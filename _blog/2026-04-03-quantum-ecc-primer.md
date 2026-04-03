@@ -75,6 +75,16 @@ date: 2026-04-03 12:00:00 -0500
       <p>
         This is why parity-check matrices appear so naturally in quantum decoding: they are the algebraic version of the stabilizer geometry.
       </p>
+      <p>
+        The two colored check families in the figure are exactly these parity constraints. An <em>$X$ check</em> is one row of $H_X$,
+        and a <em>$Z$ check</em> is one row of $H_Z$. In the explorer, when a colored region or highlighted constraint touches a set of qubits,
+        that is the support of one row of the corresponding parity-check matrix.
+      </p>
+      <p>
+        This is also why the syndrome is so useful. It is a binary signature telling us which parity constraints were violated.
+        The decoder does not directly observe the logical state or the full physical error pattern. It only sees which checks flipped,
+        then uses that pattern of violated constraints to infer a recovery.
+      </p>
 
       <h2>Step 1: inspect an actual rotated surface code</h2>
       <p>
@@ -85,6 +95,10 @@ date: 2026-04-03 12:00:00 -0500
       <p>
         The figure below is not hand-drawn. It is generated from the same code constructors used in the decoder repository.
         The controls change the code family and distance, then redraw the qubits, stabilizers, and logical operators from actual parity-check data.
+      </p>
+      <p>
+        If you select an individual $X$ or $Z$ constraint in the explorer, the highlighted qubits show exactly which parity relation is being enforced.
+        In other words, the visualization is not merely “inspired by” the code: it is exposing the same constraint structure that appears algebraically in $H_X$ and $H_Z$.
       </p>
 
       <div class="card border-0 shadow-sm rounded-xl my-4">
@@ -161,6 +175,62 @@ date: 2026-04-03 12:00:00 -0500
         to model ambiguous, degenerate error patterns. This post is only a primer. I will write about the actual models, experiments, and tradeoffs later.
       </p>
 
+      <h2>Noise models</h2>
+      <p>
+        Another important axis is the noise model itself. Changing the code family is one thing; changing the physical noise model can alter the decoding problem
+        just as much. In the current codebase, the two fully supported noise families are depolarizing noise and independent $X/Z$ noise. Circuit-level noise is
+        conceptually important, but in the latest repo it is still closer to an interface stub than to a fully integrated training pipeline.
+      </p>
+
+      <div class="table-responsive my-4">
+        <table class="table table-sm table-bordered bg-white shadow-sm rounded-xl overflow-hidden">
+          <thead class="thead-light">
+            <tr>
+              <th>Noise model</th>
+              <th>What it means</th>
+              <th>Repo status</th>
+              <th>Why it matters for decoding</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>depolarizing</code></td>
+              <td>Each qubit independently gets a Pauli error, with the non-identity mass spread symmetrically across $X$, $Y$, and $Z$.</td>
+              <td>Implemented and used directly.</td>
+              <td>It is the clean symmetric baseline. Good for understanding how a decoder handles generic Pauli uncertainty.</td>
+            </tr>
+            <tr>
+              <td><code>xz_independent</code></td>
+              <td>$X$ and $Z$ faults are sampled independently, so $Y$ appears only when both happen simultaneously.</td>
+              <td>Implemented and used directly.</td>
+              <td>Useful when bit-flip and phase-flip structure are not symmetric. It stresses whether a decoder handles CSS separation well.</td>
+            </tr>
+            <tr>
+              <td><code>circuit-level</code></td>
+              <td>Noise is attached to the syndrome-extraction circuit itself, not just to a static physical Pauli pattern.</td>
+              <td>Conceptually present, but the current repo only exposes a Stim-based stub interface.</td>
+              <td>This is the more realistic regime, because measurement errors and fault propagation become part of the decoding problem.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        In code terms, the first two correspond to the actual noise generators used by the data pipeline:
+      </p>
+      $$
+      \texttt{depolarizing\_noise}(N, p), \qquad
+      \texttt{xz\_independent\_noise}(N, p_X, p_Z).
+      $$
+      <p>
+        The circuit-level path is different. There is a Stim interface in the repository, but it explicitly warns that full circuit-level data generation still
+        requires a more careful syndrome-extraction model. So for now, the honest summary is:
+      </p>
+      <ul>
+        <li><code>depolarizing</code> and <code>xz_independent</code> are real, runnable settings.</li>
+        <li><code>circuit-level</code> belongs in the conceptual roadmap, but not yet in the “fully supported current blog demo” bucket.</li>
+      </ul>
+
       <h2>What comes next</h2>
       <p>
         The next posts will move from geometry to algorithms: syndrome extraction, logical equivalence classes, neural decoders,
@@ -196,26 +266,32 @@ date: 2026-04-03 12:00:00 -0500
 
       <div class="card border-0 shadow-sm rounded-xl my-4">
         <div class="card-body p-4">
-          <h3 class="h5 mb-3">Interactive SAQ flow</h3>
-          <div class="saq-flow" data-saq-flow>
-            <div class="saq-stage-buttons mb-3">
-              <button type="button" class="btn btn-sm btn-outline-secondary" data-saq-stage="0">1. Syndrome</button>
-              <button type="button" class="btn btn-sm btn-outline-secondary" data-saq-stage="1">2. Logical prior</button>
-              <button type="button" class="btn btn-sm btn-outline-secondary" data-saq-stage="2">3. Shared attention</button>
-              <button type="button" class="btn btn-sm btn-outline-secondary" data-saq-stage="3">4. Qubit logits</button>
-              <button type="button" class="btn btn-sm btn-outline-secondary" data-saq-stage="4">5. CPND</button>
+          <h3 class="h5 mb-3">The core SAQ idea</h3>
+          <div class="row">
+            <div class="col-md-7">
+              <ol class="mb-0 pl-3">
+                <li class="mb-2">Convert observed syndrome channels into binary syndrome bits and sign-valued syndrome tokens.</li>
+                <li class="mb-2">Predict a logical prior over logical classes from the syndrome.</li>
+                <li class="mb-2">Run shared attention blocks where syndrome tokens interact with one another, and logical tokens cross-attend to the syndrome stream.</li>
+                <li class="mb-2">Aggregate syndrome information back to qubits and predict a binary symplectic error representation.</li>
+                <li>Apply CPND projection so the final prediction better respects parity and logical consistency.</li>
+              </ol>
             </div>
-            <div class="saq-toggle-row mb-3">
-              <label class="qecc-check"><input type="checkbox" data-saq-toggle="mask" checked> syndrome mask</label>
-              <label class="qecc-check"><input type="checkbox" data-saq-toggle="logical" checked> logical tokens</label>
-              <label class="qecc-check"><input type="checkbox" data-saq-toggle="cpnd" checked> CPND post-processing</label>
+            <div class="col-md-5">
+              <div class="card bg-light border-0 rounded-xl">
+                <div class="card-body">
+                  <p class="mb-2"><strong>Conceptual flow</strong></p>
+                  <p class="mb-1"><code>Y_syn → syndrome bits</code></p>
+                  <p class="mb-1"><code>→ logical prior + syndrome tokens</code></p>
+                  <p class="mb-1"><code>→ shared attention</code></p>
+                  <p class="mb-1"><code>→ qubit logits</code></p>
+                  <p class="mb-0"><code>→ CPND projection</code></p>
+                </div>
+              </div>
             </div>
-            <svg class="saq-flow-svg" aria-label="Interactive SAQ principle diagram"></svg>
-            <div class="saq-caption mt-3 text-muted"></div>
           </div>
           <p class="mb-0 text-muted mt-3">
-            This is a principle view, not a claim that every training detail is shown. It follows the actual code path in
-            <code>models/saq.py</code> and <code>saq_module.py</code>.
+            This summary follows the actual code path in <code>models/saq.py</code> and <code>saq_module.py</code>, but intentionally leaves out low-level training details.
           </p>
         </div>
       </div>
@@ -234,4 +310,3 @@ date: 2026-04-03 12:00:00 -0500
 </div>
 
 <script src="{{ '/assets/js/qecc_visualizer.js' | relative_url }}"></script>
-<script src="{{ '/assets/js/saq_visualizer.js' | relative_url }}"></script>

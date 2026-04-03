@@ -299,28 +299,3 @@ div.lazy {
 .qecc-range {
     width: 180px;
 }
-
-.saq-flow-svg {
-    width: 100%;
-    min-height: 310px;
-    background: #ffffff;
-    border: 1px solid #e1e5ea;
-    border-radius: 0.9rem;
-}
-
-.saq-stage-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.saq-toggle-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.saq-caption {
-    line-height: 1.65;
-    font-size: 1rem;
-}

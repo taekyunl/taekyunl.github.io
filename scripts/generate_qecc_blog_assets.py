@@ -154,18 +154,20 @@ def write_overview_svg():
     <g fill="#BF5700">
       <circle cx="70" cy="165" r="13"/><circle cx="115" cy="245" r="13"/><circle cx="150" cy="165" r="13"/><circle cx="185" cy="255" r="13"/>
     </g>
-    <text x="125" y="300" text-anchor="middle" font-family="Source Code Pro, monospace" font-size="24" fill="#333">E = E_1 \\otimes \\cdots \\otimes E_N</text>
+    <text x="125" y="295" text-anchor="middle" font-family="Lato, sans-serif" font-size="21" fill="#444">many physical qubits</text>
 
-    <text x="430" y="170" text-anchor="middle" font-family="Source Code Pro, monospace" font-size="26" fill="#8c3f00">s_X = H_Z e_X</text>
-    <text x="430" y="220" text-anchor="middle" font-family="Source Code Pro, monospace" font-size="26" fill="#8c3f00">s_Z = H_X e_Z</text>
-    <text x="430" y="280" text-anchor="middle" font-family="Lato, sans-serif" font-size="22" fill="#555">measure checks, not the logical state</text>
+    <text x="430" y="170" text-anchor="middle" font-family="Lato, sans-serif" font-size="24" font-weight="700" fill="#8c3f00">measure stabilizer checks</text>
+    <text x="430" y="216" text-anchor="middle" font-family="Lato, sans-serif" font-size="22" fill="#555">extract syndrome bits</text>
+    <text x="430" y="280" text-anchor="middle" font-family="Lato, sans-serif" font-size="22" fill="#555">do not read the logical state directly</text>
 
-    <text x="730" y="170" text-anchor="middle" font-family="Source Code Pro, monospace" font-size="26" fill="#2c4f8c">\\hat{E} = f(s_X, s_Z)</text>
-    <text x="730" y="226" text-anchor="middle" font-family="Lato, sans-serif" font-size="22" fill="#555">estimate an equivalent recovery</text>
-    <text x="730" y="282" text-anchor="middle" font-family="Lato, sans-serif" font-size="22" fill="#555">not necessarily the exact microscopic error</text>
+    <text x="730" y="168" text-anchor="middle" font-family="Lato, sans-serif" font-size="24" font-weight="700" fill="#2c4f8c">infer an equivalent recovery</text>
+    <text x="730" y="222" text-anchor="middle" font-family="Lato, sans-serif" font-size="22" fill="#555">use local evidence</text>
+    <text x="730" y="254" text-anchor="middle" font-family="Lato, sans-serif" font-size="22" fill="#555">and global structure</text>
+    <text x="730" y="286" text-anchor="middle" font-family="Lato, sans-serif" font-size="22" fill="#555">to pick a correction</text>
 
-    <text x="1030" y="185" text-anchor="middle" font-family="Source Code Pro, monospace" font-size="26" fill="#333">\\hat{E} E \\in \\mathcal{S}</text>
-    <text x="1030" y="238" text-anchor="middle" font-family="Lato, sans-serif" font-size="22" fill="#555">same logical class</text>
+    <text x="1030" y="182" text-anchor="middle" font-family="Lato, sans-serif" font-size="24" font-weight="700" fill="#333">same logical class</text>
+    <text x="1030" y="236" text-anchor="middle" font-family="Lato, sans-serif" font-size="22" fill="#555">exact microscopic error</text>
+    <text x="1030" y="268" text-anchor="middle" font-family="Lato, sans-serif" font-size="22" fill="#555">may remain ambiguous</text>
 
     <g stroke="#66707a" stroke-width="8" fill="none" stroke-linecap="round">
       <path d="M252 185 H308"/><path d="M542 185 H598"/><path d="M852 185 H908"/>
