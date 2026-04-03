@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="540" viewBox="0 0 1200 540" role="img" aria-labelledby="title desc">
+  <title id="title">Quantum error correction overview</title>
+  <desc id="desc">Physical qubits feed syndrome extraction, which feeds a decoder, which outputs a recovery and logical decision.</desc>
+  <rect width="1200" height="540" fill="#f8f9fa"/>
+  <rect x="40" y="110" width="250" height="320" rx="28" fill="#ffffff" stroke="#d6d9dc" stroke-width="3"/>
+  <rect x="350" y="110" width="230" height="320" rx="28" fill="#fff7ec" stroke="#BF5700" stroke-width="3"/>
+  <rect x="650" y="110" width="230" height="320" rx="28" fill="#eef4ff" stroke="#4f6fad" stroke-width="3"/>
+  <rect x="940" y="110" width="220" height="320" rx="28" fill="#f6f6f6" stroke="#666666" stroke-width="3"/>
+  <text x="165" y="155" text-anchor="middle" font-family="Lato, sans-serif" font-size="30" font-weight="700" fill="#333">Physical Qubits</text>
+  <text x="465" y="155" text-anchor="middle" font-family="Lato, sans-serif" font-size="30" font-weight="700" fill="#8c3f00">Syndrome</text>
+  <text x="765" y="155" text-anchor="middle" font-family="Lato, sans-serif" font-size="30" font-weight="700" fill="#284b8f">Decoder</text>
+  <text x="1050" y="155" text-anchor="middle" font-family="Lato, sans-serif" font-size="30" font-weight="700" fill="#333">Recovery</text>
+  <g fill="#BF5700">
+    <circle cx="95" cy="215" r="16"/><circle cx="145" cy="215" r="16"/><circle cx="195" cy="215" r="16"/><circle cx="245" cy="215" r="16"/>
+    <circle cx="120" cy="270" r="16"/><circle cx="170" cy="270" r="16"/><circle cx="220" cy="270" r="16"/>
+    <circle cx="95" cy="325" r="16"/><circle cx="145" cy="325" r="16"/><circle cx="195" cy="325" r="16"/><circle cx="245" cy="325" r="16"/>
+  </g>
+  <g stroke="#BF5700" stroke-width="4" fill="none">
+    <line x1="95" y1="215" x2="145" y2="215"/><line x1="145" y1="215" x2="195" y2="215"/><line x1="195" y1="215" x2="245" y2="215"/>
+    <line x1="120" y1="270" x2="170" y2="270"/><line x1="170" y1="270" x2="220" y2="270"/>
+    <line x1="95" y1="325" x2="145" y2="325"/><line x1="145" y1="325" x2="195" y2="325"/><line x1="195" y1="325" x2="245" y2="325"/>
+  </g>
+  <g fill="#333" font-family="Source Code Pro, monospace" font-size="24">
+    <text x="465" y="230" text-anchor="middle">s = H e</text>
+    <text x="465" y="280" text-anchor="middle">parity checks</text>
+    <text x="465" y="330" text-anchor="middle">without reading</text>
+    <text x="465" y="365" text-anchor="middle">the logical state</text>
+  </g>
+  <g fill="#284b8f" font-family="Source Code Pro, monospace" font-size="23">
+    <text x="765" y="230" text-anchor="middle">estimate error</text>
+    <text x="765" y="280" text-anchor="middle">modulo stabilizers</text>
+    <text x="765" y="330" text-anchor="middle">preserve logical</text>
+    <text x="765" y="365" text-anchor="middle">information</text>
+  </g>
+  <g fill="#333" font-family="Lato, sans-serif" font-size="24">
+    <text x="1050" y="230" text-anchor="middle">apply correction</text>
+    <text x="1050" y="290" text-anchor="middle">same syndrome sector</text>
+    <text x="1050" y="350" text-anchor="middle">same logical class</text>
+  </g>
+  <g stroke="#666" stroke-width="8" fill="none" stroke-linecap="round">
+    <path d="M292 270 C320 270, 320 270, 338 270"/>
+    <path d="M582 270 C610 270, 610 270, 638 270"/>
+    <path d="M882 270 C910 270, 910 270, 928 270"/>
+  </g>
+  <g fill="#666">
+    <polygon points="338,270 322,260 322,280"/>
+    <polygon points="638,270 622,260 622,280"/>
+    <polygon points="928,270 912,260 912,280"/>
+  </g>
+</svg>

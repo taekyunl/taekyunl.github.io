@@ -37,6 +37,12 @@ exclude:
 # timezone: Asia/Shanghai
 
 collections:
-  - publications
-  - news
-  - showcase
+  publications:
+    output: false
+  news:
+    output: false
+  showcase:
+    output: false
+  blog:
+    output: true
+    permalink: /blog/:name/

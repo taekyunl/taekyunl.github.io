@@ -1,0 +1,37 @@
+---
+layout: default
+title: Blog
+navbar_title: Blog
+container_class: container-lg
+permalink: /blog/
+---
+
+{% assign posts = site.blog | sort: "date" | reverse %}
+
+<div class="row mt-2">
+    <div class="col-lg-10 mx-auto">
+        <div class="card border-0 shadow-sm rounded-xl qecc-blog-hero mb-4">
+            <div class="card-body p-4 p-md-5">
+                <p class="text-uppercase small mb-2 qecc-kicker">Notes</p>
+                <h1 class="mb-3">A hidden blog for research notes and technical explainers.</h1>
+                <p class="lead mb-0">
+                    This page is intentionally not linked from the main navigation.
+                    It is a quiet place for longer-form writing, with quantum error correction as the first topic.
+                </p>
+            </div>
+        </div>
+
+        {% for post in posts %}
+        <article class="card border-0 shadow-sm rounded-xl mb-4">
+            <div class="card-body p-4">
+                <p class="text-muted small mb-2">{{ post.date | date: "%B %-d, %Y" }}</p>
+                <h2 class="h3 mb-2"><a class="text-body" href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+                {% if post.summary %}
+                <p class="mb-3">{{ post.summary }}</p>
+                {% endif %}
+                <a class="btn btn-sm btn-outline-secondary" href="{{ post.url | relative_url }}">Read article</a>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+</div>

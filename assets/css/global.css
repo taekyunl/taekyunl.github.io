@@ -208,4 +208,39 @@ div.lazy {
     font-weight: 600;
 }
 
+.qecc-blog-hero {
+    background:
+        radial-gradient(circle at top right, rgba(191, 87, 0, 0.18), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(51, 63, 72, 0.12), transparent 35%),
+        linear-gradient(135deg, #fff9f2 0%, #ffffff 55%, #f5f7fa 100%);
+}
+
+.qecc-kicker {
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    color: #BF5700;
+}
+
+.qecc-prose {
+    font-size: 1.08rem;
+    line-height: 1.75;
+}
+
+.qecc-prose h2 {
+    margin-top: 2.25rem;
+    margin-bottom: 0.9rem;
+    font-size: 1.6rem;
+}
+
+.qecc-prose p {
+    margin-bottom: 1.05rem;
+}
+
+.qecc-prose a {
+    color: #BF5700;
+}
+
+.qecc-prose a:hover {
+    color: #333F48;
+}
 

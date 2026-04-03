@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Rotated surface code visualization</title>
+  <desc id="desc">Stylized rotated surface code patch with alternating X and Z stabilizer plaquettes and logical directions across the boundaries.</desc>
+  <rect width="1200" height="760" fill="#fbfbfb"/>
+  <g transform="translate(140,100)">
+    <g fill="#e8f0ff" stroke="#5a7ec2" stroke-width="3">
+      <polygon points="160,0 240,80 160,160 80,80"/>
+      <polygon points="320,0 400,80 320,160 240,80"/>
+      <polygon points="480,0 560,80 480,160 400,80"/>
+      <polygon points="80,160 160,240 80,320 0,240"/>
+      <polygon points="240,160 320,240 240,320 160,240"/>
+      <polygon points="400,160 480,240 400,320 320,240"/>
+      <polygon points="560,160 640,240 560,320 480,240"/>
+      <polygon points="160,320 240,400 160,480 80,400"/>
+      <polygon points="320,320 400,400 320,480 240,400"/>
+      <polygon points="480,320 560,400 480,480 400,400"/>
+    </g>
+    <g fill="#fff1d9" stroke="#BF5700" stroke-width="3">
+      <polygon points="240,0 320,80 240,160 160,80"/>
+      <polygon points="400,0 480,80 400,160 320,80"/>
+      <polygon points="0,160 80,240 0,320 -80,240"/>
+      <polygon points="160,160 240,240 160,320 80,240"/>
+      <polygon points="320,160 400,240 320,320 240,240"/>
+      <polygon points="480,160 560,240 480,320 400,240"/>
+      <polygon points="640,160 720,240 640,320 560,240"/>
+      <polygon points="240,320 320,400 240,480 160,400"/>
+      <polygon points="400,320 480,400 400,480 320,400"/>
+    </g>
+    <g fill="#333">
+      <circle cx="80" cy="80" r="13"/><circle cx="160" cy="0" r="13"/><circle cx="240" cy="80" r="13"/><circle cx="320" cy="0" r="13"/><circle cx="400" cy="80" r="13"/><circle cx="480" cy="0" r="13"/><circle cx="560" cy="80" r="13"/>
+      <circle cx="0" cy="240" r="13"/><circle cx="80" cy="160" r="13"/><circle cx="160" cy="240" r="13"/><circle cx="240" cy="160" r="13"/><circle cx="320" cy="240" r="13"/><circle cx="400" cy="160" r="13"/><circle cx="480" cy="240" r="13"/><circle cx="560" cy="160" r="13"/><circle cx="640" cy="240" r="13"/>
+      <circle cx="80" cy="400" r="13"/><circle cx="160" cy="320" r="13"/><circle cx="240" cy="400" r="13"/><circle cx="320" cy="320" r="13"/><circle cx="400" cy="400" r="13"/><circle cx="480" cy="320" r="13"/><circle cx="560" cy="400" r="13"/>
+    </g>
+    <text x="280" y="-40" text-anchor="middle" font-family="Lato, sans-serif" font-size="34" font-weight="700" fill="#333">Rotated surface-code patch</text>
+    <text x="775" y="120" font-family="Lato, sans-serif" font-size="24" font-weight="700" fill="#5a7ec2">X-type checks</text>
+    <rect x="720" y="92" width="34" height="34" rx="8" fill="#e8f0ff" stroke="#5a7ec2" stroke-width="3"/>
+    <text x="775" y="180" font-family="Lato, sans-serif" font-size="24" font-weight="700" fill="#BF5700">Z-type checks</text>
+    <rect x="720" y="152" width="34" height="34" rx="8" fill="#fff1d9" stroke="#BF5700" stroke-width="3"/>
+    <text x="775" y="260" font-family="Lato, sans-serif" font-size="24" fill="#333">Boundaries matter.</text>
+    <text x="775" y="296" font-family="Lato, sans-serif" font-size="24" fill="#333">Logical strings cross</text>
+    <text x="775" y="332" font-family="Lato, sans-serif" font-size="24" fill="#333">the patch from edge to edge.</text>
+    <g stroke="#333F48" stroke-width="8" fill="none" stroke-linecap="round">
+      <path d="M-40 520 H600"/>
+      <path d="M-40 540 l20 -12 v24 z" fill="#333F48" stroke="none"/>
+      <path d="M600 540 l-20 -12 v24 z" fill="#333F48" stroke="none"/>
+    </g>
+    <text x="280" y="590" text-anchor="middle" font-family="Source Code Pro, monospace" font-size="24" fill="#333F48">logical X direction</text>
+    <g stroke="#8a3b12" stroke-width="8" fill="none" stroke-linecap="round">
+      <path d="M-110 200 V360"/>
+      <path d="M-110 200 l-12 20 h24 z" fill="#8a3b12" stroke="none"/>
+      <path d="M-110 360 l-12 -20 h24 z" fill="#8a3b12" stroke="none"/>
+    </g>
+    <text x="-110" y="410" text-anchor="middle" font-family="Source Code Pro, monospace" font-size="24" fill="#8a3b12">logical Z</text>
+  </g>
+</svg>

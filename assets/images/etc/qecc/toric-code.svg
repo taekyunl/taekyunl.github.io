@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Toric code visualization</title>
+  <desc id="desc">Stylized toric code lattice with periodic wrap-around directions and two non-contractible loop directions.</desc>
+  <rect width="1200" height="760" fill="#fbfbfb"/>
+  <g transform="translate(115,110)">
+    <rect x="80" y="40" width="520" height="520" rx="26" fill="#ffffff" stroke="#cfd4da" stroke-width="3"/>
+    <g stroke="#9aa4ad" stroke-width="4">
+      <line x1="145" y1="105" x2="535" y2="105"/><line x1="145" y1="235" x2="535" y2="235"/><line x1="145" y1="365" x2="535" y2="365"/><line x1="145" y1="495" x2="535" y2="495"/>
+      <line x1="145" y1="105" x2="145" y2="495"/><line x1="275" y1="105" x2="275" y2="495"/><line x1="405" y1="105" x2="405" y2="495"/><line x1="535" y1="105" x2="535" y2="495"/>
+    </g>
+    <g fill="#e8f0ff" stroke="#5a7ec2" stroke-width="3">
+      <circle cx="210" cy="170" r="28"/><circle cx="340" cy="170" r="28"/><circle cx="470" cy="170" r="28"/>
+      <circle cx="210" cy="300" r="28"/><circle cx="340" cy="300" r="28"/><circle cx="470" cy="300" r="28"/>
+      <circle cx="210" cy="430" r="28"/><circle cx="340" cy="430" r="28"/><circle cx="470" cy="430" r="28"/>
+    </g>
+    <g fill="#fff1d9" stroke="#BF5700" stroke-width="3">
+      <rect x="117" y="77" width="56" height="56" rx="12"/><rect x="247" y="77" width="56" height="56" rx="12"/><rect x="377" y="77" width="56" height="56" rx="12"/><rect x="507" y="77" width="56" height="56" rx="12"/>
+      <rect x="117" y="207" width="56" height="56" rx="12"/><rect x="247" y="207" width="56" height="56" rx="12"/><rect x="377" y="207" width="56" height="56" rx="12"/><rect x="507" y="207" width="56" height="56" rx="12"/>
+      <rect x="117" y="337" width="56" height="56" rx="12"/><rect x="247" y="337" width="56" height="56" rx="12"/><rect x="377" y="337" width="56" height="56" rx="12"/><rect x="507" y="337" width="56" height="56" rx="12"/>
+      <rect x="117" y="467" width="56" height="56" rx="12"/><rect x="247" y="467" width="56" height="56" rx="12"/><rect x="377" y="467" width="56" height="56" rx="12"/><rect x="507" y="467" width="56" height="56" rx="12"/>
+    </g>
+    <text x="340" y="-20" text-anchor="middle" font-family="Lato, sans-serif" font-size="34" font-weight="700" fill="#333">Toric code with periodic boundaries</text>
+    <g stroke="#333F48" stroke-width="8" fill="none" stroke-linecap="round">
+      <path d="M145 70 H535"/>
+      <path d="M535 70 c30 0 54 24 54 54"/>
+      <path d="M589 124 V480"/>
+      <path d="M589 480 c0 30 -24 54 -54 54"/>
+      <path d="M535 534 H145"/>
+      <path d="M145 534 c-30 0 -54 -24 -54 -54"/>
+      <path d="M91 480 V124"/>
+      <path d="M91 124 c0 -30 24 -54 54 -54"/>
+    </g>
+    <g fill="#333F48">
+      <polygon points="558,70 542,60 542,80"/>
+      <polygon points="589,449 579,433 599,433"/>
+      <polygon points="176,534 192,524 192,544"/>
+      <polygon points="91,155 81,171 101,171"/>
+    </g>
+    <g stroke="#8a3b12" stroke-width="10" fill="none" stroke-linecap="round">
+      <path d="M145 300 H535"/>
+    </g>
+    <g stroke="#2f5d8a" stroke-width="10" fill="none" stroke-linecap="round">
+      <path d="M340 105 V495"/>
+    </g>
+    <text x="675" y="140" font-family="Lato, sans-serif" font-size="24" font-weight="700" fill="#5a7ec2">One loop direction</text>
+    <text x="675" y="176" font-family="Lato, sans-serif" font-size="24" fill="#333">cannot be shrunk away.</text>
+    <text x="675" y="260" font-family="Lato, sans-serif" font-size="24" font-weight="700" fill="#BF5700">The second independent loop</text>
+    <text x="675" y="296" font-family="Lato, sans-serif" font-size="24" fill="#333">gives a second logical qubit.</text>
+    <text x="675" y="390" font-family="Lato, sans-serif" font-size="24" fill="#333">No boundaries, only wrap-around.</text>
+    <text x="675" y="426" font-family="Lato, sans-serif" font-size="24" fill="#333">That symmetry changes decoding.</text>
+  </g>
+</svg>
