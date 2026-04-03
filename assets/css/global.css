@@ -244,3 +244,83 @@ div.lazy {
     color: #333F48;
 }
 
+.qecc-controls {
+    background: linear-gradient(180deg, #ffffff 0%, #fbfcfd 100%);
+    border: 1px solid #e6e9ed;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.qecc-control-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem 1.1rem;
+    align-items: end;
+}
+
+.qecc-control-row label {
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.qecc-control-row label select,
+.qecc-control-row label input {
+    margin-top: 0.3rem;
+}
+
+.qecc-check {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-weight: 500 !important;
+}
+
+.qecc-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.qecc-meta .badge {
+    padding: 0.45rem 0.65rem;
+    font-size: 0.92rem;
+    font-weight: 500;
+    border: 1px solid #dee2e6;
+}
+
+.qecc-explorer-svg {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #e1e5ea;
+    border-radius: 0.9rem;
+    min-height: 520px;
+}
+
+.qecc-range {
+    width: 180px;
+}
+
+.saq-flow-svg {
+    width: 100%;
+    min-height: 310px;
+    background: #ffffff;
+    border: 1px solid #e1e5ea;
+    border-radius: 0.9rem;
+}
+
+.saq-stage-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.saq-toggle-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.saq-caption {
+    line-height: 1.65;
+    font-size: 1rem;
+}
