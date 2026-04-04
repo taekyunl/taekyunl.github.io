@@ -200,87 +200,6 @@ date: 2026-04-03 12:00:00 -0500
         to model ambiguous, degenerate error patterns. This post is only a primer. I will write about the actual models, experiments, and tradeoffs later.
       </p>
 
-      <h2>Noise models</h2>
-      <p>
-        Another important axis is the noise model itself. Changing the code family is one thing; changing the physical noise model can alter the decoding problem
-        just as much. The two main examples here are depolarizing noise and independent $X/Z$ noise. Circuit-level noise is conceptually important as well, but it belongs to a more elaborate setting than the one discussed in this primer.
-      </p>
-
-      <div class="table-responsive my-4">
-        <table class="table table-sm table-bordered bg-white shadow-sm rounded-xl overflow-hidden">
-          <thead class="thead-light">
-            <tr>
-              <th>Noise model</th>
-              <th>What it means</th>
-              <th>Repo status</th>
-              <th>Why it matters for decoding</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>depolarizing</code></td>
-              <td>Each qubit independently gets a Pauli error, with the non-identity mass spread symmetrically across $X$, $Y$, and $Z$.</td>
-              <td>Implemented and used directly.</td>
-              <td>It is the clean symmetric baseline. Good for understanding how a decoder handles generic Pauli uncertainty.</td>
-            </tr>
-            <tr>
-              <td><code>xz_independent</code></td>
-              <td>$X$ and $Z$ faults are sampled independently, so $Y$ appears only when both happen simultaneously.</td>
-              <td>Implemented and used directly.</td>
-              <td>Useful when bit-flip and phase-flip structure are not symmetric. It stresses whether a decoder handles CSS separation well.</td>
-            </tr>
-            <tr>
-              <td><code>circuit-level</code></td>
-              <td>Noise is attached to the syndrome-extraction circuit itself, not just to a static physical Pauli pattern.</td>
-              <td>Important conceptually, but beyond the simplified setup discussed here.</td>
-              <td>This is the more realistic regime, because measurement errors and fault propagation become part of the decoding problem.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <p>
-        In plain terms, depolarizing noise means that each qubit independently receives a random Pauli fault with total error rate $p$.
-        Independent $X/Z$ noise means that bit-flip and phase-flip components are sampled separately, with rates $p_X$ and $p_Z$.
-      </p>
-      <p>
-        The circuit-level setting is different because the syndrome-extraction circuit itself becomes noisy. So for the purposes of this post, the honest summary is:
-      </p>
-      <ul>
-        <li><code>depolarizing</code> and <code>xz_independent</code> are the clean static-noise examples to keep in mind.</li>
-        <li><code>circuit-level</code> belongs in the broader roadmap, but it is not the focus of this introductory discussion.</li>
-      </ul>
-
-      <h2>Why I still care about better decoders</h2>
-      <p>
-        A natural question comes up once you read the recent literature: if a baseline such as SAQ is already close to the
-        maximum-likelihood (ML) threshold, is there really much room left for a new decoder to improve?
-        The short answer is yes, but the room is subtler than “move the threshold dramatically upward.”
-      </p>
-      <p>
-        In quantum error correction, the word <em>threshold</em> usually refers to a crossover in physical error rate.
-        Roughly speaking, below that crossover, increasing the code size helps drive the logical error rate down; above it, making the code larger stops helping.
-        That is different from the classical coding question “for this fixed channel, what is the best BER I can possibly achieve?”
-        So when someone says a decoder is close to the ML threshold, they are usually saying it already gets close to the best known
-        <em>crossover point</em>, not that every finite-size logical error curve is already optimal.
-      </p>
-      <p>
-        That distinction matters. Even if two decoders have very similar thresholds, one of them can still have noticeably better logical error rates at a fixed
-        code size and a fixed physical noise level. In practice, that is often the regime people care about most. Real devices do not operate at infinite code size.
-        They operate at one concrete distance, under one concrete noise model, with one concrete latency budget.
-      </p>
-      <p>
-        That is exactly where I think MDM-style decoders can still be interesting. A structured diffusion decoder is not trying to beat the laws of the code family.
-        It is trying to use the syndrome geometry more effectively at finite size, especially in regimes where degeneracy, ambiguity, and global consistency all matter at once.
-        In other words, even if SAQ is already near the ML threshold for some setting, there may still be room to improve the actual logical error rate for
-        physical error rates below that threshold.
-      </p>
-      <p>
-        So the question I care about is not only “can a new decoder shift the threshold?” but also:
-        for a fixed physical error rate below threshold, can it produce a lower logical error rate, a more robust recovery, or a better tradeoff between quality and computation?
-        For toric codes in particular, where logical ambiguity and periodic structure are both strong, that still seems like a very meaningful target.
-      </p>
-
       <h2>SAQ in one page</h2>
       <p>
         One useful baseline is SAQ. At a high level, it takes the observed syndrome tensor $Y_{\mathrm{syn}} \in \mathbb{R}^{M \times 2}$,
@@ -339,6 +258,36 @@ date: 2026-04-03 12:00:00 -0500
           </p>
         </div>
       </div>
+
+      <h2>Why I still care about better decoders</h2>
+      <p>
+        A natural question comes up once you read the recent literature: if a baseline such as SAQ is already close to the
+        maximum-likelihood (ML) threshold, is there really much room left for a new decoder to improve?
+        The short answer is yes, but the room is subtler than “move the threshold dramatically upward.”
+      </p>
+      <p>
+        In quantum error correction, the word <em>threshold</em> usually refers to a crossover in physical error rate.
+        Roughly speaking, below that crossover, increasing the code size helps drive the logical error rate down; above it, making the code larger stops helping.
+        That is different from the classical coding question “for this fixed channel, what is the best BER I can possibly achieve?”
+        So when someone says a decoder is close to the ML threshold, they are usually saying it already gets close to the best known
+        <em>crossover point</em>, not that every finite-size logical error curve is already optimal.
+      </p>
+      <p>
+        That distinction matters. Even if two decoders have very similar thresholds, one of them can still have noticeably better logical error rates at a fixed
+        code size and a fixed physical noise level. In practice, that is often the regime people care about most. Real devices do not operate at infinite code size.
+        They operate at one concrete distance, under one concrete noise model, with one concrete latency budget.
+      </p>
+      <p>
+        That is exactly where I think MDM-style decoders can still be interesting. A structured diffusion decoder is not trying to beat the laws of the code family.
+        It is trying to use the syndrome geometry more effectively at finite size, especially in regimes where degeneracy, ambiguity, and global consistency all matter at once.
+        In other words, even if SAQ is already near the ML threshold for some setting, there may still be room to improve the actual logical error rate for
+        physical error rates below that threshold.
+      </p>
+      <p>
+        So the question I care about is not only “can a new decoder shift the threshold?” but also:
+        for a fixed physical error rate below threshold, can it produce a lower logical error rate, a more robust recovery, or a better tradeoff between quality and computation?
+        For toric codes in particular, where logical ambiguity and periodic structure are both strong, that still seems like a very meaningful target.
+      </p>
 
       <h2>What I want to explain next</h2>
       <p>
