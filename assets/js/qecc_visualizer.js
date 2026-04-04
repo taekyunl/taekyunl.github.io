@@ -131,6 +131,84 @@
     svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
     svg.innerHTML = "";
     const qubitById = new Map(data.qubits.map((q) => [q.id, q]));
+    const centers = (checks) => checks.map((check) => {
+      const mids = check.map((id) => {
+        const q = qubitById.get(id);
+        return { x: (q.x1 + q.x2) / 2, y: (q.y1 + q.y2) / 2 };
+      });
+      return {
+        x: mids.reduce((a, p) => a + p.x, 0) / mids.length,
+        y: mids.reduce((a, p) => a + p.y, 0) / mids.length,
+      };
+    });
+    const xCenters = centers(data.x_checks);
+    const zCenters = centers(data.z_checks);
+
+    svg.appendChild(elt("rect", {
+      x: 70, y: 70, width: 306, height: 306,
+      rx: 24, ry: 24,
+      fill: "#fbfcfd",
+      stroke: "#cfd7df",
+      "stroke-width": 2,
+      "stroke-dasharray": "12 10"
+    }));
+
+    [
+      [392, 120, 430, 120], [54, 120, 16, 120],
+      [120, 392, 120, 430], [120, 54, 120, 16]
+    ].forEach(([x1, y1, x2, y2]) => {
+      svg.appendChild(elt("line", {
+        x1, y1, x2, y2, stroke: "#9aa3ad", "stroke-width": 3, "stroke-linecap": "round"
+      }));
+    });
+    [
+      [430, 120, "430,120 418,114 418,126"],
+      [16, 120, "16,120 28,114 28,126"],
+      [120, 430, "120,430 114,418 126,418"],
+      [120, 16, "120,16 114,28 126,28"]
+    ].forEach(([x, y, points]) => {
+      svg.appendChild(elt("polygon", { points, fill: "#9aa3ad" }));
+    });
+    [["identified edge", 223, 34], ["identified edge", 223, 420]].forEach(([txt, x, y]) => {
+      const t = elt("text", {
+        x, y, "text-anchor": "middle", "font-size": 14, fill: "#7b8794", "font-weight": 600
+      });
+      t.textContent = txt;
+      svg.appendChild(t);
+    });
+    [["wrap", 446, 125], ["wrap", 0, 125], ["wrap", 120, 447], ["wrap", 120, 8]].forEach(([txt, x, y]) => {
+      const t = elt("text", { x, y, "font-size": 13, fill: "#8a949e" });
+      t.textContent = txt;
+      svg.appendChild(t);
+    });
+
+    if (opts.showX) {
+      xCenters.forEach((c, idx) => {
+        const isSelected = opts.selectedKind === "x" && opts.selectedIndex === idx;
+        const poly = elt("polygon", {
+          points: `${c.x},${c.y - 36} ${c.x + 36},${c.y} ${c.x},${c.y + 36} ${c.x - 36},${c.y}`,
+          fill: "#4f6fad",
+          opacity: isSelected ? 0.22 : 0.10,
+          stroke: "#4f6fad",
+          "stroke-width": isSelected ? 5 : 2
+        });
+        svg.appendChild(poly);
+      });
+    }
+
+    if (opts.showZ) {
+      zCenters.forEach((c, idx) => {
+        const isSelected = opts.selectedKind === "z" && opts.selectedIndex === idx;
+        const poly = elt("polygon", {
+          points: `${c.x},${c.y - 28} ${c.x + 28},${c.y} ${c.x},${c.y + 28} ${c.x - 28},${c.y}`,
+          fill: "#BF5700",
+          opacity: isSelected ? 0.20 : 0.08,
+          stroke: "#BF5700",
+          "stroke-width": isSelected ? 4 : 2
+        });
+        svg.appendChild(poly);
+      });
+    }
 
     if (opts.showX) {
       data.x_checks.forEach((check, idx) => {
@@ -196,6 +274,21 @@
             stroke: colors[idx], "stroke-width": 13, "stroke-linecap": "round", opacity: 0.88
           }));
         });
+      });
+      data.logical_z.forEach((loop, idx) => {
+        loop.forEach((id) => {
+          const q = qubitById.get(id);
+          svg.appendChild(elt("line", {
+            x1: q.x1, y1: q.y1, x2: q.x2, y2: q.y2,
+            stroke: colors[idx], "stroke-width": 10, "stroke-linecap": "round",
+            opacity: 0.72, "stroke-dasharray": "14 10"
+          }));
+        });
+      });
+      [["X logical loop", 410, 308], ["Z logical loop", 410, 334]].forEach(([txt, x, y], idx) => {
+        const t = elt("text", { x, y, "font-size": 14, fill: colors[idx], "font-weight": 700 });
+        t.textContent = txt;
+        svg.appendChild(t);
       });
     }
   }

@@ -202,9 +202,59 @@
   const X_CENTERS = CODE.xChecks.map(checkCenter);
   const Z_CENTERS = CODE.zChecks.map(checkCenter);
 
+  function drawBoundaryCues(svg) {
+    svg.appendChild(createSvg("rect", {
+      x: 70, y: 70, width: 306, height: 306,
+      rx: 24, ry: 24,
+      fill: "#fbfcfd",
+      stroke: "#cfd7df",
+      "stroke-width": 2,
+      "stroke-dasharray": "12 10",
+    }));
+    [
+      [392, 120, 430, 120], [54, 120, 16, 120],
+      [120, 392, 120, 430], [120, 54, 120, 16],
+    ].forEach(([x1, y1, x2, y2]) => {
+      svg.appendChild(createSvg("line", {
+        x1, y1, x2, y2,
+        stroke: "#9aa3ad",
+        "stroke-width": 3,
+        "stroke-linecap": "round",
+      }));
+    });
+    [
+      "430,120 418,114 418,126",
+      "16,120 28,114 28,126",
+      "120,430 114,418 126,418",
+      "120,16 114,28 126,28",
+    ].forEach((points) => {
+      svg.appendChild(createSvg("polygon", { points, fill: "#9aa3ad" }));
+    });
+    [
+      ["identified edge", 223, 34],
+      ["identified edge", 223, 420],
+      ["wrap", 446, 125],
+      ["wrap", 0, 125],
+      ["wrap", 120, 447],
+      ["wrap", 120, 8],
+    ].forEach(([txt, x, y]) => {
+      const t = createSvg("text", {
+        x, y,
+        "text-anchor": txt === "identified edge" ? "middle" : "start",
+        "font-size": txt === "identified edge" ? 14 : 13,
+        fill: txt === "identified edge" ? "#7b8794" : "#8a949e",
+        "font-weight": txt === "identified edge" ? 600 : 500,
+      });
+      t.textContent = txt;
+      svg.appendChild(t);
+    });
+  }
+
   function renderPatch(svg, qubits, syndrome, recoveryOps, isFinal) {
     svg.innerHTML = "";
     svg.setAttribute("viewBox", "0 0 466 466");
+
+    drawBoundaryCues(svg);
 
     for (let r = 0; r < 4; r++) {
       for (let c = 0; c < 4; c++) {
@@ -218,6 +268,28 @@
     }
 
     if (syndrome) {
+      CODE.xChecks.forEach((check, idx) => {
+        const c = X_CENTERS[idx];
+        const violated = syndrome.xChecks[idx] === 1;
+        svg.appendChild(createSvg("polygon", {
+          points: `${c.x},${c.y - 36} ${c.x + 36},${c.y} ${c.x},${c.y + 36} ${c.x - 36},${c.y}`,
+          fill: "#4f6fad",
+          opacity: violated ? 0.24 : 0.10,
+          stroke: "#4f6fad",
+          "stroke-width": violated ? 4 : 2,
+        }));
+      });
+      CODE.zChecks.forEach((check, idx) => {
+        const c = Z_CENTERS[idx];
+        const violated = syndrome.zChecks[idx] === 1;
+        svg.appendChild(createSvg("polygon", {
+          points: `${c.x},${c.y - 28} ${c.x + 28},${c.y} ${c.x},${c.y + 28} ${c.x - 28},${c.y}`,
+          fill: "#BF5700",
+          opacity: violated ? 0.20 : 0.08,
+          stroke: "#BF5700",
+          "stroke-width": violated ? 4 : 2,
+        }));
+      });
       CODE.xChecks.forEach((check, idx) => {
         const violated = syndrome.xChecks[idx] === 1;
         check.forEach((qIdx) => {
@@ -268,6 +340,33 @@
         svg.appendChild(t);
       });
     }
+
+    const loopColors = ["#243c5a", "#8a3b12"];
+    CODE.logicalX.forEach((loop, idx) => {
+      loop.forEach((qIdx) => {
+        const q = CODE.qubits.find((qq) => qq.id === qIdx);
+        svg.appendChild(createSvg("line", {
+          x1: q.x1, y1: q.y1, x2: q.x2, y2: q.y2,
+          stroke: loopColors[idx],
+          "stroke-width": 12,
+          "stroke-linecap": "round",
+          opacity: 0.18,
+        }));
+      });
+    });
+    CODE.logicalZ.forEach((loop, idx) => {
+      loop.forEach((qIdx) => {
+        const q = CODE.qubits.find((qq) => qq.id === qIdx);
+        svg.appendChild(createSvg("line", {
+          x1: q.x1, y1: q.y1, x2: q.x2, y2: q.y2,
+          stroke: loopColors[idx],
+          "stroke-width": 9,
+          "stroke-linecap": "round",
+          "stroke-dasharray": "14 10",
+          opacity: 0.16,
+        }));
+      });
+    });
 
     CODE.qubits.forEach((q, idx) => {
       const touchedByRecovery = recoveryOps.some((op) => op.qubit === idx + 1);
@@ -340,14 +439,14 @@
           <h4>Periodic qubits and syndrome extraction</h4>
           <svg class="qecc-sim-svg qecc-sim-svg-toric" data-sim-current aria-label="Errored toric code lattice"></svg>
           <p class="qecc-sim-caption mb-0">
-            The short segments are edge qubits. Blue and orange highlights indicate violated $X$ and $Z$ checks, and the displayed bits are exactly the syndrome fed into the decoder.
+            The short segments are edge qubits. The dashed frame and wrap arrows show that opposite boundaries are identified, so this flat picture represents a torus. Blue and orange regions indicate violated $X$ and $Z$ checks.
           </p>
         </div>
         <div class="qecc-sim-panel">
           <h4>Recovered toric lattice</h4>
           <svg class="qecc-sim-svg qecc-sim-svg-toric" data-sim-final aria-label="Recovered toric code lattice"></svg>
           <p class="qecc-sim-caption mb-0">
-            Green highlights mark qubits touched by the predicted recovery. The remaining operator determines whether the recovery stayed in the same logical sector.
+            Green highlights mark qubits touched by the predicted recovery. The faint dark-blue and dashed brown loops mark the two independent non-contractible logical directions.
           </p>
         </div>
       </div>

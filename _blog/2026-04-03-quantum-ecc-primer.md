@@ -275,10 +275,10 @@ date: 2026-04-03 12:00:00 -0500
             <svg class="qecc-explorer-svg mt-3" aria-label="Interactive toric code explorer"></svg>
           </div>
           <p class="mb-0 text-muted">
-            In the toric-code view, the short segments are edge qubits on a periodic lattice. Selecting one constraint shows which four edge qubits participate in that stabilizer.
+            In the toric-code view, the short segments are edge qubits on a periodic lattice. The dashed frame and wrap arrows indicate that opposite edges are identified, so the geometry behaves like a torus rather than a patch.
           </p>
           <p class="mb-0 text-muted mt-2">
-            The toric decoder still receives syndrome bits as input, but because the lattice wraps around, the output recovery must respect a periodic logical structure with $K=2$.
+            The colored diamonds show local stabilizer neighborhoods, while the solid and dashed loop overlays indicate the two independent non-contractible logical directions. That is why the toric code has $K=2$.
           </p>
         </div>
       </div>
@@ -371,10 +371,34 @@ date: 2026-04-03 12:00:00 -0500
         <li><code>circuit-level</code> belongs in the conceptual roadmap, but not yet in the “fully supported current blog demo” bucket.</li>
       </ul>
 
-      <h2>What comes next</h2>
+      <h2>Why I still care about better decoders</h2>
       <p>
-        The next posts will move from geometry to algorithms: syndrome extraction, logical equivalence classes, neural decoders,
-        and the practical differences between surface-code and toric-code decoding.
+        A natural question comes up once you read the recent literature: if a baseline such as SAQ is already close to the
+        maximum-likelihood (ML) threshold, is there really much room left for a new decoder to improve?
+        The short answer is yes, but the room is subtler than “move the threshold dramatically upward.”
+      </p>
+      <p>
+        In quantum error correction, the word <em>threshold</em> usually refers to a crossover in physical error rate.
+        Roughly speaking, below that crossover, increasing the code size helps drive the logical error rate down; above it, making the code larger stops helping.
+        That is different from the classical coding question “for this fixed channel, what is the best BER I can possibly achieve?”
+        So when someone says a decoder is close to the ML threshold, they are usually saying it already gets close to the best known
+        <em>crossover point</em>, not that every finite-size logical error curve is already optimal.
+      </p>
+      <p>
+        That distinction matters. Even if two decoders have very similar thresholds, one of them can still have noticeably better logical error rates at a fixed
+        code size and a fixed physical noise level. In practice, that is often the regime people care about most. Real devices do not operate at infinite code size.
+        They operate at one concrete distance, under one concrete noise model, with one concrete latency budget.
+      </p>
+      <p>
+        That is exactly where I think MDM-style decoders can still be interesting. A structured diffusion decoder is not trying to beat the laws of the code family.
+        It is trying to use the syndrome geometry more effectively at finite size, especially in regimes where degeneracy, ambiguity, and global consistency all matter at once.
+        In other words, even if SAQ is already near the ML threshold for some setting, there may still be room to improve the actual logical error rate for
+        physical error rates below that threshold.
+      </p>
+      <p>
+        So the question I care about is not only “can a new decoder shift the threshold?” but also:
+        for a fixed physical error rate below threshold, can it produce a lower logical error rate, a more robust recovery, or a better tradeoff between quality and computation?
+        For toric codes in particular, where logical ambiguity and periodic structure are both strong, that still seems like a very meaningful target.
       </p>
 
       <h2>SAQ in one page</h2>
