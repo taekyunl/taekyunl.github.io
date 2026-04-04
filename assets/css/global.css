@@ -387,6 +387,27 @@ div.lazy {
     margin-bottom: 0;
 }
 
+.qecc-badge {
+    display: inline-block;
+    padding: 0.28rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border: 1px solid transparent;
+}
+
+.qecc-badge-good {
+    color: #12733d;
+    background: #e8f7ee;
+    border-color: #b8e3c6;
+}
+
+.qecc-badge-bad {
+    color: #b42318;
+    background: #fdecea;
+    border-color: #f5c2bf;
+}
+
 .qecc-ok {
     color: #12733d;
     font-weight: 700;

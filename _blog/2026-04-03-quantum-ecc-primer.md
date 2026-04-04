@@ -88,13 +88,12 @@ date: 2026-04-03 12:00:00 -0500
 
       <h2>A concrete $d=3$ rotated surface code you can simulate</h2>
       <p>
-        For a blog demo or a small React simulator, the cleanest choice is the rotated surface code with distance $d=3$.
-        That gives a $3 \times 3$ patch of data qubits, so there are exactly $N=9$ data qubits, $4$ $X$ checks,
+        The rotated surface code with distance $d=3$ is the smallest example that already shows the main ingredients of the decoding problem clearly.
+        It gives a $3 \times 3$ patch of data qubits, so there are exactly $N=9$ data qubits, $4$ $X$ checks,
         $4$ $Z$ checks, and one encoded logical qubit $(K=1)$.
       </p>
       <p>
-        In the actual code constructor I use, the data qubits are numbered row by row. If you want user-facing controls,
-        it is usually nicer to expose them as qubits $1$ through $9$:
+        It is convenient to number the data qubits row by row, from $1$ through $9$:
       </p>
       $$
       \begin{matrix}
@@ -104,7 +103,7 @@ date: 2026-04-03 12:00:00 -0500
       \end{matrix}
       $$
       <p>
-        With that convention, the rotated surface code used in the repo can be written as the following support lists.
+        With that convention, the rotated surface code can be written as the following support lists.
         Each set below is one row of $H_X$ or $H_Z$, written as the collection of qubits touched by that parity check.
       </p>
       <ul>
@@ -119,14 +118,14 @@ date: 2026-04-03 12:00:00 -0500
       </p>
 
       <p>
-        This is enough to build a fully deterministic teaching simulator. The syndrome rules are:
+        These support lists already determine the syndrome rules:
       </p>
       <ul>
         <li>the <em>$Z$ checks</em> detect the $X$ component of the error,</li>
         <li>the <em>$X$ checks</em> detect the $Z$ component of the error.</li>
       </ul>
       <p>
-        If you store the current Pauli pattern as separate binary supports $e_X, e_Z \in \{0,1\}^9$, then your simulator logic can be
+        If we write the current Pauli pattern as separate binary supports $e_X, e_Z \in \{0,1\}^9$, then the syndrome relations are
         written directly from the support lists above:
       </p>
       $$
@@ -141,149 +140,32 @@ date: 2026-04-03 12:00:00 -0500
         <li>an injected <code>Z</code> or the <code>Z</code> part of a <code>Y</code> error flips nearby <code>X</code>-check syndrome bits.</li>
       </ul>
       <p>
-        For a small interactive demo, this representation is much better than a vague hand-drawn sketch, because it gives you three things at once:
-        the visual patch, the exact check geometry, and the algebraic objects the decoder really uses.
+        This representation is useful because it gives three things at once: the visual patch, the exact check geometry, and the algebraic objects the decoder uses.
       </p>
       <p>
-        If the decoder predicts a recovery $R$, the final question is not “did we reconstruct the exact same microscopic error?” but rather
-        whether the residual operator $R E$ is stabilizer-equivalent to the identity or, at worst, differs only by a trivial stabilizer.
-        A nontrivial overlap with the logical operators above means the recovery failed logically.
+        If the decoder predicts a recovery $R$, the important question is not whether it guessed the exact physical error pattern.
+        What matters is what remains after the recovery is applied. If the combined effect $R E$ is just the identity, or differs from it only by a stabilizer,
+        then the encoded information is still the same and the recovery counts as a success. If $R E$ contains a nontrivial logical operator, then the logical state
+        has changed and the recovery has failed.
+      </p>
+      <p>
+        That is what “same logical class” means in practice. We form the residual operator $R E$ and ask whether it is trivial up to stabilizers.
+        If the residual is only a stabilizer, then it acts invisibly on the encoded qubit and the logical information is unchanged. If the residual still has
+        a logical $X$, logical $Z$, or another nontrivial logical component, then the logical information has changed even if the physical qubit pattern may look locally similar.
       </p>
 
       <div class="card border-0 shadow-sm rounded-xl my-4">
         <div class="card-body p-4">
           <h3 class="h5 mb-3">Try the full loop on a $3 \times 3$ rotated surface code</h3>
           <p>
-            This simulator uses the exact $d=3$ support lists above. You can inject physical Pauli errors, watch the syndrome bits flip,
+            This toy example follows the exact $d=3$ support lists above. You can inject physical Pauli errors, watch the syndrome bits flip,
             inspect the decoder input and predicted recovery, and then check whether the final state stays in the same logical class.
           </p>
           <div class="qecc-sim" data-surface-d3-sim></div>
         </div>
       </div>
 
-      <h2>Step 1: inspect an actual rotated surface code</h2>
-      <p>
-        The rotated surface code is the most common first example because its geometry is concrete. Physical qubits live on a square patch.
-        Local check operators touch nearby qubits, and the boundary matters: the patch has edges, and those edges define which logical
-        operators can run across the lattice. In practice, this locality is one of the reasons surface codes are so attractive.
-      </p>
-      <p>
-        The figure below is not hand-drawn. It is generated from the same code constructors used in the decoder repository.
-        The controls change the code family and distance, then redraw the qubits, stabilizers, and logical operators from actual parity-check data.
-      </p>
-      <p>
-        If you select an individual $X$ or $Z$ constraint in the explorer, the highlighted qubits show exactly which parity relation is being enforced.
-        In other words, the visualization is not merely “inspired by” the code: it is exposing the same constraint structure that appears algebraically in $H_X$ and $H_Z$.
-      </p>
-      <p>
-        The dots or short edge segments represent physical qubits. The grid is the geometric arrangement of those qubits in the code.
-        A highlighted $X$ or $Z$ check means: “take exactly these qubits, apply the corresponding parity constraint, and ask whether it is satisfied.”
-        The decoder's final output is a recovery operator, chosen so that the corrected state lands back in the right logical class.
-      </p>
-
-      <div class="card border-0 shadow-sm rounded-xl my-4">
-        <div class="card-body p-4">
-          <h3 class="h5 mb-3">Interactive surface-code explorer</h3>
-          <div class="qecc-controls mb-3" data-qecc-explorer data-default-family="surface" data-default-distance="5">
-            <div class="qecc-control-row">
-              <label>Family
-                <select data-qecc-family class="form-control form-control-sm">
-                  <option value="surface" selected>surface</option>
-                  <option value="toric">toric</option>
-                </select>
-              </label>
-              <label>Distance $d$
-                <select data-qecc-distance class="form-control form-control-sm">
-                  <option value="5" selected>5</option>
-                </select>
-              </label>
-              <label class="qecc-check"><input type="checkbox" data-qecc-toggle="x" checked> show $X$ checks</label>
-              <label class="qecc-check"><input type="checkbox" data-qecc-toggle="z" checked> show $Z$ checks</label>
-              <label class="qecc-check"><input type="checkbox" data-qecc-toggle="logical" checked> show logicals</label>
-              <label>Inspect constraint type
-                <select data-qecc-check-kind class="form-control form-control-sm">
-                  <option value="none" selected>none</option>
-                  <option value="x">$X$ check</option>
-                  <option value="z">$Z$ check</option>
-                </select>
-              </label>
-              <label>Constraint index
-                <input type="range" min="0" max="0" step="1" value="0" data-qecc-check-index class="custom-range qecc-range">
-              </label>
-            </div>
-            <div class="qecc-meta mt-3">
-              <span class="badge badge-light">family: <span data-qecc-meta="family"></span></span>
-              <span class="badge badge-light">d: <span data-qecc-meta="d"></span></span>
-              <span class="badge badge-light">N: <span data-qecc-meta="n"></span></span>
-              <span class="badge badge-light">M<sub>X</sub>: <span data-qecc-meta="mx"></span></span>
-              <span class="badge badge-light">M<sub>Z</sub>: <span data-qecc-meta="mz"></span></span>
-              <span class="badge badge-light">K: <span data-qecc-meta="k"></span></span>
-              <span class="badge badge-light">constructor check: <span data-qecc-meta="validation"></span></span>
-              <span class="badge badge-light">selected constraint: <span data-qecc-meta="selected"></span></span>
-            </div>
-            <svg class="qecc-explorer-svg mt-3" aria-label="Interactive quantum code explorer"></svg>
-          </div>
-          <p class="mb-0 text-muted">
-            In the surface-code view, the dots are data qubits on a patch. A selected check highlights exactly which nearby qubits are tied together by one stabilizer constraint.
-          </p>
-          <p class="mb-0 text-muted mt-2">
-            The constraint inspector highlights one actual row of $H_X$ or $H_Z$ at a time, so you can see which qubits participate in a specific stabilizer.
-          </p>
-        </div>
-      </div>
-
-      <div class="card border-0 shadow-sm rounded-xl my-4">
-        <div class="card-body p-4">
-          <h3 class="h5 mb-3">Interactive toric-code explorer</h3>
-          <div class="qecc-controls mb-3" data-qecc-explorer data-default-family="toric" data-default-distance="6">
-            <div class="qecc-control-row">
-              <label>Family
-                <select data-qecc-family class="form-control form-control-sm">
-                  <option value="surface">surface</option>
-                  <option value="toric" selected>toric</option>
-                </select>
-              </label>
-              <label>Distance $d$
-                <select data-qecc-distance class="form-control form-control-sm">
-                  <option value="6" selected>6</option>
-                </select>
-              </label>
-              <label class="qecc-check"><input type="checkbox" data-qecc-toggle="x" checked> show $X$ checks</label>
-              <label class="qecc-check"><input type="checkbox" data-qecc-toggle="z" checked> show $Z$ checks</label>
-              <label class="qecc-check"><input type="checkbox" data-qecc-toggle="logical" checked> show logicals</label>
-              <label>Inspect constraint type
-                <select data-qecc-check-kind class="form-control form-control-sm">
-                  <option value="none" selected>none</option>
-                  <option value="x">$X$ check</option>
-                  <option value="z">$Z$ check</option>
-                </select>
-              </label>
-              <label>Constraint index
-                <input type="range" min="0" max="0" step="1" value="0" data-qecc-check-index class="custom-range qecc-range">
-              </label>
-            </div>
-            <div class="qecc-meta mt-3">
-              <span class="badge badge-light">family: <span data-qecc-meta="family"></span></span>
-              <span class="badge badge-light">d: <span data-qecc-meta="d"></span></span>
-              <span class="badge badge-light">N: <span data-qecc-meta="n"></span></span>
-              <span class="badge badge-light">M<sub>X</sub>: <span data-qecc-meta="mx"></span></span>
-              <span class="badge badge-light">M<sub>Z</sub>: <span data-qecc-meta="mz"></span></span>
-              <span class="badge badge-light">K: <span data-qecc-meta="k"></span></span>
-              <span class="badge badge-light">constructor check: <span data-qecc-meta="validation"></span></span>
-              <span class="badge badge-light">selected constraint: <span data-qecc-meta="selected"></span></span>
-            </div>
-            <svg class="qecc-explorer-svg mt-3" aria-label="Interactive toric code explorer"></svg>
-          </div>
-          <p class="mb-0 text-muted">
-            In the toric-code view, the short segments are edge qubits on a periodic lattice. The dashed frame and wrap arrows indicate that opposite edges are identified, so the geometry behaves like a torus rather than a patch.
-          </p>
-          <p class="mb-0 text-muted mt-2">
-            The colored diamonds show local stabilizer neighborhoods, while the solid and dashed loop overlays indicate the two independent non-contractible logical directions. That is why the toric code has $K=2$.
-          </p>
-        </div>
-      </div>
-
-      <h2>Step 2: compare with toric codes</h2>
+      <h2>From surface codes to toric codes</h2>
       <p>
         The toric code takes the same stabilizer-code philosophy and wraps the lattice around periodic boundaries.
         Instead of a square patch with edges, imagine gluing opposite sides together until the lattice lives on a torus.
@@ -299,8 +181,8 @@ date: 2026-04-03 12:00:00 -0500
         <div class="card-body p-4">
           <h3 class="h5 mb-3">Try the full loop on a $d=3$ toric code</h3>
           <p>
-            The toric simulator uses a small periodic lattice with $18$ edge qubits, $8$ $X$ checks, $8$ $Z$ checks, and two logical qubits.
-            Just like in the surface-code demo, the decoder only sees syndrome bits. The difference is that the logical recovery check now has to respect
+            This small periodic lattice has $18$ edge qubits, $8$ $X$ checks, $8$ $Z$ checks, and two logical qubits.
+            Just like in the surface-code example, the decoder only sees syndrome bits. The difference is that the logical recovery check now has to respect
             two independent non-contractible directions instead of one.
           </p>
           <div class="qecc-sim" data-toric-d3-sim></div>
@@ -321,8 +203,7 @@ date: 2026-04-03 12:00:00 -0500
       <h2>Noise models</h2>
       <p>
         Another important axis is the noise model itself. Changing the code family is one thing; changing the physical noise model can alter the decoding problem
-        just as much. In the current codebase, the two fully supported noise families are depolarizing noise and independent $X/Z$ noise. Circuit-level noise is
-        conceptually important, but in the latest repo it is still closer to an interface stub than to a fully integrated training pipeline.
+        just as much. The two main examples here are depolarizing noise and independent $X/Z$ noise. Circuit-level noise is conceptually important as well, but it belongs to a more elaborate setting than the one discussed in this primer.
       </p>
 
       <div class="table-responsive my-4">
@@ -351,7 +232,7 @@ date: 2026-04-03 12:00:00 -0500
             <tr>
               <td><code>circuit-level</code></td>
               <td>Noise is attached to the syndrome-extraction circuit itself, not just to a static physical Pauli pattern.</td>
-              <td>Conceptually present, but the current repo only exposes a Stim-based stub interface.</td>
+              <td>Important conceptually, but beyond the simplified setup discussed here.</td>
               <td>This is the more realistic regime, because measurement errors and fault propagation become part of the decoding problem.</td>
             </tr>
           </tbody>
@@ -363,12 +244,11 @@ date: 2026-04-03 12:00:00 -0500
         Independent $X/Z$ noise means that bit-flip and phase-flip components are sampled separately, with rates $p_X$ and $p_Z$.
       </p>
       <p>
-        The circuit-level path is different. There is a Stim interface in the repository, but it explicitly warns that full circuit-level data generation still
-        requires a more careful syndrome-extraction model. So for now, the honest summary is:
+        The circuit-level setting is different because the syndrome-extraction circuit itself becomes noisy. So for the purposes of this post, the honest summary is:
       </p>
       <ul>
-        <li><code>depolarizing</code> and <code>xz_independent</code> are real, runnable settings.</li>
-        <li><code>circuit-level</code> belongs in the conceptual roadmap, but not yet in the “fully supported current blog demo” bucket.</li>
+        <li><code>depolarizing</code> and <code>xz_independent</code> are the clean static-noise examples to keep in mind.</li>
+        <li><code>circuit-level</code> belongs in the broader roadmap, but it is not the focus of this introductory discussion.</li>
       </ul>
 
       <h2>Why I still care about better decoders</h2>
@@ -403,12 +283,12 @@ date: 2026-04-03 12:00:00 -0500
 
       <h2>SAQ in one page</h2>
       <p>
-        One baseline I use is SAQ. In the current codebase, it takes the observed syndrome tensor $Y_{\mathrm{syn}} \in \mathbb{R}^{M \times 2}$,
+        One useful baseline is SAQ. At a high level, it takes the observed syndrome tensor $Y_{\mathrm{syn}} \in \mathbb{R}^{M \times 2}$,
         turns it into binary syndrome bits, embeds those syndrome checks as tokens, and simultaneously keeps a bank of logical-class tokens.
         The two streams then interact through shared attention blocks.
       </p>
       <p>
-        The implementation is easiest to read as a sequence:
+        At a high level, the flow looks like this:
       </p>
       $$
       Y_{\mathrm{syn}}
@@ -424,8 +304,8 @@ date: 2026-04-03 12:00:00 -0500
       \text{CPND projection}.
       $$
       <p>
-        The final output is not taken directly from raw logits. The implementation applies a post-processing step, CPND, that projects the symplectic
-        prediction back toward parity and logical consistency. That post-processing step matters: it is part of the actual baseline behavior in the repo.
+        The final output is not taken directly from raw logits. A post-processing step, CPND, projects the symplectic prediction back toward parity and logical consistency.
+        That extra step matters because it helps turn a soft prediction into a recovery that is more compatible with the code constraints.
       </p>
 
       <div class="card border-0 shadow-sm rounded-xl my-4">
@@ -473,6 +353,5 @@ date: 2026-04-03 12:00:00 -0500
   </div>
 </div>
 
-<script src="{{ '/assets/js/qecc_visualizer.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/surface_d3_simulator.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/toric_d3_simulator.js' | relative_url }}"></script>

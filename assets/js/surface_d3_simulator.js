@@ -299,6 +299,20 @@
     return `[${arr.join(", ")}]`;
   }
 
+  function formatResidualOperator(qubits) {
+    const ops = qubits
+      .map((p, i) => ({ p, i }))
+      .filter(({ p }) => p !== "I")
+      .map(({ p, i }) => `Q${i + 1}:${p}`);
+    return ops.length ? ops.join(", ") : "stabilizer-only / no visible residual";
+  }
+
+  function residualBadge(label, sameLogicalClass) {
+    const cls = sameLogicalClass ? "qecc-badge qecc-badge-good" : "qecc-badge qecc-badge-bad";
+    const text = sameLogicalClass ? "stabilizer-only" : label;
+    return `<span class="${cls}">${text}</span>`;
+  }
+
   function mount(root) {
     root.innerHTML = `
       <div class="qecc-sim-controls">
@@ -346,6 +360,14 @@
           <h5>Logical recovery</h5>
           <div data-sim-equivalence></div>
         </div>
+        <div class="qecc-sim-box">
+          <h5>Residual operator</h5>
+          <div data-sim-residual-operator></div>
+        </div>
+        <div class="qecc-sim-box">
+          <h5>Residual logical content</h5>
+          <div data-sim-residual-logical></div>
+        </div>
       </div>
     `;
 
@@ -378,9 +400,16 @@
 
       qs("[data-sim-equivalence]", root).innerHTML = `
         <p><strong>Same Logical Class</strong>: <span class="${residual.sameLogicalClass ? "qecc-ok" : "qecc-fail"}">${residual.sameLogicalClass ? "true" : "false"}</span></p>
-        <p><strong>Equivalence Check</strong>: <span class="${residual.sameLogicalClass ? "qecc-ok" : "qecc-fail"}">${residual.sameLogicalClass ? "OK" : "FAILED"}</span></p>
-        <p><strong>Residual logical action</strong>: ${residual.label}</p>
-        <p class="mb-0"><strong>Residual operator</strong>: ${finalQubits.map((p, i) => `Q${i + 1}:${p}`).join(", ")}</p>
+        <p class="mb-0"><strong>Equivalence Check</strong>: <span class="${residual.sameLogicalClass ? "qecc-ok" : "qecc-fail"}">${residual.sameLogicalClass ? "OK" : "FAILED"}</span></p>
+      `;
+
+      qs("[data-sim-residual-operator]", root).innerHTML = `
+        <p class="mb-0">${formatResidualOperator(finalQubits)}</p>
+      `;
+
+      qs("[data-sim-residual-logical]", root).innerHTML = `
+        <p><strong>Status</strong>: ${residualBadge(residual.label, residual.sameLogicalClass)}</p>
+        <p class="mb-0"><strong>Detected logical action</strong>: ${residual.sameLogicalClass ? "none" : residual.label}</p>
       `;
     }
 
