@@ -353,6 +353,10 @@ div.lazy {
     min-height: 360px;
 }
 
+.qecc-sim-svg-toric {
+    min-height: 420px;
+}
+
 .qecc-sim-caption {
     color: #6b7280;
     font-size: 0.95rem;

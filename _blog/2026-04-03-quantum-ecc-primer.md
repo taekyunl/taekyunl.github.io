@@ -89,8 +89,8 @@ date: 2026-04-03 12:00:00 -0500
       <h2>A concrete $d=3$ rotated surface code you can simulate</h2>
       <p>
         For a blog demo or a small React simulator, the cleanest choice is the rotated surface code with distance $d=3$.
-        That gives a $3 \times 3$ patch of data qubits, so there are exactly $N=9$ data qubits, $M_X=4$ $X$ checks,
-        $M_Z=4$ $Z$ checks, and one encoded logical qubit $(K=1)$.
+        That gives a $3 \times 3$ patch of data qubits, so there are exactly $N=9$ data qubits, $4$ $X$ checks,
+        $4$ $Z$ checks, and one encoded logical qubit $(K=1)$.
       </p>
       <p>
         In the actual code constructor I use, the data qubits are numbered row by row. If you want user-facing controls,
@@ -105,31 +105,18 @@ date: 2026-04-03 12:00:00 -0500
       $$
       <p>
         With that convention, the rotated surface code used in the repo can be written as the following support lists.
-        Each array below is one row of $H_X$ or $H_Z$ written as the set of participating qubits.
+        Each set below is one row of $H_X$ or $H_Z$, written as the collection of qubits touched by that parity check.
       </p>
-
-{% raw %}
-```ts
-export const ROTATED_SURFACE_D3 = {
-  n: 9,
-  k: 1,
-  xChecks: [
-    [1, 2, 4, 5],
-    [5, 6, 8, 9],
-    [4, 7],
-    [3, 6],
-  ],
-  zChecks: [
-    [2, 3, 5, 6],
-    [4, 5, 7, 8],
-    [1, 2],
-    [8, 9],
-  ],
-  logicalX: [1, 2, 3],
-  logicalZ: [1, 4, 7],
-};
-```
-{% endraw %}
+      <ul>
+        <li>$X$-check supports: $\{1,2,4,5\}$, $\{5,6,8,9\}$, $\{4,7\}$, $\{3,6\}$.</li>
+        <li>$Z$-check supports: $\{2,3,5,6\}$, $\{4,5,7,8\}$, $\{1,2\}$, $\{8,9\}$.</li>
+        <li>Logical $X$ support: $\{1,2,3\}$.</li>
+        <li>Logical $Z$ support: $\{1,4,7\}$.</li>
+      </ul>
+      <p>
+        In matrix language, that means $H_X$ has four rows and $H_Z$ has four rows. So when I write “$4$ $X$ checks” and “$4$ $Z$ checks,”
+        I literally mean four parity constraints of each type.
+      </p>
 
       <p>
         This is enough to build a fully deterministic teaching simulator. The syndrome rules are:
@@ -308,6 +295,18 @@ export const ROTATED_SURFACE_D3 = {
         Toric-code decoders must respect periodicity and a larger logical space.
       </p>
 
+      <div class="card border-0 shadow-sm rounded-xl my-4">
+        <div class="card-body p-4">
+          <h3 class="h5 mb-3">Try the full loop on a $d=3$ toric code</h3>
+          <p>
+            The toric simulator uses a small periodic lattice with $18$ edge qubits, $8$ $X$ checks, $8$ $Z$ checks, and two logical qubits.
+            Just like in the surface-code demo, the decoder only sees syndrome bits. The difference is that the logical recovery check now has to respect
+            two independent non-contractible directions instead of one.
+          </p>
+          <div class="qecc-sim" data-toric-d3-sim></div>
+        </div>
+      </div>
+
       <h2>Why decoders are hard</h2>
       <p>
         Decoding is not just about local error detection. A good decoder has to reconcile local syndrome evidence with global structure.
@@ -360,12 +359,9 @@ export const ROTATED_SURFACE_D3 = {
       </div>
 
       <p>
-        In code terms, the first two correspond to the actual noise generators used by the data pipeline:
+        In plain terms, depolarizing noise means that each qubit independently receives a random Pauli fault with total error rate $p$.
+        Independent $X/Z$ noise means that bit-flip and phase-flip components are sampled separately, with rates $p_X$ and $p_Z$.
       </p>
-      $$
-      \texttt{depolarizing\_noise}(N, p), \qquad
-      \texttt{xz\_independent\_noise}(N, p_X, p_Z).
-      $$
       <p>
         The circuit-level path is different. There is a Stim interface in the repository, but it explicitly warns that full circuit-level data generation still
         requires a more careful syndrome-extraction model. So for now, the honest summary is:
@@ -435,7 +431,7 @@ export const ROTATED_SURFACE_D3 = {
             </div>
           </div>
           <p class="mb-0 text-muted mt-3">
-            This summary follows the actual code path in <code>models/saq.py</code> and <code>saq_module.py</code>, but intentionally leaves out low-level training details.
+            This is the high-level idea I want to emphasize here: what information SAQ uses, how that information is organized, and why a projection step matters at the end.
           </p>
         </div>
       </div>
@@ -455,3 +451,4 @@ export const ROTATED_SURFACE_D3 = {
 
 <script src="{{ '/assets/js/qecc_visualizer.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/surface_d3_simulator.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/toric_d3_simulator.js' | relative_url }}"></script>
