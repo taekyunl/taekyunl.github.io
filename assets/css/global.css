@@ -299,3 +299,96 @@ div.lazy {
 .qecc-range {
     width: 180px;
 }
+
+.qecc-sim {
+    background: linear-gradient(180deg, #ffffff 0%, #fbfcfd 100%);
+    border: 1px solid #e6e9ed;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.qecc-sim-controls {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+    margin-bottom: 1.15rem;
+}
+
+.qecc-sim-controls label {
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.qecc-sim-controls label select {
+    margin-top: 0.3rem;
+}
+
+.qecc-sim-controls .btn {
+    justify-self: start;
+}
+
+.qecc-sim-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.qecc-sim-panel {
+    background: #ffffff;
+    border: 1px solid #e1e5ea;
+    border-radius: 0.9rem;
+    padding: 0.9rem;
+}
+
+.qecc-sim-panel h4 {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.qecc-sim-svg {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #e7ebef;
+    border-radius: 0.9rem;
+    min-height: 360px;
+}
+
+.qecc-sim-caption {
+    color: #6b7280;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-top: 0.75rem;
+}
+
+.qecc-sim-results {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.qecc-sim-box {
+    background: #ffffff;
+    border: 1px solid #e1e5ea;
+    border-radius: 0.9rem;
+    padding: 0.9rem 1rem;
+}
+
+.qecc-sim-box h5 {
+    font-size: 0.98rem;
+    margin-bottom: 0.75rem;
+}
+
+.qecc-sim-box p:last-child {
+    margin-bottom: 0;
+}
+
+.qecc-ok {
+    color: #12733d;
+    font-weight: 700;
+}
+
+.qecc-fail {
+    color: #b42318;
+    font-weight: 700;
+}

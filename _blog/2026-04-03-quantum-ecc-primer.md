@@ -86,6 +86,94 @@ date: 2026-04-03 12:00:00 -0500
         then uses that pattern of violated constraints to infer a recovery.
       </p>
 
+      <h2>A concrete $d=3$ rotated surface code you can simulate</h2>
+      <p>
+        For a blog demo or a small React simulator, the cleanest choice is the rotated surface code with distance $d=3$.
+        That gives a $3 \times 3$ patch of data qubits, so there are exactly $N=9$ data qubits, $M_X=4$ $X$ checks,
+        $M_Z=4$ $Z$ checks, and one encoded logical qubit $(K=1)$.
+      </p>
+      <p>
+        In the actual code constructor I use, the data qubits are numbered row by row. If you want user-facing controls,
+        it is usually nicer to expose them as qubits $1$ through $9$:
+      </p>
+      $$
+      \begin{matrix}
+      1 & 2 & 3 \\
+      4 & 5 & 6 \\
+      7 & 8 & 9
+      \end{matrix}
+      $$
+      <p>
+        With that convention, the rotated surface code used in the repo can be written as the following support lists.
+        Each array below is one row of $H_X$ or $H_Z$ written as the set of participating qubits.
+      </p>
+
+{% raw %}
+```ts
+export const ROTATED_SURFACE_D3 = {
+  n: 9,
+  k: 1,
+  xChecks: [
+    [1, 2, 4, 5],
+    [5, 6, 8, 9],
+    [4, 7],
+    [3, 6],
+  ],
+  zChecks: [
+    [2, 3, 5, 6],
+    [4, 5, 7, 8],
+    [1, 2],
+    [8, 9],
+  ],
+  logicalX: [1, 2, 3],
+  logicalZ: [1, 4, 7],
+};
+```
+{% endraw %}
+
+      <p>
+        This is enough to build a fully deterministic teaching simulator. The syndrome rules are:
+      </p>
+      <ul>
+        <li>the <em>$Z$ checks</em> detect the $X$ component of the error,</li>
+        <li>the <em>$X$ checks</em> detect the $Z$ component of the error.</li>
+      </ul>
+      <p>
+        If you store the current Pauli pattern as separate binary supports $e_X, e_Z \in \{0,1\}^9$, then your simulator logic can be
+        written directly from the support lists above:
+      </p>
+      $$
+      s_X = H_Z e_X \pmod 2,\qquad
+      s_Z = H_X e_Z \pmod 2.
+      $$
+      <p>
+        In practical terms, that means:
+      </p>
+      <ul>
+        <li>an injected <code>X</code> or the <code>X</code> part of a <code>Y</code> error flips nearby <code>Z</code>-check syndrome bits,</li>
+        <li>an injected <code>Z</code> or the <code>Z</code> part of a <code>Y</code> error flips nearby <code>X</code>-check syndrome bits.</li>
+      </ul>
+      <p>
+        For a small interactive demo, this representation is much better than a vague hand-drawn sketch, because it gives you three things at once:
+        the visual patch, the exact check geometry, and the algebraic objects the decoder really uses.
+      </p>
+      <p>
+        If the decoder predicts a recovery $R$, the final question is not “did we reconstruct the exact same microscopic error?” but rather
+        whether the residual operator $R E$ is stabilizer-equivalent to the identity or, at worst, differs only by a trivial stabilizer.
+        A nontrivial overlap with the logical operators above means the recovery failed logically.
+      </p>
+
+      <div class="card border-0 shadow-sm rounded-xl my-4">
+        <div class="card-body p-4">
+          <h3 class="h5 mb-3">Try the full loop on a $3 \times 3$ rotated surface code</h3>
+          <p>
+            This simulator uses the exact $d=3$ support lists above. You can inject physical Pauli errors, watch the syndrome bits flip,
+            inspect the decoder input and predicted recovery, and then check whether the final state stays in the same logical class.
+          </p>
+          <div class="qecc-sim" data-surface-d3-sim></div>
+        </div>
+      </div>
+
       <h2>Step 1: inspect an actual rotated surface code</h2>
       <p>
         The rotated surface code is the most common first example because its geometry is concrete. Physical qubits live on a square patch.
@@ -366,3 +454,4 @@ date: 2026-04-03 12:00:00 -0500
 </div>
 
 <script src="{{ '/assets/js/qecc_visualizer.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/surface_d3_simulator.js' | relative_url }}"></script>
