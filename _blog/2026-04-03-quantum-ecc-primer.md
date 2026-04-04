@@ -50,7 +50,7 @@ date: 2026-04-03 12:00:00 -0500
       <div class="card border-0 shadow-sm rounded-xl my-4">
         <div class="card-body p-4">
           <h2 class="h4 mb-3">The basic loop</h2>
-          <img src="{{ '/assets/images/etc/qecc/qecc-overview.svg' | relative_url }}" alt="Overview of physical qubits, syndrome extraction, decoder, and logical recovery." class="img-fluid rounded mb-3">
+          <img src="{{ '/assets/images/etc/qecc/qec_schematic_figure.png' | relative_url }}" alt="Overview of physical qubits, syndrome extraction, decoder, and logical recovery." class="img-fluid rounded mb-3">
           <p class="mb-0 text-muted">
             The decoder only sees syndrome information. Success means recovering the right logical state, not necessarily the exact microscopic error.
           </p>
