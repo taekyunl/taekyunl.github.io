@@ -3,7 +3,7 @@ title:          "Deep Learning-Based mmWave Beam Alignment with Only Pilot Chann
 date:           2024-06-01 00:01:00 +0800
 selected:       false
 cover:          /assets/images/photos/ICC2.png
-pub:            "IEEE International Conference on Communications (ICC)"
+pub:            "ICC"
 pub_date:       "2024"
 topic:          "Wireless Communication"
 abstract: >-
@@ -15,4 +15,3 @@ authors:
 links:
   Paper: https://ieeexplore.ieee.org/abstract/document/10622318
 ---
-

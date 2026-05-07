@@ -3,7 +3,7 @@ title:          "Generative Diffusion Model-based Compression of MIMO CSI"
 date:           2025-06-01 00:00:00 +0800
 selected:       false
 cover:          /assets/images/photos/CSIdiff.png
-pub:            "IEEE International Conference on Communications (ICC)"
+pub:            "ICC"
 pub_date:       "2025"
 topic:          "Wireless Communication"
 abstract: >-
@@ -21,4 +21,3 @@ authors:
 links:
   Paper: https://arxiv.org/abs/2503.03753
 ---
-

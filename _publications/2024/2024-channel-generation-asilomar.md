@@ -3,7 +3,7 @@ title:          "High Dimensional User-Specific Channel Generation for CSI Compr
 date:           2024-09-01 00:01:00 +0800
 selected:       false
 cover:          /assets/images/photos/DDIM.png
-pub:            "Asilomar Conference on Signals, Systems, and Computers"
+pub:            "Asilomar"
 pub_date:       "2024"
 topic:          "Wireless Communication"
 abstract: >-
@@ -16,4 +16,3 @@ authors:
 links:
   Paper: https://ieeexplore.ieee.org/document/10942761
 ---
-
