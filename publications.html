@@ -35,10 +35,10 @@ function filterPublications(type, topic) {
     
     // Show/hide publications
     allItems.forEach(item => {
-        const pubType = item.dataset.pubType;
+        const pubTypes = item.dataset.pubType.split(' ');
         const pubTopic = item.dataset.pubTopic;
         
-        const typeMatch = currentType === 'all' || pubType === currentType;
+        const typeMatch = currentType === 'all' || pubTypes.includes(currentType);
         const topicMatch = currentTopic === 'all' || pubTopic === currentTopic;
         
         if (typeMatch && topicMatch) {
@@ -99,18 +99,25 @@ document.addEventListener('DOMContentLoaded', function() {
         <h2 class="pt-4" id="year-{{ year.name }}">{{ year.name }}</h2>
         <div class="my-0 p-0 bg-white shadow-sm rounded-xl">
             {% for item in year.items %}
-                    {% assign pub_lower = item.pub | downcase %}
-                    {% if pub_lower contains "transactions" or pub_lower contains "journal" %}
-                        {% assign pub_type = "journal" %}
-                    {% elsif pub_lower contains "ctw" or pub_lower contains "workshop" %}
-                        {% assign pub_type = "workshop" %}
-                    {% elsif pub_lower contains "conference" or pub_lower contains "icc" or pub_lower contains "asilomar" or pub_lower contains "neurips" or pub_lower contains "icml" or pub_lower contains "iclr" %}
-                        {% assign pub_type = "conference" %}
-                    {% elsif pub_lower contains "patent" or pub_lower contains "u.s." %}
-                        {% assign pub_type = "patent" %}
-                    {% elsif item.pub_pre or pub_lower contains "arxiv" or pub_lower contains "submitted" %}
-                        {% assign pub_type = "preprint" %}
-                    {% else %}
+                    {% assign pub_text = item.pub | append: " " | append: item.pub_extra | downcase %}
+                    {% assign pub_type = "" %}
+                    {% if pub_text contains "transactions" or pub_text contains "journal" %}
+                        {% assign pub_type = pub_type | append: " journal" %}
+                    {% endif %}
+                    {% if pub_text contains "conference" or pub_text contains "icc" or pub_text contains "asilomar" or pub_text contains "neurips" or pub_text contains "icml" or pub_text contains "iclr" %}
+                        {% assign pub_type = pub_type | append: " conference" %}
+                    {% endif %}
+                    {% if pub_text contains "ctw" or pub_text contains "workshop" %}
+                        {% assign pub_type = pub_type | append: " workshop" %}
+                    {% endif %}
+                    {% if pub_text contains "patent" or pub_text contains "u.s." %}
+                        {% assign pub_type = pub_type | append: " patent" %}
+                    {% endif %}
+                    {% if item.pub_pre or pub_text contains "arxiv" or pub_text contains "submitted" %}
+                        {% assign pub_type = pub_type | append: " preprint" %}
+                    {% endif %}
+                    {% assign pub_type = pub_type | strip %}
+                    {% if pub_type == "" %}
                         {% assign pub_type = "other" %}
                     {% endif %}
                     {% assign pub_topic = item.topic | default: "Other" %}
