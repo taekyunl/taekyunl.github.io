@@ -4,8 +4,9 @@ date:           2026-01-01 00:00:00 +0800
 selected:       true
 selected_order: 2
 cover:          /assets/images/photos/prism.gif
-pub:            "ICLR Workshop MM Intelligence"
+pub:            "ICML"
 pub_date:       "2026"
+pub_extra:      "ICLR Workshop MM Intelligence 2026"
 topic:          "Artificial Intelligence"
 abstract: >-
   Fine-tuning masked diffusion for provable self-correction.
