@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     {% if pub_text contains "transactions" or pub_text contains "journal" %}
                         {% assign pub_type = pub_type | append: " journal" %}
                     {% endif %}
-                    {% if pub_text contains "conference" or pub_text contains "icc" or pub_text contains "asilomar" or pub_text contains "neurips" or pub_text contains "icml" or pub_text contains "iclr" %}
+                    {% if pub_text contains "conference" or pub_text contains "icc" or pub_text contains "asilomar" or pub_text contains "neurips" or pub_text contains "icml" or pub_text contains "iclr" or pub_text contains "cvpr" %}
                         {% assign pub_type = pub_type | append: " conference" %}
                     {% endif %}
                     {% if pub_text contains "ctw" or pub_text contains "workshop" %}
