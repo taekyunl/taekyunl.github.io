@@ -16,4 +16,5 @@ authors:
 - Gustavo de Veciana
 links:
   Paper: https://www.arxiv.org/abs/2502.04646
+  Video: https://www.youtube.com/watch?v=g7rY-HjI6JA
 ---
