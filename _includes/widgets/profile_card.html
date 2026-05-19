@@ -15,7 +15,7 @@
                                 data-placement="top" 
                                 title="{{ site.data.profile.portrait_caption }}">
                             <img 
-                                src="/assets/images/photos/TaekyunLee-square.jpg" 
+                                src="{{ site.data.profile.portrait_url | relative_url }}" 
                                 class="figure-img img-fluid img-thumbnail portrait-img-hover" 
                                 style="height: 200px;"
                                 alt="Hover portrait">
@@ -29,7 +29,7 @@
                             {% if site.data.profile.portrait_url %}
                             <div class="ml-auto d-md-none portrait-hover-container">
                                 <img src="{{ site.data.profile.portrait_url | relative_url }}" class="rounded-circle portrait-img" style="height: 48px;" alt="Portrait">
-                                <img src="/assets/images/photos/TaekyunLee-square.jpg" class="rounded-circle portrait-img-hover" style="height: 48px;" alt="Hover portrait">
+                                <img src="{{ site.data.profile.portrait_url | relative_url }}" class="rounded-circle portrait-img-hover" style="height: 48px;" alt="Hover portrait">
                             </div>
                             {% endif %}
                         </div>
