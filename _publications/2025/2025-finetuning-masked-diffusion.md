@@ -6,7 +6,7 @@ selected_order: 2
 cover:          /assets/images/photos/prism.gif
 pub:            "ICML"
 pub_date:       "2026"
-pub_extra:      "ICLR Workshop MM Intelligence 2026"
+pub_extra:      ""
 topic:          "Artificial Intelligence"
 abstract: >-
   Fine-tuning masked diffusion for provable self-correction.
