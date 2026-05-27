@@ -9,8 +9,8 @@ topic:          "Artificial Intelligence, Wireless Communication"
 abstract: >-
   Structured masked diffusion for joint multiuser decoding.
 authors:
-- Taekyun Lee
-- Jiyoung Yun
+- Taekyun Lee*
+- Jiyoung Yun*
 - Jeffrey G. Andrews
 - Hyeji Kim
 links:
