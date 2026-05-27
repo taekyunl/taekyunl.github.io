@@ -36,10 +36,10 @@ function filterPublications(type, topic) {
     // Show/hide publications
     allItems.forEach(item => {
         const pubTypes = item.dataset.pubType.split(' ');
-        const pubTopic = item.dataset.pubTopic;
+        const pubTopics = item.dataset.pubTopic.split(',').map(topic => topic.trim());
         
         const typeMatch = currentType === 'all' || pubTypes.includes(currentType);
-        const topicMatch = currentTopic === 'all' || pubTopic === currentTopic;
+        const topicMatch = currentTopic === 'all' || pubTopics.includes(currentTopic);
         
         if (typeMatch && topicMatch) {
             item.style.display = 'block';
