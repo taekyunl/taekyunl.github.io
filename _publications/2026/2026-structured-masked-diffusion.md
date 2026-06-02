@@ -15,4 +15,5 @@ authors:
 - Hyeji Kim
 links:
   Paper: https://arxiv.org/abs/2605.26580
+  Code: https://github.com/jiyunyoung/CIDER
 ---
