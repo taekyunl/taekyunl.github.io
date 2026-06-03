@@ -1,7 +1,8 @@
 ---
 title:          "Structured Masked Diffusion for Joint Multiuser Decoding"
 date:           2026-05-26 00:00:00 +0800
-selected:       false
+selected:       true
+selected_order: 5
 cover:          /assets/images/photos/structured-masked-diffusion.png
 pub:            "ICML 2026 Workshop AI4NextG"
 pub_date:       "2026"
