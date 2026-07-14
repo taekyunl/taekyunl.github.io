@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="From Interface to Inference: understanding when masked diffusion models achieve genuinely any-order inference.">
+  <meta name="keywords" content="masked diffusion models, any-order inference, FlexMDM, LatentMDM, code generation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>From Interface to Inference</title>
+
+  <!-- Local-only comparison copy: external auto-loaded dependencies are omitted. -->
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <style>
+    .publication-title { letter-spacing: 0; }
+    .tagline { color: #6b7280; margin-top: .25rem; }
+    .is-placeholder { pointer-events: none; }
+    .figure-caption { color: #667788; font-size: .95rem; margin-top: .75rem; }
+    .method-figure-latent { max-width: 720px; margin-left: auto; margin-right: auto; }
+    .supplementary-video { display: block; width: 100%; border-radius: 10px; }
+    .result-table { margin-top: 1.5rem; }
+    .result-table th, .result-table td { text-align: center !important; vertical-align: middle; }
+    .result-table thead th:first-child, .result-table thead th:nth-child(2),
+    .result-table .benchmark-name, .result-table .model-name { text-align: left !important; }
+  </style>
+
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero is-white">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">From Interface to Inference:<br>Eliciting Any-Order Inference from Any-Order Models</h1>
+          <p class="tagline">When does an any-order prediction interface lead to genuinely any-order inference?</p>
+
+          <div class="is-size-5 publication-authors" style="margin-top:10px">
+            <span class="author-block"><a href="https://seunggeunkimkr.github.io/" target="_blank" rel="noopener">Seunggeun Kim</a><sup>*</sup><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://jaeyeonkim01.github.io/" target="_blank" rel="noopener">Jaeyeon Kim</a><sup>*</sup><sup>2</sup>,</span>
+            <span class="author-block"><a href="https://taekyunl.github.io/" target="_blank" rel="noopener">Taekyun Lee</a><sup>*</sup><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://yuyuanchen0.github.io/" target="_blank" rel="noopener">Yuyuan Chen</a><sup>*</sup><sup>2</sup>,</span>
+            <span class="author-block"><a href="https://yilundu.github.io/" target="_blank" rel="noopener">Yilun Du</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="https://shamulent.github.io/" target="_blank" rel="noopener">Sham Kakade</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="https://sitanchen.com/" target="_blank" rel="noopener">Sitan Chen</a><sup>2</sup></span>
+          </div>
+          <div class="is-size-6 publication-authors">
+            <span class="author-block"><sup>*</sup>Co-first authors</span>
+            <span class="author-block"><sup>1</sup>University of Texas at Austin</span>
+            <span class="author-block"><sup>2</sup>Harvard University</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark is-placeholder" aria-disabled="true">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-light is-placeholder" aria-disabled="true">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRODUCTION -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Introduction</h2>
+        <div class="content has-text-justified">
+          <p class="no-mathjax">
+            Many discrete reasoning tasks, such as code generation, are inherently non-causal. Programmers move between high-level structure and local details, revise earlier decisions, and insert missing pieces. Autoregressive language models decode left-to-right and therefore require hand-designed mechanisms to support these behaviors.
+          </p>
+          <p class="no-mathjax">
+            Masked diffusion models (MDMs) are natural candidates for <strong>any-order inference</strong>: given a partially masked sequence, they can predict clean tokens at arbitrary masked positions. However, we show that this any-order prediction <strong>interface</strong> does not automatically yield genuinely any-order <strong>inference</strong>. We identify the bottleneck and propose two complementary ways to overcome it.
+          </p>
+          <p class="has-text-centered">
+            <img src="./static/images/storyline.png" alt="Overview of the interface-to-inference gap and our two solutions">
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERFACE-TO-INFERENCE GAP -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">The Interface-to-Inference Gap</h2>
+    <div class="content">
+      <p class="no-mathjax">
+        Confidence-based decoding is the dominant inference strategy for MDMs: at each step, it reveals the positions where the model is most confident. Although this policy is not explicitly left-to-right, we find that its final programs are <strong>structurally similar to programs generated by strict left-to-right decoding</strong>.
+      </p>
+      <ul class="no-mathjax">
+        <li>We parse generated Python programs into abstract syntax trees (ASTs) and compare their global structure.</li>
+        <li>Across DiffuCoder and Dream variants, confidence-based policies find programs much closer to the left-to-right reference set than random decoding does.</li>
+        <li>The any-order interface therefore often collapses to a familiar causal generation strategy.</li>
+      </ul>
+      <p class="has-text-centered">
+        <img src="./static/images/structural-similarity.png" alt="AST-based structural similarity to left-to-right decoding">
+      </p>
+      <p class="figure-caption has-text-centered"><strong>Confidence-based decoding yields code structurally close to left-to-right decoding.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- POSITIONAL UNCERTAINTY -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Positional Uncertainty</h2>
+    <div class="content">
+      <p class="no-mathjax">
+        We identify <strong>positional uncertainty</strong> as a fundamental bottleneck of token-level, fixed-canvas MDMs. A model may know <em>what</em> semantic component should appear next while remaining uncertain about <em>where</em> to place it. For example, the model may know that a program needs a fallback <span class="font-code" style="display:inline; padding:2px 5px;">return False</span>, but its correct position can remain ambiguous until the surrounding structure is resolved.
+      </p>
+      <ul class="no-mathjax">
+        <li><strong>High aggregate mass</strong>: a token is globally likely across the remaining masked canvas.</li>
+        <li><strong>Low localization</strong>: that probability is dispersed across several plausible positions.</li>
+        <li>Because confidence decoding ranks individual positions, it favors locally easy continuations over globally meaningful but positionally dispersed components.</li>
+      </ul>
+      <p class="has-text-centered">
+        <img src="./static/images/positional-uncertainty.png" alt="Mass and localization plots showing positional uncertainty">
+      </p>
+      <p class="figure-caption has-text-centered"><strong>Many high-mass tokens remain undecoded because their probability is dispersed across positions.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- FLEXMDM -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">1) Insertion-Based Masked Diffusion</h2>
+    <div class="content">
+      <p class="no-mathjax">
+        Our first solution builds on <strong>FlexMDM</strong>, which alternates between revealing masked tokens and inserting new masks. Unmasking no longer commits a token to one final absolute position, because later insertions can shift its location in the completed sequence.
+      </p>
+      <h3 class="title is-4">What Is New in Our FlexMDM?</h3>
+      <ul class="no-mathjax">
+        <li><strong>Flexible inference schedules.</strong> A time-reparameterization method allows the insertion schedule to be changed at inference time without retraining the model.</li>
+        <li><strong>More stable insertion prediction.</strong> We reformulate insertion-length prediction in log space, which provides a more natural geometry and improves training stability.</li>
+        <li><strong>General-purpose code generation.</strong> Instead of task-specific LoRA fine-tuning, we fully fine-tune Dream-Coder 7B on 2.2M Python sequences.</li>
+      </ul>
+    </div>
+    <div class="columns is-vcentered">
+      <div class="column is-half">
+        <img src="./static/images/flexmdm-metrics.png" alt="Metrics showing FlexMDM generation across program-tree nodes">
+      </div>
+      <div class="column is-half">
+        <div class="content">
+          <ul class="no-mathjax">
+            <li>FlexMDM generates drafts across <strong>non-contiguous program regions</strong> and moves back and forth between unfinished AST nodes.</li>
+            <li>We fine-tune Dream-Coder 7B on 2.2M Python sequences to obtain a general-purpose Python FlexMDM.</li>
+            <li>FlexMDM outperforms Dream-Coder at Pass@16 on HumanEval and HumanEval+, although the gain is not uniform across every benchmark.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <h3 class="title is-4">FlexMDM Generation Traces</h3>
+      <video class="supplementary-video" controls autoplay muted loop playsinline preload="metadata" poster="./static/images/flexmdm-generation-traces-poster.png">
+        <source src="./static/videos/flexmdm-generation-traces.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <p class="figure-caption has-text-centered"><strong>Supplementary video.</strong> The generated sequence and its AST-tree trace evolve together, showing how FlexMDM moves across non-contiguous program regions.</p>
+    </div>
+
+    <div class="table-container result-table">
+      <table class="table is-bordered is-striped is-fullwidth">
+        <thead>
+          <tr><th>Benchmark</th><th>Model</th><th>Pass@1</th><th>Pass@4</th><th>Pass@8</th><th>Pass@16</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="benchmark-name" rowspan="2">HumanEval</td><td class="model-name">Dream-Coder</td><td><strong>58.65</strong></td><td><strong>81.34</strong></td><td><strong>86.94</strong></td><td>90.85</td></tr>
+          <tr><td class="model-name">FlexMDM</td><td>50.65</td><td>78.69</td><td>86.86</td><td><strong>92.07</strong></td></tr>
+          <tr><td class="benchmark-name" rowspan="2">HumanEval+</td><td class="model-name">Dream-Coder</td><td><strong>53.89</strong></td><td><strong>75.96</strong></td><td><strong>81.53</strong></td><td>85.37</td></tr>
+          <tr><td class="model-name">FlexMDM</td><td>46.46</td><td>73.39</td><td>81.48</td><td><strong>87.20</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- LATENTMDM -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">2) Latent-Space Masked Diffusion</h2>
+    <div class="content">
+      <p class="no-mathjax">
+        Our second solution, <strong>LatentMDM</strong>, moves masked diffusion from token space to a continuous latent space. Rather than selecting individual token positions, the model chooses which masked semantic segment to decode next, enabling search over latent generation orders.
+      </p>
+      <p class="has-text-centered method-figure-latent">
+        <img src="./static/images/latentmdm-architecture.png" alt="LatentMDM architecture with segment encoders, a latent masked diffusion model, and autoregressive segment decoders">
+      </p>
+      <p class="figure-caption has-text-centered"><strong>LatentMDM applies masked diffusion to encoded semantic segments and decodes selected segments with a lightweight autoregressive decoder.</strong></p>
+      <p class="has-text-centered">
+        <img src="./static/images/latentmdm-results.png" alt="LatentMDM accuracy-latency results and positional uncertainty analysis">
+      </p>
+      <ul class="no-mathjax">
+        <li>LatentMDM's confidence policy outperforms left-to-right and random segment-selection policies by more than 6 percentage points.</li>
+        <li>At matched wall-clock time, LatentMDM outperforms both token-level MDM and an autoregressive model by 5.5 percentage points.</li>
+        <li>One LatentMDM inference pass takes roughly half the latency of the autoregressive model, even with KV caching.</li>
+        <li>Moving to semantic segments relaxes positional uncertainty and enables a distinct form of genuinely any-order inference.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- TAKEAWAYS -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Takeaways</h2>
+    <div class="content">
+      <ol>
+        <li><strong>An any-order training objective does not guarantee genuinely any-order inference.</strong></li>
+        <li><strong>Fixed-canvas token models suffer from positional uncertainty: they must decide both what to generate and where to place it.</strong></li>
+        <li><strong>Insertion-based MDMs enable generation across non-contiguous program structure.</strong></li>
+        <li><strong>Latent-space MDMs enable search over semantic generation orders.</strong></li>
+      </ol>
+      <p>
+        These two solutions are complementary rather than competing. FlexMDM stays in token space and can be retrofitted from a pretrained MDM, while LatentMDM enables segment-level order search but typically requires training from scratch. Together, they show that a model's interface only makes any-order inference possible; the inference procedure determines whether that possibility is realized.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- BIBTEX -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+<pre><code>@article{kim2026interface,
+  title  = {From Interface to Inference: Eliciting Any-Order Inference from Any-Order Models},
+  author = {Kim, Seunggeun and Kim, Jaeyeon and Lee, Taekyun and Chen, Yuyuan and Du, Yilun and Kakade, Sham and Chen, Sitan},
+  year   = {2026}
+}</code></pre>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+          <p>This webpage is adapted from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> and the FlexMDM site template.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
