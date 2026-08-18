@@ -1,0 +1,18 @@
+<section class="my-3 bg-white shadow-sm rounded-xl" aria-labelledby="selected-experience-title">
+    <h2 id="selected-experience-title" class="h6 p-3 mb-0 border-bottom border-gray"><i class="fas fa-briefcase"></i> Selected Experience</h2>
+    <ul class="list-unstyled mb-0 px-3">
+        {% for item in site.data.profile.experience %}
+        <li class="media py-3 {% unless forloop.first %}border-top border-gray{% endunless %}">
+            <img src="{{ item.logo | relative_url }}" alt="{{ item.name }}" class="mr-2 mt-1 experience-logo">
+            <div class="media-body">
+                <div class="d-flex flex-wrap justify-content-between">
+                    <div><strong>{{ item.name }}</strong> · {{ item.position }}</div>
+                    <div class="text-muted no-break"><em>{{ item.date }}</em></div>
+                </div>
+                {% if item.description %}<div class="small text-muted mt-1">{{ item.description }}</div>{% endif %}
+                <div class="small text-muted">{{ item.dept }}</div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</section>

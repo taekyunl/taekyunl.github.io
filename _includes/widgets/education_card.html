@@ -1,0 +1,18 @@
+<section class="my-3 bg-white shadow-sm rounded-xl" aria-labelledby="education-title">
+    <h2 id="education-title" class="h6 p-3 mb-0 border-bottom border-gray"><i class="fas fa-graduation-cap"></i> Education</h2>
+    <ul class="list-unstyled mb-0 px-3">
+        {% for item in site.data.profile.education %}
+        <li class="media py-3 {% unless forloop.first %}border-top border-gray{% endunless %}">
+            <img src="{{ item.logo | relative_url }}" alt="{{ item.name }}" class="mr-2 mt-1 experience-logo">
+            <div class="media-body">
+                <div class="d-flex flex-wrap justify-content-between">
+                    <strong>{{ item.name }}</strong>
+                    <div class="text-muted no-break"><em>{{ item.date }}</em></div>
+                </div>
+                <div class="small">{{ item.position }}</div>
+                <div class="small text-muted">{{ item.dept }}</div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</section>

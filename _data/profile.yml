@@ -3,8 +3,8 @@ secondary_name: ""
 navbar_name: "Taekyun Lee"
 
 positions:
-- name: Ph.D. Student in Electrical and Computer Engineering
-- name: The University of Texas at Austin (WNCG)
+- name: Ph.D. Candidate at UT Austin
+- name: Generative Models · Diffusion · Reliable Inference
 
 email: "taekyun@utexas.edu"
 cv_link: CV.md
@@ -17,12 +17,14 @@ linkedin: taekyun-lee-042971232
 short_bio_text_justify: false
 short_bio: >-
   <p>
-    Hi, my name is Taekyun Lee. I am a Ph.D. student in Electrical and Computer Engineering at 
-    The University of Texas at Austin (WNCG), advised by Prof. Jeffrey Andrews and Prof. Hyeji Kim. 
-    I received my B.S. in Electrical and Computer Engineering from Seoul National University in February 2022.
+    I develop <strong>generative models for flexible and reliable inference</strong>, with a focus on
+    masked and discrete diffusion, probabilistic sampling, self-correction, and risk-aware post-training.
+    I also apply these methods to communication and sensing systems.
   </p>
   <p>
-    My main research area is <strong>Wireless Communication</strong> and <strong>Diffusion Models</strong> (continuous or discrete).
+    My work has appeared at <strong>ICML, CVPR, and NeurIPS</strong>, including a NeurIPS Spotlight,
+    and I have completed two research internships at NVIDIA. I am advised by
+    Prof. Jeffrey G. Andrews and Prof. Hyeji Kim at UT Austin.
   </p>
 
 portrait_url: /assets/images/photos/profile-2026.png
@@ -40,33 +42,18 @@ education:
   dept: Department of Electrical and Computer Engineering
   position: "B.S. in Electrical and Computer Engineering <br/> Summa Cum Laude"
   date: 2016 - 2022
-- name: Seoul Science High School
-  logo: /assets/images/badges/sshs.png
-  dept: 
-  position: 
-  date: 2013 - 2015
-
 experience:
 - name: NVIDIA
   logo: /assets/images/badges/NVIDIA.png
   dept: Santa Clara, CA
   position: "Graduate Research Intern"
-  date: May 2026 - Aug 2026
-- name: NVIDIA
-  logo: /assets/images/badges/NVIDIA.png
-  dept: Santa Clara, CA
-  position: "Graduate Research Intern"
-  date: May 2025 - Aug 2025
+  description: "Research on learning-based wireless digital twins, localization, and scene/material calibration."
+  date: 2025 & 2026
 - name: Keysight
   logo: /assets/images/badges/Keysight.png
   dept: Santa Rosa, CA
   position: "Graduate Research Intern"
   date: May 2023 - Jul 2023
-- name: Dudaji
-  logo: /assets/images/badges/Dudaji.png
-  dept: Seoul, South Korea
-  position: "Undergraduate Research Intern"
-  date: Jun 2021 - Jun 2022
 
 awards:
 - name: Earnest E. and Elsie M. Clawson Endowed Scholarship in Engineering

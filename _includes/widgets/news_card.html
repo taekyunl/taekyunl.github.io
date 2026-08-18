@@ -5,7 +5,9 @@
     <div class="px-3 pb-3 small">
         {% for item in news_list %}
         <div class="py-2 {% unless forloop.first %}border-top border-gray{% endunless %} d-flex">
-            <div class="flex-grow-1">{{ item.title }}</div>
+            <div class="flex-grow-1">
+                {% if item.link %}<a href="{{ item.link | relative_url }}">{{ item.title }}</a>{% else %}{{ item.title }}{% endif %}
+            </div>
             <div class="ml-auto text-muted no-break"><i>{{ item.date | date: "%b %Y" }}</i></div>
         </div>
         {% endfor %}

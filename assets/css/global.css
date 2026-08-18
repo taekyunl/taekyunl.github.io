@@ -151,6 +151,49 @@ div.lazy {
     z-index: 0;
 }
 
+.featured-research-cover {
+    max-height: 135px;
+    object-fit: contain;
+}
+
+.featured-research-summary {
+    font-size: 0.95rem;
+    line-height: 1.45;
+}
+
+.featured-research-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.featured-research-links .btn-outline-primary {
+    color: #9d4300;
+    border-color: #bf5700;
+}
+
+.featured-research-links .btn-outline-primary:hover {
+    color: #fff;
+    background-color: #bf5700;
+    border-color: #bf5700;
+}
+
+.experience-logo {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
+
+@media (max-width: 767.98px) {
+    .featured-research-item .col-md-3 {
+        padding-bottom: 0 !important;
+    }
+
+    .featured-research-cover {
+        max-height: 165px;
+    }
+}
+
 /* CV Markdown styling */
 #CV h1 {
     font-size: 2rem;

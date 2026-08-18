@@ -2,13 +2,13 @@
 title:          "Efficient Weighted Sampling via Score-based Generative Models"
 date:           2026-06-01 00:00:00 +0800
 selected:       true
-selected_order: 1
+selected_order: 3
 cover:          /assets/images/photos/efficient.png
 pub:            "CVPR"
 pub_date:       "2026"
 topic:          "Artificial Intelligence"
 abstract: >-
-  Efficient weighted sampling via score-based generative models.
+  Turns pretrained score-based models into efficient samplers for challenging reweighted target distributions.
 authors:
 - Heasung Kim*
 - Taekyun Lee*

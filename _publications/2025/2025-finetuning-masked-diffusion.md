@@ -2,14 +2,14 @@
 title:          "Fine-Tuning Masked Diffusion for Provable Self-Correction"
 date:           2026-07-01 00:00:00 +0800
 selected:       true
-selected_order: 2
+selected_order: 1
 cover:          /assets/images/photos/prism.gif
 pub:            "ICML"
 pub_date:       "2026"
 pub_extra:      ""
 topic:          "Artificial Intelligence"
 abstract: >-
-  Fine-tuning masked diffusion for provable self-correction.
+  Enables masked diffusion models to revise earlier decisions through provably effective fine-tuning.
 authors:
 - Jaeyeon Kim*
 - Seunggeun Kim*
