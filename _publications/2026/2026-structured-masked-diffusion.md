@@ -8,7 +8,7 @@ pub:            "NeurIPS"
 pub_date:       "2026"
 topic:          "Artificial Intelligence, Wireless Communication"
 abstract: >-
-  Structured masked diffusion for joint multiuser decoding.
+  Decodes many users' messages from a single noisy aggregate via masked-diffusion refinement, matching joint belief propagation accuracy while running 6–100× faster.
 authors:
 - Taekyun Lee*
 - Jiyoung Yun*
