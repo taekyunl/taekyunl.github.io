@@ -2,7 +2,7 @@
 title:          "Efficient Weighted Sampling via Score-based Generative Models"
 date:           2026-06-01 00:00:00 +0800
 selected:       true
-selected_order: 4
+selected_order: 2
 cover:          /assets/images/photos/efficient.png
 pub:            "CVPR"
 pub_date:       "2026"

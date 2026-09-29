@@ -2,7 +2,7 @@
 title:          "From Interface to Inference: Eliciting Any-Order Inference from Any-Order Models"
 date:           2026-07-29 00:00:00 +0800
 selected:       true
-selected_order: 0
+selected_order: 4
 cover:          /assets/images/photos/from-interface-to-inference.gif
 pub:            "DiffuLM @ NeurIPS"
 pub_date:       "2026"

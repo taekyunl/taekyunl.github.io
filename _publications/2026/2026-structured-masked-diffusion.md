@@ -2,7 +2,7 @@
 title:          "Structured Masked Diffusion for Joint Multiuser Decoding"
 date:           2026-05-26 00:00:00 +0800
 selected:       true
-selected_order: 2
+selected_order: 0
 cover:          /assets/images/photos/structured-masked-diffusion.png
 pub:            "NeurIPS"
 pub_date:       "2026"

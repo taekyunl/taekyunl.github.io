@@ -2,7 +2,7 @@
 title:          "Fine-Tuning Masked Diffusion for Provable Self-Correction"
 date:           2026-07-01 00:00:00 +0800
 selected:       true
-selected_order: 1
+selected_order: 3
 cover:          /assets/images/photos/prism.gif
 pub:            "ICML"
 pub_date:       "2026"
