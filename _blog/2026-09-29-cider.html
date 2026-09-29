@@ -1,0 +1,179 @@
+---
+layout: null
+title: "Structured Masked Diffusion for Joint Multiuser Decoding"
+summary: "How CIDER uses masked diffusion to recover colliding messages, with an interactive decoding trace."
+date: 2026-09-29 12:00:00 -0500
+permalink: /blog/cider/
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CIDER — Structured Masked Diffusion for Joint Multiuser Decoding</title>
+  <meta name="description" content="The story behind CIDER: from unsourced random access to structured masked diffusion for recovering colliding messages.">
+  <link rel="canonical" href="https://taekyunl.github.io/blog/cider/">
+  <meta name="theme-color" content="#152532">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23152532'/%3E%3Cpath d='M43 17H21v30h22M21 32h18' fill='none' stroke='%239ad4c7' stroke-width='7'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/reference.css">
+  <link rel="stylesheet" href="styles.css?v=blog-subpage">
+  <script defer src="decoding-traces.js"></script>
+  <script defer src="app.js?v=no-incorrect-x"></script>
+</head>
+
+<body>
+<a class="skip" href="#starting-point">Skip to the story</a>
+<main>
+<section class="hero is-white">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <a class="blog-return" href="/blog/">← Back to blog</a>
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Structured Masked Diffusion for Joint Multiuser Decoding</h1>
+          <p class="tagline">CIDER</p>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><a href="https://taekyunl.github.io/" target="_blank" rel="noopener">Taekyun Lee</a><sup>*1</sup>,</span>
+            <span class="author-block"><a href="mailto:jyyun423@snu.ac.kr">Jiyoung Yun</a><sup>*2</sup>,</span>
+            <span class="author-block"><a href="mailto:jandrews@ece.utexas.edu">Jeffrey G. Andrews</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="mailto:hyeji.kim@austin.utexas.edu">Hyeji Kim</a><sup>1</sup></span>
+          </div>
+          <div class="is-size-6 publication-authors affiliations">
+            <span class="author-block"><sup>*</sup>Equal contribution</span>
+            <span class="author-block"><sup>1</sup>The University of Texas at Austin</span>
+            <span class="author-block"><sup>2</sup>Seoul National University</span>
+          </div>
+          <p class="publication-venue">NeurIPS 2026</p>
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block"><a href="https://arxiv.org/abs/2605.26580" target="_blank" rel="noopener" class="external-link button is-normal is-rounded is-dark"><span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M3 1h7l3 3v11H3V1zm7 1v3h3L10 2zM5 8v1h6V8H5zm0 3v1h6v-1H5z"/></svg></span><span>Paper</span></a></span>
+              <span class="link-block"><a href="https://github.com/jiyunyoung/CIDER" target="_blank" rel="noopener" class="external-link button is-normal is-rounded is-light"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.76-.24.76-.54v-2.08c-3.12.68-3.78-1.33-3.78-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.73 1.16 1.73 1.16 1 1.72 2.63 1.22 3.27.93.1-.72.4-1.22.71-1.5-2.49-.28-5.11-1.25-5.11-5.55 0-1.22.43-2.23 1.15-3.01-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.08 1.15a10.76 10.76 0 0 1 5.61 0c2.13-1.45 3.07-1.15 3.07-1.15.61 1.54.23 2.68.12 2.96.72.78 1.15 1.79 1.15 3.01 0 4.32-2.63 5.27-5.14 5.55.4.35.76 1.03.76 2.07v3.09c0 .3.2.65.77.54A11.2 11.2 0 0 0 12 .8z"/></svg></span><span>Code</span></a></span>
+            </div>
+          </div>
+          <figure class="teaser-figure">
+            <a href="static/images/cider-receiver.png" target="_blank" rel="noopener"><img src="static/images/cider-receiver.png" alt="CIDER receiver overview: simultaneous users transmit through a wireless channel, a fixed symbol-level soft detector produces evidence, and CIDER reconstructs the message set."></a>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section" id="starting-point"><div class="container is-max-desktop"><div class="columns is-centered"><div class="column is-four-fifths"><h2 class="title is-3">Where We Started</h2><div class="content has-text-justified">
+
+      <div class="prose">
+        <p class="no-mathjax">This project started with Jiyoung’s earlier work on unsourced random access <a href="https://doi.org/10.1109/TWC.2023.3299282" target="_blank" rel="noopener">(Yun &amp; Choi, 2024)</a>. We wanted to revisit the decoding problem with a different set of tools.</p>
+        <h3 class="title is-4">What is URA?</h3>
+        <p>In unsourced random access (URA), many devices send short messages at once using the same codebook. The receiver sees one noisy mixture and must recover the message set, without knowing which device sent which message.</p>
+        <figure class="ura-figure" id="ura-figure" data-stage="output">
+          <div class="ura-figure-top"><div><strong>Many senders, one receiver</strong><span>4 users · 2 active · 12 slots per codeword</span></div><button type="button" id="ura-replay" aria-label="Replay the URA illustration">↺ Replay</button></div>
+          <div class="ura-flow" role="img" aria-label="Four users share a receiver. Two active users each transmit one twelve-slot GF(64) codeword; two silent users transmit nothing. The receiver recovers the two codewords without sender labels.">
+            <div class="ura-senders"><span class="ura-label">Four users · two active</span>
+              <div class="ura-sender"><svg class="ura-person" viewBox="0 0 34 44" aria-hidden="true"><circle cx="17" cy="10" r="8"/><path d="M5 42V32c0-8 5-13 12-13s12 5 12 13v10Z"/></svg><div class="ura-codeword" data-ura-row="0"></div></div>
+              <div class="ura-sender is-idle"><svg class="ura-person" viewBox="0 0 34 44" aria-hidden="true"><circle cx="17" cy="10" r="8"/><path d="M5 42V32c0-8 5-13 12-13s12 5 12 13v10Z"/></svg><span class="ura-silent">silent</span></div>
+              <div class="ura-sender"><svg class="ura-person" viewBox="0 0 34 44" aria-hidden="true"><circle cx="17" cy="10" r="8"/><path d="M5 42V32c0-8 5-13 12-13s12 5 12 13v10Z"/></svg><div class="ura-codeword" data-ura-row="1"></div></div>
+              <div class="ura-sender is-idle"><svg class="ura-person" viewBox="0 0 34 44" aria-hidden="true"><circle cx="17" cy="10" r="8"/><path d="M5 42V32c0-8 5-13 12-13s12 5 12 13v10Z"/></svg><span class="ura-silent">silent</span></div>
+            </div>
+            <div class="ura-channel"><span class="ura-label">Shared channel</span><svg viewBox="0 0 180 170" aria-hidden="true" focusable="false"><defs><marker id="ura-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 10 5 0 10Z"/></marker></defs><path class="ura-route" d="M12 37 58 78"/><path class="ura-route" d="M12 133 58 92"/><path class="ura-route" d="M122 85 H160"/><g class="ura-packet ura-packet-one" data-packet-row="0"></g><g class="ura-packet ura-packet-two" data-packet-row="1"></g><path class="ura-cloud" d="M61 115c-13 0-19-8-19-18 0-8 5-14 12-17-2-13 8-22 19-20 5-10 20-13 28-5 10-7 25 1 24 13 11 2 17 11 14 21 8 14-2 26-16 26Z"/><text class="ura-cloud-text" x="91" y="81" text-anchor="middle"><tspan x="91">Wireless</tspan><tspan x="91" dy="15">channel</tspan></text></svg><span class="ura-channel-text">Noisy mixture</span></div>
+            <div class="ura-output"><span class="ura-label">Recovered set</span><div class="ura-set"><span class="ura-brace" aria-hidden="true">{</span><ul><li><div class="ura-codeword" data-ura-row="0"></div></li><li><div class="ura-codeword" data-ura-row="1"></div></li></ul><span class="ura-brace" aria-hidden="true">}</span></div><span class="ura-output-note">No sender labels</span></div>
+          </div>
+          <figcaption>Only two users transmit. Each sends one codeword of 12 GF(64) symbols, one per slot. The receiver recovers the unordered pair.</figcaption>
+        </figure>
+        <p>Each message becomes a <strong>codeword</strong>, whose <strong>parity checks</strong> help detect errors. But slot-wise detector scores combine users, so picking the strongest symbol in each slot can assemble a message nobody sent.</p>
+        <p>The earlier decoder used error correction across slots and successive interference cancellation to separate the messages. Joint search and repeated belief propagation get expensive as codewords grow or more users collide, and a wrong early cancellation can affect later decisions.</p>
+        <p>We wondered whether a learned decoder could recover the message set in parallel, while keeping the messages distinct and each codeword consistent with the code.</p>
+      </div>
+    </div></div></div></div></section>
+
+<section class="section" id="two-ingredients"><div class="container is-max-desktop"><h2 class="title is-3">Structured Masked Diffusion</h2><div class="content">
+
+      <div class="prose">
+        <p>Masked diffusion starts with a blank grid and reveals symbols over several rounds. A generic denoiser still copied messages and broke parity checks, so CIDER puts two structural modules inside each refinement step.</p>
+        <h3 class="title is-4">First, make the rows compete.</h3>
+        <p>Module A makes the message rows compete for each slot-symbol candidate. Its responsibilities are soft, since two real messages can share a symbol, but one strong candidate should not be copied into every row.</p>
+        <h3 class="title is-4">Then, let the parity checks talk back.</h3>
+        <p>Module B passes information along the known code’s Tanner graph, so a symbol can use context from its parity checks. The transformations are learned; the graph guides each refinement step toward code consistency.</p>
+      </div>
+      <figure class="paper-figure">
+          <a href="static/images/cider-denoiser.png" target="_blank" rel="noopener"><img src="static/images/cider-denoiser.png" alt="CIDER denoiser: a partially masked grid passes through Module A demixing and Module B parity-aware propagation, then predicts symbols for the next grid. Evidence S and code matrix H condition the modules."></a>
+        </figure>
+      <h3 class="title is-4" id="decoding-heading">Watch the messages come together.</h3>
+      <p class="trace-intro">The blue reference rows below show the two codewords sent by the active users above. CIDER receives soft detector scores and reconstructs its output rows over successive steps.</p>
+      <figure class="decoding" aria-labelledby="decoding-heading">
+        <div class="decoding-header"><strong>Two messages · 12 slots each · GF(64)</strong></div>
+        <div class="decoding-body">
+          <div class="trace-truth"><h4>Ground truth</h4><div id="trace-truth" class="trace-grid" aria-label="Ground truth codewords"></div></div>
+          <div class="trace-comparison" role="group" aria-label="Choose a comparison decoder">
+            <span>Compare CIDER with</span>
+            <button type="button" data-trace-model="mdd" aria-pressed="true">Generic diffusion</button>
+            <button type="button" data-trace-model="noDemixing" aria-pressed="false">No demixing</button>
+            <button type="button" data-trace-model="noParity" aria-pressed="false">No parity propagation</button>
+          </div>
+          <div class="trace-panels">
+            <section class="trace-panel" aria-labelledby="trace-cider-heading"><div class="trace-panel-heading"><h4 id="trace-cider-heading">CIDER</h4><span>Module A + B</span></div><div id="trace-cider" class="trace-grid" aria-label="CIDER decoded codewords"></div><div id="trace-cider-stats" class="trace-stats"></div></section>
+            <section class="trace-panel" aria-labelledby="trace-baseline-heading"><div class="trace-panel-heading"><h4 id="trace-baseline-heading">Generic masked diffusion</h4><span id="trace-baseline-module">DiT denoiser</span></div><div id="trace-baseline" class="trace-grid" aria-label="Comparison decoded codewords"></div><div id="trace-baseline-stats" class="trace-stats"></div></section>
+          </div>
+          <div class="trace-legend" aria-label="Cell colors"><span><i class="trace-swatch trace-correct"></i>Correct</span><span><i class="trace-swatch trace-incorrect"></i>Incorrect</span><span><i class="trace-swatch trace-masked"></i>Masked</span><span><i class="trace-swatch trace-reference"></i>Ground truth</span></div>
+          <div class="trace-playback">
+            <div class="trace-playback-heading"><label for="trace-step">Refinement step <output id="trace-step-label" for="trace-step">4 / 12</output></label><div class="trace-transport"><button type="button" id="trace-prev" aria-label="Previous recorded step">←</button><button type="button" id="trace-play" aria-label="Play recorded decoding">▶ Play</button><button type="button" id="trace-next" aria-label="Next recorded step">→</button></div></div>
+            <input type="range" id="trace-step" min="0" max="4" step="1" value="2" aria-valuetext="Refinement step 4 of 12">
+            <div class="trace-checkpoints" role="group" aria-label="Recorded refinement steps"><button type="button" data-trace-step="0" aria-pressed="false">0</button><button type="button" data-trace-step="1" aria-pressed="false">1</button><button type="button" data-trace-step="2" aria-pressed="true">4</button><button type="button" data-trace-step="3" aria-pressed="false">7</button><button type="button" data-trace-step="4" aria-pressed="false">12</button></div>
+          </div>
+          <p id="trace-explanation" class="trace-explanation" aria-live="polite"></p>
+          <div id="trace-inspector" class="trace-inspector" aria-live="polite" hidden></div>
+        </div>
+        <figcaption class="decoding-caption">Recorded appendix steps 0, 1, 4, 7, and 12; intermediate steps are not shown. Hexadecimal symbols label the GF(64) alphabet. Colors compare predictions with ground truth, which the decoder does not receive.</figcaption>
+      </figure>
+      <noscript><p>Enable JavaScript to replay the appendix decoding examples.</p></noscript>
+    </div></div></section>
+
+<section class="section" id="results"><div class="container is-max-desktop"><h2 class="title is-3">Accuracy, Latency, and Transfer</h2><div class="content">
+
+      <div class="prose">
+        <p>Removing either module drove codeword error rate close to 100% in the two-user test. <strong>Codeword error rate (CER)</strong> counts a message as wrong if any symbol is wrong, after matching the unordered output rows.</p>
+      </div>
+      <div class="table-wrap"><table class="table is-bordered is-striped is-fullwidth"><caption>The pieces need to work together</caption><thead><tr><th scope="col">Decoder</th><th scope="col">CER ↓</th></tr></thead><tbody><tr><th scope="row">Generic masked diffusion</th><td>99.96%</td></tr><tr><th scope="row">CIDER without demixing</th><td>99.93%</td></tr><tr><th scope="row">CIDER without parity propagation</th><td>99.93%</td></tr><tr><th scope="row">Both modules, one-shot prediction</th><td>39.79%</td></tr><tr class="highlight"><th scope="row">Full CIDER</th><td>0.73%</td></tr></tbody></table></div>
+      <p class="experiment-note"><strong>Test setting</strong><span>LDPC code · 2 users (K = 2) · 12 slots (L = 12) · 64-symbol alphabet (Q = 64).</span></p>
+      <div class="prose"><p>Generic diffusion had 63.5% slot overlap and 99.9% parity violations; CIDER reduced these to 1.5% and 0.7%.</p><h3 class="title is-4">And it was fast enough to be interesting.</h3><p>With the same detector evidence and GPU, CIDER had lower measured latency at all four code lengths below.</p></div>
+      <figure class="benchmark" aria-labelledby="benchmark-heading">
+        <div class="benchmark-head"><h3 id="benchmark-heading">Same GPU, same evidence</h3><div class="length-controls" role="group" aria-label="Select codeword length"><button data-length="12" aria-pressed="true">L = 12</button><button data-length="18" aria-pressed="false">18</button><button data-length="24" aria-pressed="false">24</button><button data-length="48" aria-pressed="false">48</button></div></div>
+        <div class="bench-main"><div id="latency-bars" aria-label="Measured decoding latency"></div><div class="bench-stat" aria-live="polite"><strong id="speedup"></strong><p id="benchmark-summary"></p></div></div>
+        <div class="table-wrap"><table class="table is-bordered is-striped is-fullwidth"><thead><tr><th scope="col">Decoder</th><th scope="col">CER ↓</th><th scope="col">ms / sample ↓</th></tr></thead><tbody id="benchmark-table"></tbody></table></div>
+        <figcaption class="benchmark-conditions">
+          <strong>Benchmark conditions</strong>
+          <dl>
+            <div><dt>What was timed</dt><dd>Decoder runtime per sample. The rest of the receiver is excluded.</dd></div>
+            <div><dt>Hardware and task</dt><dd>RTX 3090 · 2 users (K = 2) · 64 symbols (Q = 64)</dd></div>
+            <div><dt>Precision</dt><dd>BP: FP32/TF32 · CIDER: mixed precision</dd></div>
+          </dl>
+        </figcaption>
+      </figure>
+      <div class="prose"><h3 class="title is-4">Could one trained decoder handle longer codewords?</h3><p>We trained CIDER on 12-slot codewords, then tried it on longer codes without retraining. We supplied each new code's parity checks, kept the network weights fixed, and changed only the number of refinement steps. Its codeword error rate stayed at or below 1.10% through 24 slots, but rose to 7.62% at 96 slots. Models trained for each target setting generally did better. The 72- and 96-slot tests used only 256 examples each, so those two estimates are less certain.</p></div>
+    </div></div></section>
+
+<section class="section" id="more-users"><div class="container is-max-desktop"><h2 class="title is-3">More Users and Quality-Guided Remasking</h2><div class="content">
+
+      <div class="prose"><p>With more users, the first pass gets less reliable. A small quality head scores each decoded row; we mask and re-decode low-confidence rows while keeping the others fixed.</p></div>
+      <div class="remask-compare" aria-label="At eight users, remasking reduces codeword error rate from 25.76 percent to 4.03 percent and increases runtime from 30.77 to 63 milliseconds"><div class="remask-item"><span>First pass · K = 8</span><strong>25.76%</strong><small>CER · 30.77 ms</small></div><span class="flow-arrow" aria-hidden="true">→</span><div class="remask-item improved"><span>With quality-guided remasking</span><strong>4.03%</strong><small>CER · 63.00 ms</small></div></div>
+      <p class="experiment-note"><strong>Runtime scope · K = 8</strong><span>Reported times include quality scoring and any re-decoding performed.</span></p>
+      <div class="prose"><h3 class="title is-4">For a larger system, keep each collision manageable.</h3><p>We had each user choose a preamble that assigns its message to a bin, then used a load-specific CIDER decoder within each bin. With about four users per bin on average, the experiment reached 100 total users at a 6.19% per-user error rate. This test supplied the decoder with the true bin load and counted bins above eight users as erasures.</p></div>
+    </div></div></section>
+
+<section class="section" id="limits"><div class="container is-max-desktop"><h2 class="title is-3">What Still Needs Work</h2><div class="content">
+
+      <div class="prose"><p>CIDER decodes soft evidence from a fixed detector; it does not learn the full wireless receiver. Reducing detector iterations barely hurt in the matched test, but a 4 dB SNR drop raised CER to 30.87%.</p><p>Without estimating channel gains or retraining for fading, CER rose from 0.73% on AWGN to 40.70% on Rayleigh fading; SIC-BP reached 8.13% in that fading test. Heavy codeword overlap was another weakness. Better channel-aware evidence and fading-aware training are natural next steps.</p></div>
+      <div class="publication-links bottom-links"><a class="button is-normal is-rounded is-dark" href="https://arxiv.org/abs/2605.26580">Read the paper ↗</a><a class="button is-normal is-rounded is-light" href="https://github.com/jiyunyoung/CIDER">Explore the code ↗</a></div>
+      <section class="references" aria-labelledby="references-heading"><h3 id="references-heading">Paper & earlier work</h3><ol><li>Taekyun Lee, Jiyoung Yun, Jeffrey G. Andrews, and Hyeji Kim. <a href="https://arxiv.org/abs/2605.26580">CIDER paper on arXiv</a>, 2026. Accepted to NeurIPS 2026.</li><li>Jiyoung Yun and Wan Choi. <a href="https://doi.org/10.1109/TWC.2023.3299282">Erasure Correcting Blind Detection in Unsourced Random Access for Grant-Free Massive Connections</a>. IEEE Transactions on Wireless Communications, 23(3):2428–2439, 2024.</li><li>Jaeyeon Kim, Seunggeun Kim, Taekyun Lee, David Z. Pan, Hyeji Kim, Sham Kakade, and Sitan Chen. <a href="https://arxiv.org/abs/2510.01384">Fine-Tuning Masked Diffusion for Provable Self-Correction</a>, 2025.</li></ol></section>
+    </div></div></section>
+<section class="section" id="bibtex"><div class="container is-max-desktop"><h2 class="title is-3">BibTeX</h2><pre><code>@misc{lee2026structuredmaskeddiffusion,
+  title   = {Structured Masked Diffusion for Joint Multiuser Decoding},
+  author  = {Lee, Taekyun and Yun, Jiyoung and Andrews, Jeffrey and Kim, Hyeji},
+  year    = {2026},
+  eprint  = {2605.26580},
+  archivePrefix = {arXiv},
+  url     = {https://arxiv.org/abs/2605.26580}
+}</code></pre></div></section>
+</main>
+<footer class="footer"><div class="container is-max-desktop"><div class="content has-text-centered"><p>This webpage follows the format of <a href="https://any-order-inference.github.io/">From Interface to Inference</a>, adapted from the <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> template.</p></div></div></footer>
+</body>
+</html>
