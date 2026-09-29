@@ -4,7 +4,7 @@ date:           2026-07-29 00:00:00 +0800
 selected:       true
 selected_order: 0
 cover:          /assets/images/photos/from-interface-to-inference.gif
-pub:            "NeurIPS Workshop DiffuLM"
+pub:            "DiffuLM @ NeurIPS"
 pub_date:       "2026"
 topic:          "Artificial Intelligence"
 abstract: >-
