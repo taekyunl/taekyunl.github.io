@@ -4,7 +4,7 @@ date:           2026-10-15 00:00:00 +0800
 selected:       false
 cover:          /assets/images/photos/FlowLoc.png
 pub_pre:        ""
-pub:            "arXiv"
+pub:            "ArXiv"
 pub_date:       "2026"
 topic:          "Wireless Communication"
 abstract: >-
