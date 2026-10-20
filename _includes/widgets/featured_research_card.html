@@ -19,7 +19,7 @@
                 {{ item.pub_last }}
             </p>
             {% if item.abstract %}<p class="mb-2 text-muted featured-research-summary">{{ item.abstract }}</p>{% endif %}
-            <div class="featured-research-links" aria-label="Links for {{ item.title }}">
+            <div class="publication-action-links" aria-label="Links for {{ item.title }}">
                 {% for link in item.links %}
                 {% if link[1].url %}
                 <a class="btn btn-sm btn-outline-primary" target="{{ link[1]['target'] }}" href="{{ link[1]['url'] }}">{{ link[0] }}</a>

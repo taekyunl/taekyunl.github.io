@@ -13,15 +13,15 @@
             <p class="mt-0 mb-0 small">{% include widgets/author_list.html authors=item.authors %}</p>
                 <p class="mt-0 mb-0 small">{% if item.pub_pre %}{{item.pub_pre}}{% endif %}<i>{{ item.pub }}</i>{% if item.pub_post %}{{ item.pub_post }}{% endif %}{% unless item.pub contains "IEEE Transactions" or item.pub contains "Journal" %} {{ item.pub_date }}{% endunless %} {{ item.pub_last }} <span data-semantic-scholar-id="{{ item.semantic_scholar_id }}"></span>{% if item.pub_extra %}<br><i>{{ item.pub_extra }}</i>{% endif %}</p>
             
-            <p class="small pb-0 mb-0 lh-125 text-muted abstract-links">
+            <div class="publication-action-links mt-2" aria-label="Links for {{ item.title }}">
                 {% for link in item.links %}
                 {% if link[1].url %}
-                <a target="{{ link[1]['target'] }}" href="{{ link[1]['url'] }}">[{{ link[0] }}]</a>
+                <a class="btn btn-sm btn-outline-primary" target="{{ link[1]['target'] }}" href="{{ link[1]['url'] }}">{{ link[0] }}</a>
                 {% else %}
-                <a target="_blank" href="{{ link[1] }}">[{{ link[0] }}]</a>
+                <a class="btn btn-sm btn-outline-primary" target="_blank" rel="noopener noreferrer" href="{{ link[1] }}">{{ link[0] }}</a>
                 {% endif %}
                 {% endfor %}
-            </p>
+            </div>
 
         </div>
     </div>
@@ -36,15 +36,15 @@
                 <p class="mt-0 mb-0 small">{% include widgets/author_list.html authors=item.authors %}</p>
                 <p class="mt-0 mb-0 small">{% if item.pub_pre %}{{item.pub_pre}}{% endif %}<i>{{ item.pub }}</i>{% if item.pub_post %}{{ item.pub_post }}{% endif %}{% unless item.pub contains "IEEE Transactions" or item.pub contains "Journal" %} {{ item.pub_date }}{% endunless %} {{ item.pub_last }} <span data-semantic-scholar-id="{{ item.semantic_scholar_id }}"></span>{% if item.pub_extra %}<br><i>{{ item.pub_extra }}</i>{% endif %}</p>
                 
-                <p class="small pb-0 mb-0 lh-125 text-muted abstract-links">
+                <div class="publication-action-links mt-2" aria-label="Links for {{ item.title }}">
                     {% for link in item.links %}
                     {% if link[1].url %}
-                    <a target="{{ link[1]['target'] }}" href="{{ link[1]['url'] }}">[{{ link[0] }}]</a>
+                    <a class="btn btn-sm btn-outline-primary" target="{{ link[1]['target'] }}" href="{{ link[1]['url'] }}">{{ link[0] }}</a>
                     {% else %}
-                    <a target="_blank" href="{{ link[1] }}">[{{ link[0] }}]</a>
+                    <a class="btn btn-sm btn-outline-primary" target="_blank" rel="noopener noreferrer" href="{{ link[1] }}">{{ link[0] }}</a>
                     {% endif %}
                     {% endfor %}
-                </p>
+                </div>
             </div>
         </div>
     </div>
