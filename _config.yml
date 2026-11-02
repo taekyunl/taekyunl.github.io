@@ -14,6 +14,8 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 baseurl: "" # the subpath of your site, e.g. /blog. Use "" for taekyunl.github.io
+url: "https://taekyunl.github.io"
+google_site_verification: "D69bStKfQuoI_SVfc3stlWbX8EemrNT0F_U8gikFo1g"
 
 # Build settings
 markdown: kramdown

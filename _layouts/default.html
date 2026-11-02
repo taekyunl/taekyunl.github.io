@@ -5,6 +5,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{{ page.title }} - {{ site.data.profile.navbar_name }}</title>
+    <link rel="canonical" href="{{ page.url | absolute_url }}">
+    {% if page.url == '/' %}
+    <meta name="google-site-verification" content="{{ site.google_site_verification | escape }}">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        "url": {{ '/' | absolute_url | jsonify }},
+        "inLanguage": "en",
+        "mainEntity": {
+            "@type": "Person",
+            "name": {{ site.data.profile.primary_name | jsonify }},
+            "url": {{ '/' | absolute_url | jsonify }},
+            "sameAs": [{{ site.data.profile.gscholar | jsonify }}]
+        }
+    }
+    </script>
+    {% endif %}
 
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="{{ '/assets/images/badges/favicon_tl_570514.ico' | relative_url }}">
