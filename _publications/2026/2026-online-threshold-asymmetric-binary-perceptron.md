@@ -2,8 +2,9 @@
 title:          "The Exact Online Threshold for the Asymmetric Binary Perceptron"
 date:           2026-09-02 00:00:00 +0800
 selected:       false
-pub:            "ArXiv"
-pub_date:       "2026"
+pub_pre:        "Submitted to "
+pub:            "STOC"
+pub_date:       "2027"
 topic:          "Applied Probability"
 abstract: >-
   The exact online threshold for the asymmetric binary perceptron.
