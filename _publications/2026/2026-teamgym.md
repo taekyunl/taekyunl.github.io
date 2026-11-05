@@ -9,8 +9,8 @@ topic:          "Artificial Intelligence"
 abstract: >-
   Evaluates and trains teams of language model agents with distributed information, isolating communication and retrieval gaps across legal, finance, medical, and software engineering tasks.
 authors:
-- Chanwoo Park
-- Jaywoong Jeong
+- Chanwoo Park*
+- Jaywoong Jeong*
 - Zachary Wojtowicz
 - Yubin Kim
 - Taekyun Lee
@@ -18,4 +18,5 @@ authors:
 - Asuman Ozdaglar
 links:
   Paper: https://arxiv.org/abs/2610.37571
+  Project: https://teamgym.vercel.app/index.html#top
 ---
