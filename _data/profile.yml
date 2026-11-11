@@ -4,7 +4,7 @@ navbar_name: "Taekyun Lee"
 
 positions:
 - name: Ph.D. Candidate at UT Austin
-- name: Generative Models · Diffusion · Reliable Inference
+- name: Generative AI · Wireless Communication
 
 email: "taekyun@utexas.edu"
 cv_link: CV.md
@@ -17,9 +17,7 @@ linkedin: taekyun-lee-042971232
 short_bio_text_justify: false
 short_bio: >-
   <p>
-    I develop <strong>generative models for flexible and reliable inference</strong>, with a focus on
-    masked and discrete diffusion, probabilistic sampling, self-correction, and risk-aware post-training.
-    I also apply these methods to communication and sensing systems.
+    I am interested in <strong>generative AI</strong> and <strong>wireless communication</strong>.
   </p>
   <p>
     My work has appeared at <strong>ICML, CVPR, NeurIPS, and IEEE Transactions on Wireless Communications</strong>.
