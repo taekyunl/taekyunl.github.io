@@ -18,5 +18,4 @@ authors:
 - Asuman Ozdaglar
 links:
   Paper: https://arxiv.org/abs/2610.37571
-  Project: https://teamgym.vercel.app/index.html#top
 ---
